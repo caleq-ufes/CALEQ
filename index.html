@@ -3,856 +3,4478 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CALEQ — Centro Acadêmico Livre de Engenharia Química</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --black:#111215;
-    --black-2:#191b1f;
-    --paper:#f5f4ef;
-    --paper-2:#eae8e0;
-    --line:#ddd9cd;
-    --line-dark:rgba(245,244,239,.14);
-    --blue:#2451e0;
-    --blue-deep:#17348f;
-    --lime:#d6ff3f;
-    --muted:#6f6a5e;
-    --muted-dark:#9d9a91;
-    --red:#c0392b;
-    --radius:14px;
-    --shadow: 0 20px 44px -26px rgba(17,18,21,.4);
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--black);
-    font-family:'Literata', Georgia, serif;
-    line-height:1.55;
-  }
-  h1,h2,h3,.display{font-family:'Big Shoulders Display', sans-serif; font-weight:800; letter-spacing:.01em; text-transform:uppercase; line-height:.95;}
-  .mono{font-family:'JetBrains Mono', monospace;}
-  a{color:inherit;}
-  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
-  ::selection{background:var(--lime); color:var(--black);}
 
-  /* NAV */
-  nav.topnav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(17,18,21,.92);
-    backdrop-filter: blur(8px);
-    border-bottom:1px solid var(--line-dark);
-  }
-  nav.topnav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:14px; padding-bottom:14px; gap:20px; flex-wrap:wrap;}
-  .brand{display:flex; align-items:center; gap:10px; font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:1.3rem; color:#f5f4ef; letter-spacing:.03em;}
-  .brand svg{width:24px; height:24px;}
-  .navlinks{display:flex; gap:2px; flex-wrap:wrap;}
-  .navlinks a{
-    position:relative;
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
-    padding:10px 14px; text-decoration:none; color:var(--muted-dark);
-  }
-  .navlinks a::after{
-    content:''; position:absolute; left:14px; right:14px; bottom:6px; height:2px; background:var(--lime);
-    transform:scaleX(0); transform-origin:left; transition:transform .2s ease;
-  }
-  .navlinks a:hover{color:#f5f4ef;}
-  .navlinks a:hover::after{transform:scaleX(1);}
-  .navlinks a.active{color:#fff;}
-  .navlinks a.active::after{transform:scaleX(1); background:var(--blue); height:2px; background:var(--lime);}
-  #editToggle{
-    font-family:'JetBrains Mono', monospace; font-size:.7rem; letter-spacing:.05em; text-transform:uppercase;
-    padding:9px 16px; border-radius:999px; border:1px solid var(--lime); background:transparent; color:var(--lime); cursor:pointer;
-  }
-  #editToggle.on{background:var(--lime); color:var(--black); font-weight:700;}
-  #trocarSenha{
-    font-family:'JetBrains Mono', monospace; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase;
-    padding:9px 14px; border-radius:999px; border:1px dashed var(--muted-dark); background:transparent; color:var(--muted-dark); cursor:pointer;
-  }
-  #trocarSenha:hover{border-color:#fff; color:#fff;}
+:root{
+  --black:#151515;
+  --black-2:#202020;
 
-  /* HERO */
-  header.hero{
-    position:relative; overflow:hidden; background:var(--black); color:#f5f4ef;
-    padding:96px 0 70px;
-  }
-  header.hero::before{
-    content:''; position:absolute; inset:0;
-    background:
-      radial-gradient(560px 420px at 82% -10%, rgba(36,81,224,.55), transparent 60%),
-      radial-gradient(420px 320px at 105% 60%, rgba(214,255,63,.14), transparent 65%);
-    pointer-events:none;
-  }
-  header.hero .wrap{position:relative; z-index:1;}
-  header.hero .eyebrow{
-    display:inline-block; font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
-    color:var(--black); background:var(--lime); padding:6px 12px; border-radius:999px; margin-bottom:22px;
-  }
-  header.hero h1{font-size:clamp(2.8rem, 7vw, 5.6rem); margin:0 0 .28em; max-width:15ch; color:#fff;}
-  header.hero p.lede{max-width:52ch; font-size:1.15rem; color:#c9c7bd; font-style:italic;}
-  .hero-flask{display:none;}
+  --paper:#f7f5ee;
+  --paper-2:#ece8dc;
+
+  --line:#ddd7c8;
+  --line-dark:rgba(247,245,238,.14);
+
+  --red:#b5121b;
+  --red-dark:#7f0d14;
+  --red-light:#d62b35;
+
+  --yellow:#f2c230;
+  --yellow-light:#ffd95a;
+  --yellow-dark:#c99c00;
+
+  --muted:#6f6a5e;
+  --muted-dark:#aaa69c;
+
+  --white:#fff;
+
+  --radius:14px;
+
+  --shadow:0 20px 44px -26px rgba(17,18,21,.4);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--black);
+  font-family:'Literata', Georgia, serif;
+  line-height:1.55;
+}
+
+h1,h2,h3,.display{
+  font-family:'Big Shoulders Display', sans-serif;
+  font-weight:800;
+  letter-spacing:.01em;
+  text-transform:uppercase;
+  line-height:.95;
+}
+
+.mono{
+  font-family:'JetBrains Mono', monospace;
+}
+
+a{
+  color:inherit;
+}
+
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+::selection{
+  background:var(--yellow);
+  color:var(--black);
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+nav.topnav{
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  background:rgba(21,21,21,.95);
+
+  backdrop-filter:blur(8px);
+
+  border-bottom:1px solid var(--line-dark);
+}
+
+nav.topnav .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding-top:14px;
+  padding-bottom:14px;
+
+  gap:20px;
+
+  flex-wrap:wrap;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  font-family:'Big Shoulders Display',sans-serif;
+  font-weight:800;
+  font-size:1.3rem;
+
+  color:#f7f5ee;
+
+  letter-spacing:.03em;
+
+  cursor:pointer;
+
+  user-select:none;
+}
+
+.brand svg{
+  width:28px;
+  height:28px;
+}
+
+.navlinks{
+  display:flex;
+  gap:2px;
+  flex-wrap:wrap;
+}
+
+.navlinks a{
+  position:relative;
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.7rem;
+
+  text-transform:uppercase;
+
+  letter-spacing:.08em;
+
+  padding:10px 14px;
+
+  text-decoration:none;
+
+  color:var(--muted-dark);
+
+  transition:.2s ease;
+}
+
+.navlinks a::after{
+  content:'';
+
+  position:absolute;
+
+  left:14px;
+  right:14px;
+  bottom:6px;
+
+  height:2px;
+
+  background:var(--yellow);
+
+  transform:scaleX(0);
+
+  transform-origin:left;
+
+  transition:transform .2s ease;
+}
+
+.navlinks a:hover{
+  color:#fff;
+}
+
+.navlinks a:hover::after{
+  transform:scaleX(1);
+}
+
+.navlinks a.active{
+  color:#fff;
+}
+
+.navlinks a.active::after{
+  transform:scaleX(1);
+  background:var(--yellow);
+}
+
+#editToggle{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.7rem;
+
+  letter-spacing:.05em;
+
+  text-transform:uppercase;
+
+  padding:9px 16px;
+
+  border-radius:999px;
+
+  border:1px solid var(--yellow);
+
+  background:transparent;
+
+  color:var(--yellow);
+
+  cursor:pointer;
+
+  transition:.2s ease;
+}
+
+#editToggle:hover{
+  background:var(--yellow);
+  color:var(--black);
+}
+
+#editToggle.on{
+  background:var(--yellow);
+  color:var(--black);
+  font-weight:700;
+}
+
+#trocarSenha{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.66rem;
+
+  letter-spacing:.05em;
+
+  text-transform:uppercase;
+
+  padding:9px 14px;
+
+  border-radius:999px;
+
+  border:1px dashed var(--muted-dark);
+
+  background:transparent;
+
+  color:var(--muted-dark);
+
+  cursor:pointer;
+}
+
+#trocarSenha:hover{
+  border-color:#fff;
+  color:#fff;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+header.hero{
+  position:relative;
+
+  overflow:hidden;
+
+  background:var(--black);
+
+  color:#f5f4ef;
+
+  padding:96px 0 70px;
+}
+
+header.hero::before{
+  content:'';
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    radial-gradient(
+      560px 420px at 82% -10%,
+      rgba(181,18,27,.62),
+      transparent 60%
+    ),
+
+    radial-gradient(
+      420px 320px at 105% 60%,
+      rgba(242,194,48,.20),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+header.hero::after{
+  content:'';
+
+  position:absolute;
+
+  width:260px;
+  height:260px;
+
+  right:-100px;
+  bottom:-120px;
+
+  border:2px solid rgba(242,194,48,.18);
+
+  transform:rotate(45deg);
+}
+
+header.hero .wrap{
+  position:relative;
+  z-index:1;
+}
+
+header.hero .eyebrow{
+  display:inline-block;
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.72rem;
+
+  letter-spacing:.1em;
+
+  text-transform:uppercase;
+
+  color:var(--black);
+
+  background:var(--yellow);
+
+  padding:6px 12px;
+
+  border-radius:999px;
+
+  margin-bottom:22px;
+}
+
+header.hero h1{
+  font-size:clamp(2.8rem,7vw,5.6rem);
+
+  margin:0 0 .28em;
+
+  max-width:15ch;
+
+  color:#fff;
+}
+
+header.hero h1::first-line{
+  color:#fff;
+}
+
+header.hero p.lede{
+  max-width:52ch;
+
+  font-size:1.15rem;
+
+  color:#c9c7bd;
+
+  font-style:italic;
+}
+
+.stats-row{
+  position:relative;
+  z-index:1;
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:1px;
+
+  margin-top:56px;
+
+  background:var(--line-dark);
+
+  border-top:1px solid var(--line-dark);
+
+  border-bottom:1px solid var(--line-dark);
+}
+
+.stat{
+  background:var(--black);
+
+  padding:22px 18px;
+
+  transition:.2s ease;
+}
+
+.stat:hover{
+  background:#1d1d1d;
+}
+
+.stat .num{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:clamp(1.8rem,3.4vw,2.6rem);
+
+  color:var(--yellow);
+
+  line-height:1;
+}
+
+.stat .lbl{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.64rem;
+
+  letter-spacing:.06em;
+
+  text-transform:uppercase;
+
+  color:var(--muted-dark);
+
+  margin-top:6px;
+}
+
+@media (max-width:700px){
 
   .stats-row{
-    position:relative; z-index:1;
-    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
-    margin-top:56px; background:var(--line-dark); border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark);
+    grid-template-columns:repeat(2,1fr);
   }
-  .stat{background:var(--black); padding:22px 18px;}
-  .stat .num{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(1.8rem,3.4vw,2.6rem); color:var(--lime); line-height:1;}
-  .stat .lbl{font-family:'JetBrains Mono',monospace; font-size:.64rem; letter-spacing:.06em; text-transform:uppercase; color:var(--muted-dark); margin-top:6px;}
-  @media (max-width:700px){.stats-row{grid-template-columns:repeat(2,1fr);}}
 
-  section{padding:76px 0; border-bottom:1px solid var(--line);}
-  section:last-of-type{border-bottom:none;}
+}
 
-  /* PAGES */
-  .page{display:none;}
-  .page.active{display:block;}
 
-  .quote-mark{font-family:'Big Shoulders Display',sans-serif; font-size:3.4rem; color:var(--blue); line-height:.6; display:block; margin-bottom:6px;}
-  .sobre-texto{
-    max-width:68ch; font-size:1.18rem; color:#2b2a26; min-height:1.6em;
-    white-space:pre-wrap; border-left:3px solid var(--blue); padding-left:22px;
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+section{
+  padding:76px 0;
+
+  border-bottom:1px solid var(--line);
+}
+
+section:last-of-type{
+  border-bottom:none;
+}
+
+
+/* =========================================================
+   PÁGINAS
+========================================================= */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+
+/* =========================================================
+   QUEM SOMOS
+========================================================= */
+
+.quote-mark{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-size:3.4rem;
+
+  color:var(--red);
+
+  line-height:.6;
+
+  display:block;
+
+  margin-bottom:6px;
+}
+
+.sobre-texto{
+  max-width:68ch;
+
+  font-size:1.18rem;
+
+  color:#2b2a26;
+
+  min-height:1.6em;
+
+  white-space:pre-wrap;
+
+  border-left:3px solid var(--red);
+
+  padding-left:22px;
+}
+
+body.editing .sobre-texto{
+  background:#fff;
+
+  box-shadow:0 0 0 1px var(--red) inset;
+
+  border-radius:0 8px 8px 0;
+
+  padding:12px 20px;
+}
+
+
+/* =========================================================
+   CARDS DA HOME
+========================================================= */
+
+.quicklinks{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+  gap:2px;
+
+  margin-top:44px;
+
+  background:var(--line);
+}
+
+.qcard{
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:space-between;
+
+  gap:34px;
+
+  text-decoration:none;
+
+  color:var(--black);
+
+  background:var(--paper);
+
+  padding:28px 24px;
+
+  min-height:150px;
+
+  transition:
+    background .18s ease,
+    color .18s ease,
+    transform .18s ease;
+}
+
+.qcard:hover{
+  background:var(--red);
+
+  color:#fff;
+
+  transform:translateY(-3px);
+}
+
+.qcard:hover .qarrow{
+  transform:translateX(4px);
+
+  color:var(--yellow);
+}
+
+.qcard .qnum{
+  color:var(--red);
+
+  font-size:.78rem;
+
+  font-family:'JetBrains Mono',monospace;
+
+  letter-spacing:.05em;
+}
+
+.qcard:hover .qnum{
+  color:var(--yellow);
+}
+
+.qcard .qtitle{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:1.5rem;
+}
+
+.qcard .qarrow{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:1.1rem;
+
+  transition:
+    transform .18s ease,
+    color .18s ease;
+
+  align-self:flex-end;
+}
+
+
+/* =========================================================
+   CABEÇALHOS
+========================================================= */
+
+.sec-head{
+  display:flex;
+
+  align-items:baseline;
+
+  justify-content:space-between;
+
+  gap:16px;
+
+  margin-bottom:10px;
+
+  flex-wrap:wrap;
+}
+
+.sec-head h2{
+  font-size:clamp(2rem,4.4vw,2.9rem);
+
+  margin:0;
+}
+
+.sec-num{
+  font-family:'JetBrains Mono',monospace;
+
+  color:var(--red);
+
+  font-size:.82rem;
+
+  letter-spacing:.04em;
+}
+
+.sec-desc{
+  color:var(--muted);
+
+  max-width:60ch;
+
+  margin:0 0 34px;
+
+  font-size:1.02rem;
+}
+
+.editnote{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.72rem;
+
+  color:var(--red-dark);
+
+  background:#fff2d1;
+
+  border:1px dashed var(--red);
+
+  padding:9px 14px;
+
+  border-radius:8px;
+
+  margin:0 0 26px;
+
+  display:none;
+}
+
+body.editing .editnote{
+  display:block;
+}
+
+
+/* =========================================================
+   DIRETORIA
+========================================================= */
+
+.tile-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(200px,1fr));
+
+  gap:16px;
+}
+
+.tile{
+  background:#fff;
+
+  border:1px solid var(--line);
+
+  border-radius:var(--radius);
+
+  padding:20px 18px 18px;
+
+  position:relative;
+
+  box-shadow:var(--shadow);
+
+  transition:
+    transform .18s ease,
+    border-color .18s ease;
+
+  border-top:4px solid var(--red);
+}
+
+.tile:hover{
+  transform:translateY(-4px);
+
+  border-color:var(--red);
+}
+
+.tile .num{
+  position:absolute;
+
+  top:14px;
+
+  right:16px;
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.66rem;
+
+  color:var(--muted);
+}
+
+.tile .del{
+  position:absolute;
+
+  top:12px;
+
+  left:14px;
+
+  display:none;
+
+  border:none;
+
+  background:none;
+
+  color:var(--red);
+
+  cursor:pointer;
+
+  font-size:1rem;
+
+  line-height:1;
+}
+
+body.editing .tile .del{
+  display:block;
+}
+
+.tile .symbol{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:2.3rem;
+
+  color:var(--red);
+
+  margin-top:6px;
+}
+
+.tile .name{
+  font-size:1.02rem;
+
+  font-weight:600;
+
+  margin-top:8px;
+
+  font-family:'Literata',serif;
+}
+
+.tile .role{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.66rem;
+
+  color:var(--red);
+
+  text-transform:uppercase;
+
+  letter-spacing:.05em;
+
+  margin-top:4px;
+}
+
+[contenteditable="true"]{
+  outline:none;
+}
+
+body.editing [contenteditable="true"]{
+  background:#fffaf0;
+
+  box-shadow:
+    0 0 0 1px var(--red) inset;
+
+  border-radius:4px;
+
+  padding:1px 3px;
+}
+
+.addtile{
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border:1.5px dashed var(--line);
+
+  border-radius:var(--radius);
+
+  min-height:150px;
+
+  background:transparent;
+
+  cursor:pointer;
+
+  color:var(--muted);
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.78rem;
+}
+
+body.editing .addtile{
+  display:flex;
+}
+
+.addtile:hover{
+  border-color:var(--red);
+
+  color:var(--red);
+}
+
+
+/* =========================================================
+   CAIXA
+========================================================= */
+
+header.hero + section#page-caixa-anchor{
+  display:none;
+}
+
+#page-caixa section{
+  background:var(--black);
+
+  color:#f5f4ef;
+
+  border-bottom:none;
+}
+
+#page-caixa .sec-desc{
+  color:var(--muted-dark);
+}
+
+#page-caixa .sec-num{
+  color:var(--yellow);
+}
+
+#page-caixa .editnote{
+  background:rgba(242,194,48,.08);
+
+  border-color:var(--yellow);
+
+  color:var(--yellow);
+}
+
+.caixa-layout{
+  display:grid;
+
+  grid-template-columns:200px 1fr;
+
+  gap:46px;
+
+  align-items:start;
+}
+
+@media (max-width:700px){
+
+  .caixa-layout{
+    grid-template-columns:1fr;
   }
-  body.editing .sobre-texto{background:#fff; box-shadow:0 0 0 1px var(--blue) inset; border-radius:0 8px 8px 0; padding:12px 20px;}
-  .quicklinks{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:2px; margin-top:44px; background:var(--line);}
-  .qcard{
-    display:flex; flex-direction:column; justify-content:space-between; gap:34px; text-decoration:none; color:var(--black);
-    background:var(--paper); padding:28px 24px; min-height:150px;
-    transition:background .18s ease, color .18s ease;
-  }
-  .qcard:hover{background:var(--black); color:#fff;}
-  .qcard:hover .qarrow{transform:translateX(4px); color:var(--lime);}
-  .qcard .qnum{color:var(--blue); font-size:.78rem; font-family:'JetBrains Mono',monospace; letter-spacing:.05em;}
-  .qcard:hover .qnum{color:var(--lime);}
-  .qcard .qtitle{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:1.5rem;}
-  .qcard .qarrow{font-family:'JetBrains Mono',monospace; font-size:1.1rem; transition:transform .18s ease, color .18s ease; align-self:flex-end;}
 
-  .sec-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:10px; flex-wrap:wrap;}
-  .sec-head h2{font-size:clamp(2rem,4.4vw,2.9rem); margin:0;}
-  .sec-num{font-family:'JetBrains Mono',monospace; color:var(--blue); font-size:.82rem; letter-spacing:.04em;}
-  .sec-desc{color:var(--muted); max-width:60ch; margin:0 0 34px; font-size:1.02rem;}
-  .editnote{
-    font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--blue-deep);
-    background:#eaf0ff; border:1px dashed var(--blue); padding:9px 14px; border-radius:8px;
-    margin:0 0 26px; display:none;
-  }
-  body.editing .editnote{display:block;}
+}
 
-  /* TILE (roster cards / diretoria) */
-  .tile-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:16px;}
-  .tile{
-    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px 18px 18px; position:relative; box-shadow:var(--shadow);
-    transition:transform .18s ease, border-color .18s ease; border-top:4px solid var(--blue);
-  }
-  .tile:hover{transform:translateY(-4px); border-color:var(--blue);}
-  .tile .num{position:absolute; top:14px; right:16px; font-family:'JetBrains Mono',monospace; font-size:.66rem; color:var(--muted);}
-  .tile .del{position:absolute; top:12px; left:14px; display:none; border:none; background:none; color:var(--red); cursor:pointer; font-size:1rem; line-height:1;}
-  body.editing .tile .del{display:block;}
-  .tile .symbol{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:2.3rem; color:var(--black); margin-top:6px;}
-  .tile .name{font-size:1.02rem; font-weight:600; margin-top:8px; font-family:'Literata',serif;}
-  .tile .role{font-family:'JetBrains Mono',monospace; font-size:.66rem; color:var(--blue); text-transform:uppercase; letter-spacing:.05em; margin-top:4px;}
-  [contenteditable="true"]{outline:none;}
-  body.editing [contenteditable="true"]{background:#fbfaf5; box-shadow:0 0 0 1px var(--blue) inset; border-radius:4px; padding:1px 3px;}
-  .addtile{
-    display:none; align-items:center; justify-content:center; border:1.5px dashed var(--line); border-radius:var(--radius);
-    min-height:150px; background:transparent; cursor:pointer; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.78rem;
-  }
-  body.editing .addtile{display:flex;}
-  .addtile:hover{border-color:var(--blue); color:var(--blue);}
+.beaker-box{
+  display:flex;
 
-  /* CAIXA */
-  header.hero + section#page-caixa-anchor{display:none;}
-  #page-caixa section{background:var(--black); color:#f5f4ef; border-bottom:none;}
-  #page-caixa .sec-desc{color:var(--muted-dark);}
-  #page-caixa .sec-num{color:var(--lime);}
-  #page-caixa .editnote{background:rgba(214,255,63,.08); border-color:var(--lime); color:var(--lime);}
-  .caixa-layout{display:grid; grid-template-columns: 200px 1fr; gap:46px; align-items:start;}
-  @media (max-width:700px){.caixa-layout{grid-template-columns:1fr;}}
-  .beaker-box{display:flex; flex-direction:column; align-items:flex-start; gap:8px;}
-  .beaker-box svg{width:120px; height:170px;}
-  .saldo-label{font-family:'JetBrains Mono',monospace; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted-dark);}
-  .saldo-valor{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:2.6rem; color:var(--lime);}
-  .notas{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;}
-  .nota{
-    display:flex; gap:12px; align-items:flex-start; background:var(--black-2); border:1px solid var(--line-dark); border-radius:8px; padding:12px 14px;
-  }
-  .nota .bullet{color:var(--lime); font-family:'JetBrains Mono',monospace;}
-  .nota .txt{flex:1; color:#e7e5dc;}
-  .nota .del{display:none; border:none; background:none; color:#e07a6c; cursor:pointer;}
-  body.editing .nota .del{display:block;}
-  .addnota{
-    display:none; margin-top:12px; border:1px dashed var(--muted-dark); border-radius:8px; padding:11px 14px; background:transparent;
-    color:var(--muted-dark); font-family:'JetBrains Mono',monospace; font-size:.8rem; cursor:pointer; width:100%; text-align:left;
-  }
-  body.editing .addnota{display:block;}
-  .addnota:hover{border-color:var(--lime); color:var(--lime);}
-  .updated{font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--muted-dark); margin-top:8px;}
+  flex-direction:column;
 
-  /* PRODUTOS */
-  .prod-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:20px;}
-  .prod-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative; transition:transform .18s ease;}
-  .prod-card:hover{transform:translateY(-4px);}
-  .prod-top{
-    height:100px;
-    background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 55%, var(--black) 100%);
-    position:relative;
+  align-items:flex-start;
+
+  gap:8px;
+}
+
+.beaker-box svg{
+  width:120px;
+
+  height:170px;
+}
+
+.saldo-label{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.7rem;
+
+  text-transform:uppercase;
+
+  letter-spacing:.08em;
+
+  color:var(--muted-dark);
+}
+
+.saldo-valor{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:2.6rem;
+
+  color:var(--yellow);
+}
+
+.notas{
+  list-style:none;
+
+  padding:0;
+
+  margin:0;
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.nota{
+  display:flex;
+
+  gap:12px;
+
+  align-items:flex-start;
+
+  background:var(--black-2);
+
+  border:1px solid var(--line-dark);
+
+  border-radius:8px;
+
+  padding:12px 14px;
+}
+
+.nota .bullet{
+  color:var(--yellow);
+
+  font-family:'JetBrains Mono',monospace;
+}
+
+.nota .txt{
+  flex:1;
+
+  color:#e7e5dc;
+}
+
+.nota .del{
+  display:none;
+
+  border:none;
+
+  background:none;
+
+  color:#e07a6c;
+
+  cursor:pointer;
+}
+
+body.editing .nota .del{
+  display:block;
+}
+
+.addnota{
+  display:none;
+
+  margin-top:12px;
+
+  border:1px dashed var(--muted-dark);
+
+  border-radius:8px;
+
+  padding:11px 14px;
+
+  background:transparent;
+
+  color:var(--muted-dark);
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.8rem;
+
+  cursor:pointer;
+
+  width:100%;
+
+  text-align:left;
+}
+
+body.editing .addnota{
+  display:block;
+}
+
+.addnota:hover{
+  border-color:var(--yellow);
+
+  color:var(--yellow);
+}
+
+.updated{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.68rem;
+
+  color:var(--muted-dark);
+
+  margin-top:8px;
+}
+
+
+/* =========================================================
+   PRODUTOS
+========================================================= */
+
+.prod-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(230px,1fr));
+
+  gap:20px;
+}
+
+.prod-card{
+  background:#fff;
+
+  border:1px solid var(--line);
+
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  overflow:hidden;
+
+  position:relative;
+
+  transition:transform .18s ease;
+}
+
+.prod-card:hover{
+  transform:translateY(-4px);
+}
+
+.prod-top{
+  height:100px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--red) 0%,
+      var(--red-dark) 55%,
+      var(--black) 100%
+    );
+
+  position:relative;
+}
+
+.prod-top::after{
+  content:'';
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(242,194,48,.12) 0 8px,
+      transparent 8px 16px
+    );
+}
+
+.prod-body{
+  padding:16px;
+}
+
+.prod-body .name{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:1.3rem;
+
+  text-transform:uppercase;
+}
+
+.prod-body .desc{
+  color:var(--muted);
+
+  font-size:.9rem;
+
+  margin:8px 0;
+
+  font-family:'Literata',serif;
+}
+
+.prod-body .price{
+  font-family:'JetBrains Mono',monospace;
+
+  font-weight:700;
+
+  color:var(--red);
+
+  font-size:1.1rem;
+}
+
+.prod-body .stock{
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.64rem;
+
+  color:var(--black);
+
+  text-transform:uppercase;
+
+  background:var(--yellow);
+
+  display:inline-block;
+
+  padding:3px 8px;
+
+  border-radius:999px;
+
+  margin-top:8px;
+
+  letter-spacing:.04em;
+}
+
+.prod-card .del{
+  position:absolute;
+
+  top:8px;
+
+  right:8px;
+
+  display:none;
+
+  border:none;
+
+  background:rgba(255,255,255,.9);
+
+  border-radius:50%;
+
+  width:24px;
+
+  height:24px;
+
+  color:var(--red);
+
+  cursor:pointer;
+
+  z-index:2;
+}
+
+body.editing .prod-card .del{
+  display:block;
+}
+
+.addprod{
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border:1.5px dashed var(--line);
+
+  border-radius:var(--radius);
+
+  min-height:200px;
+
+  background:transparent;
+
+  cursor:pointer;
+
+  color:var(--muted);
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.78rem;
+}
+
+body.editing .addprod{
+  display:flex;
+}
+
+.addprod:hover{
+  border-color:var(--red);
+
+  color:var(--red);
+}
+
+
+/* =========================================================
+   GRADE CURRICULAR
+========================================================= */
+
+.grade-summary{
+  display:flex;
+
+  align-items:center;
+
+  gap:28px;
+
+  margin-bottom:40px;
+
+  flex-wrap:wrap;
+}
+
+.titracao{
+  width:60px;
+
+  height:110px;
+}
+
+.grade-pct{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:clamp(2.4rem,5vw,3.4rem);
+
+  color:var(--red);
+
+  text-transform:none;
+}
+
+.grade-pct span{
+  font-size:.95rem;
+
+  color:var(--muted);
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-weight:400;
+
+  text-transform:uppercase;
+
+  letter-spacing:.04em;
+}
+
+.periodo{
+  margin-bottom:32px;
+}
+
+.periodo-head{
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  margin-bottom:12px;
+}
+
+.periodo-head h3{
+  font-size:1.4rem;
+
+  margin:0;
+
+  font-family:'Big Shoulders Display',sans-serif;
+
+  letter-spacing:.03em;
+
+  color:var(--black);
+
+  font-weight:800;
+}
+
+.periodo-head .bar{
+  flex:1;
+
+  height:5px;
+
+  background:var(--paper-2);
+
+  border-radius:3px;
+
+  overflow:hidden;
+}
+
+.periodo-head .bar i{
+  display:block;
+
+  height:100%;
+
+  background:var(--red);
+
+  width:0%;
+}
+
+.materia-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(160px,1fr));
+
+  gap:12px;
+}
+
+.materia{
+  border:1.5px solid var(--line);
+
+  border-radius:10px;
+
+  padding:12px 12px 14px;
+
+  cursor:pointer;
+
+  background:#fff;
+
+  transition:
+    background .15s,
+    border-color .15s,
+    transform .1s;
+
+  user-select:none;
+
+  position:relative;
+}
+
+.materia:hover{
+  border-color:var(--red);
+}
+
+.materia:active{
+  transform:scale(.97);
+}
+
+.materia .sigla{
+  font-family:'JetBrains Mono',monospace;
+
+  font-weight:700;
+
+  font-size:1.15rem;
+
+  color:var(--red);
+}
+
+.materia .nm{
+  font-size:.8rem;
+
+  margin-top:5px;
+
+  color:var(--black);
+
+  font-family:'Literata',serif;
+}
+
+.materia .check{
+  position:absolute;
+
+  top:10px;
+
+  right:10px;
+
+  width:16px;
+
+  height:16px;
+
+  border:1.5px solid var(--line);
+
+  border-radius:4px;
+}
+
+.materia.done{
+  background:var(--red);
+
+  border-color:var(--red-dark);
+}
+
+.materia.done .sigla,
+.materia.done .nm{
+  color:#fff;
+}
+
+.materia.done .check{
+  background:var(--yellow);
+
+  border-color:var(--yellow);
+}
+
+.materia.done .check::after{
+  content:'✓';
+
+  color:var(--black);
+
+  font-size:11px;
+
+  position:absolute;
+
+  left:2px;
+
+  top:-3px;
+
+  font-weight:700;
+}
+
+.materia .del-materia{
+  position:absolute;
+
+  top:8px;
+
+  left:8px;
+
+  display:none;
+
+  border:none;
+
+  background:none;
+
+  color:var(--red);
+
+  cursor:pointer;
+
+  font-size:.85rem;
+
+  line-height:1;
+}
+
+body.editing .materia .del-materia{
+  display:block;
+}
+
+.materia.add-materia{
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border:1.5px dashed var(--line);
+
+  background:transparent;
+
+  cursor:pointer;
+}
+
+body.editing .materia.add-materia{
+  display:flex;
+}
+
+.periodo-head .del-periodo{
+  display:none;
+
+  border:none;
+
+  background:none;
+
+  color:var(--red);
+
+  cursor:pointer;
+
+  font-family:'JetBrains Mono',monospace;
+
+  font-size:.68rem;
+
+  white-space:nowrap;
+}
+
+body.editing .periodo-head .del-periodo{
+  display:inline-block;
+}
+
+.periodo-titulo[contenteditable="true"]{
+  cursor:text;
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+footer{
+  padding:0;
+
+  color:#c5c2b9;
+
+  font-family:'JetBrains Mono',monospace;
+
+  background:var(--black);
+
+  letter-spacing:.02em;
+}
+
+.footer-main{
+  border-top:4px solid var(--red);
+
+  padding:42px 0 30px;
+}
+
+.footer-grid{
+  display:grid;
+
+  grid-template-columns:
+    1.5fr 1fr 1fr;
+
+  gap:40px;
+}
+
+.footer-brand{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:12px;
+}
+
+.footer-brand svg{
+  width:34px;
+  height:34px;
+}
+
+.footer-title{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-weight:800;
+
+  font-size:1.8rem;
+
+  color:#fff;
+
+  letter-spacing:.04em;
+}
+
+.footer-text{
+  max-width:480px;
+
+  font-family:'Literata',serif;
+
+  color:#aaa69c;
+
+  font-size:.92rem;
+
+  line-height:1.6;
+
+  margin:0;
+}
+
+.footer-column h4{
+  font-family:'Big Shoulders Display',sans-serif;
+
+  font-size:1.05rem;
+
+  color:var(--yellow);
+
+  margin:0 0 12px;
+
+  text-transform:uppercase;
+}
+
+.footer-column p{
+  margin:5px 0;
+
+  font-size:.7rem;
+
+  color:#aaa69c;
+
+  line-height:1.6;
+}
+
+.footer-column a{
+  color:#aaa69c;
+
+  text-decoration:none;
+
+  transition:.2s ease;
+}
+
+.footer-column a:hover{
+  color:var(--yellow);
+}
+
+.footer-bottom{
+  border-top:1px solid var(--line-dark);
+
+  padding:16px 0;
+
+  text-align:center;
+
+  font-size:.64rem;
+
+  color:#77736b;
+}
+
+@media(max-width:750px){
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:25px;
   }
-  .prod-top::after{content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 8px, transparent 8px 16px);}
-  .prod-body{padding:16px;}
-  .prod-body .name{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:1.3rem; text-transform:uppercase;}
-  .prod-body .desc{color:var(--muted); font-size:.9rem; margin:8px 0; font-family:'Literata',serif;}
-  .prod-body .price{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--blue); font-size:1.1rem;}
-  .prod-body .stock{font-family:'JetBrains Mono',monospace; font-size:.64rem; color:#fff; text-transform:uppercase; background:var(--black); display:inline-block; padding:3px 8px; border-radius:999px; margin-top:8px; letter-spacing:.04em;}
-  .prod-card .del{position:absolute; top:8px; right:8px; display:none; border:none; background:rgba(255,255,255,.9); border-radius:50%; width:24px; height:24px; color:var(--red); cursor:pointer; z-index:2;}
-  body.editing .prod-card .del{display:block;}
-  .addprod{display:none; align-items:center; justify-content:center; border:1.5px dashed var(--line); border-radius:var(--radius); min-height:200px; background:transparent; cursor:pointer; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:.78rem;}
-  body.editing .addprod{display:flex;}
-  .addprod:hover{border-color:var(--blue); color:var(--blue);}
 
-  /* GRADE */
-  .grade-summary{display:flex; align-items:center; gap:28px; margin-bottom:40px; flex-wrap:wrap;}
-  .titracao{width:60px; height:110px;}
-  .grade-pct{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:clamp(2.4rem,5vw,3.4rem); color:var(--blue); text-transform:none;}
-  .grade-pct span{font-size:.95rem; color:var(--muted); font-family:'JetBrains Mono',monospace; font-weight:400; text-transform:uppercase; letter-spacing:.04em;}
-  .periodo{margin-bottom:32px;}
-  .periodo-head{display:flex; align-items:center; gap:14px; margin-bottom:12px;}
-  .periodo-head h3{font-size:1.4rem; margin:0; font-family:'Big Shoulders Display',sans-serif; letter-spacing:.03em; color:var(--black); font-weight:800;}
-  .periodo-head .bar{flex:1; height:5px; background:var(--paper-2); border-radius:3px; overflow:hidden;}
-  .periodo-head .bar i{display:block; height:100%; background:var(--blue); width:0%;}
-  .materia-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px;}
-  .materia{
-    border:1.5px solid var(--line); border-radius:10px; padding:12px 12px 14px; cursor:pointer; background:#fff;
-    transition:background .15s, border-color .15s, transform .1s;
-    user-select:none; position:relative;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+.reveal{
+  opacity:0;
+
+  transform:translateY(18px);
+
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+.reveal.in{
+  opacity:1;
+
+  transform:translateY(0);
+}
+
+@media (prefers-reduced-motion:reduce){
+
+  *{
+    transition:none !important;
+    animation:none !important;
   }
-  .materia:hover{border-color:var(--blue);}
-  .materia:active{transform:scale(.97);}
-  .materia .sigla{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:1.15rem; color:var(--blue);}
-  .materia .nm{font-size:.8rem; margin-top:5px; color:var(--black); font-family:'Literata',serif;}
-  .materia .check{position:absolute; top:10px; right:10px; width:16px; height:16px; border:1.5px solid var(--line); border-radius:4px;}
-  .materia.done{background:var(--blue); border-color:var(--blue-deep);}
-  .materia.done .sigla,.materia.done .nm{color:#fff;}
-  .materia.done .check{background:var(--lime); border-color:var(--lime);}
-  .materia.done .check::after{content:'✓'; color:var(--black); font-size:11px; position:absolute; left:2px; top:-3px; font-weight:700;}
-  .materia .del-materia{position:absolute; top:8px; left:8px; display:none; border:none; background:none; color:var(--red); cursor:pointer; font-size:.85rem; line-height:1;}
-  body.editing .materia .del-materia{display:block;}
-  .materia.add-materia{display:none; align-items:center; justify-content:center; border:1.5px dashed var(--line); background:transparent; cursor:pointer;}
-  body.editing .materia.add-materia{display:flex;}
-  .periodo-head .del-periodo{display:none; border:none; background:none; color:var(--red); cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:.68rem; white-space:nowrap;}
-  body.editing .periodo-head .del-periodo{display:inline-block;}
-  .periodo-titulo[contenteditable="true"]{cursor:text;}
 
-  footer{padding:36px 0; text-align:center; color:var(--muted-dark); font-family:'JetBrains Mono',monospace; font-size:.7rem; background:var(--black); letter-spacing:.02em;}
-
-  /* SCROLL REVEAL */
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1; transform:translateY(0);}
-
-  @media (prefers-reduced-motion: reduce){
-    *{transition:none !important; animation:none !important;}
-    .reveal{opacity:1; transform:none;}
+  .reveal{
+    opacity:1;
+    transform:none;
   }
+
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media(max-width:850px){
+
+  nav.topnav .wrap{
+    justify-content:center;
+  }
+
+  .brand{
+    width:100%;
+    justify-content:center;
+  }
+
+  .navlinks{
+    justify-content:center;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .wrap{
+    padding:0 18px;
+  }
+
+  header.hero{
+    padding:70px 0 50px;
+  }
+
+  header.hero h1{
+    font-size:3.3rem;
+  }
+
+  .navlinks a{
+    padding:8px 9px;
+    font-size:.62rem;
+  }
+
+  section{
+    padding:55px 0;
+  }
+
+}
+
 </style>
 </head>
+
 <body>
 
+
+<!-- =========================================================
+     NAVEGAÇÃO
+========================================================= -->
+
 <nav class="topnav">
+
   <div class="wrap">
+
     <div class="brand" id="brandLogo">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M9 2v6.2L4 18a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 18l-5-9.8V2" stroke="#2f8f83" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 15h9" stroke="#2f8f83" stroke-width="1.6"/><path d="M9 2h6" stroke="#2f8f83" stroke-width="1.6" stroke-linecap="round"/></svg>
+
+      <svg viewBox="0 0 24 24" fill="none">
+
+        <path
+          d="M9 2v6.2L4 18a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 18l-5-9.8V2"
+          stroke="#f2c230"
+          stroke-width="1.6"
+          stroke-linejoin="round"
+        />
+
+        <path
+          d="M7.5 15h9"
+          stroke="#b5121b"
+          stroke-width="1.6"
+        />
+
+        <path
+          d="M9 2h6"
+          stroke="#f2c230"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+
+      </svg>
+
       CALEQ
+
     </div>
+
+
     <div class="navlinks" id="navlinks">
-      <a href="#inicio" data-page="inicio">Início</a>
-      <a href="#diretoria" data-page="diretoria">Diretoria</a>
-      <a href="#caixa" data-page="caixa">Caixa</a>
-      <a href="#produtos" data-page="produtos">Produtos</a>
-      <a href="#grade" data-page="grade">Grade curricular</a>
+
+      <a href="#inicio" data-page="inicio">
+        Início
+      </a>
+
+      <a href="#diretoria" data-page="diretoria">
+        Diretoria
+      </a>
+
+      <a href="#caixa" data-page="caixa">
+        Caixa
+      </a>
+
+      <a href="#produtos" data-page="produtos">
+        Produtos
+      </a>
+
+      <a href="#grade" data-page="grade">
+        Grade curricular
+      </a>
+
     </div>
-    <button id="editToggle" style="display:none;">Modo edição</button>
-    <button id="trocarSenha" style="display:none;">Trocar senha</button>
+
+
+    <button
+      id="editToggle"
+      style="display:none;"
+    >
+      Modo edição
+    </button>
+
+
+    <button
+      id="trocarSenha"
+      style="display:none;"
+    >
+      Trocar senha
+    </button>
+
   </div>
+
 </nav>
 
+
+
+<!-- =========================================================
+     INÍCIO
+========================================================= -->
+
 <main id="page-inicio" class="page">
+
   <header class="hero">
+
     <div class="wrap">
-      <span class="eyebrow">Centro Acadêmico Livre · Eng. Química · UFES, Campus Alegre</span>
-      <h1>Tudo sobre<br>o CALEQ.</h1>
-      <p class="lede">Quem tá na diretoria, quanto tem em caixa, o que a gente vende — e um jeito rápido de marcar as matérias que você já cursou na grade.</p>
+
+      <span class="eyebrow">
+        Centro Acadêmico Livre · Eng. Química · UFES, Campus Alegre
+      </span>
+
+      <h1>
+        Tudo sobre<br>
+        o CALEQ.
+      </h1>
+
+      <p class="lede">
+        Quem tá na diretoria, quanto tem em caixa, o que a gente vende
+        — e um jeito rápido de marcar as matérias que você já cursou
+        na grade.
+      </p>
+
+
       <div class="stats-row">
-        <div class="stat"><div class="num mono" id="statMembros">—</div><div class="lbl">na diretoria</div></div>
-        <div class="stat"><div class="num mono" id="statProdutos">—</div><div class="lbl">produtos à venda</div></div>
-        <div class="stat"><div class="num mono" id="statMaterias">—</div><div class="lbl">matérias na grade</div></div>
-        <div class="stat"><div class="num mono" id="statSaldo">—</div><div class="lbl">saldo em caixa</div></div>
+
+        <div class="stat">
+          <div class="num mono" id="statMembros">—</div>
+          <div class="lbl">na diretoria</div>
+        </div>
+
+        <div class="stat">
+          <div class="num mono" id="statProdutos">—</div>
+          <div class="lbl">produtos à venda</div>
+        </div>
+
+        <div class="stat">
+          <div class="num mono" id="statMaterias">—</div>
+          <div class="lbl">matérias na grade</div>
+        </div>
+
+        <div class="stat">
+          <div class="num mono" id="statSaldo">—</div>
+          <div class="lbl">saldo em caixa</div>
+        </div>
+
       </div>
+
     </div>
+
   </header>
 
+
   <section>
+
     <div class="wrap reveal">
-      <div class="sec-head"><h2>Quem somos</h2><span class="sec-num mono">00 / história</span></div>
-      <p class="editnote">Esse texto é compartilhado — qualquer visitante vê a mesma história. Clique em "Modo edição" pra reescrever.</p>
-      <span class="quote-mark">"</span>
-      <div id="sobreTexto" class="sobre-texto" contenteditable="false"></div>
+
+      <div class="sec-head">
+
+        <h2>
+          Quem somos
+        </h2>
+
+        <span class="sec-num mono">
+          00 / história
+        </span>
+
+      </div>
+
+
+      <p class="editnote">
+        Esse texto é compartilhado — qualquer visitante vê a mesma
+        história. Clique em "Modo edição" pra reescrever.
+      </p>
+
+
+      <span class="quote-mark">
+        "
+      </span>
+
+
+      <div
+        id="sobreTexto"
+        class="sobre-texto"
+        contenteditable="false"
+      ></div>
+
     </div>
+
   </section>
+
 
   <div class="wrap reveal">
+
     <div class="quicklinks">
-      <a href="#diretoria" data-page="diretoria" class="qcard"><span class="qnum mono">01</span><span class="qtitle">Diretoria</span><span class="qarrow">→</span></a>
-      <a href="#caixa" data-page="caixa" class="qcard"><span class="qnum mono">02</span><span class="qtitle">Caixa</span><span class="qarrow">→</span></a>
-      <a href="#produtos" data-page="produtos" class="qcard"><span class="qnum mono">03</span><span class="qtitle">Produtos</span><span class="qarrow">→</span></a>
-      <a href="#grade" data-page="grade" class="qcard"><span class="qnum mono">04</span><span class="qtitle">Grade curricular</span><span class="qarrow">→</span></a>
+
+
+      <a
+        href="#diretoria"
+        data-page="diretoria"
+        class="qcard"
+      >
+
+        <span class="qnum mono">
+          01
+        </span>
+
+        <span class="qtitle">
+          Diretoria
+        </span>
+
+        <span class="qarrow">
+          →
+        </span>
+
+      </a>
+
+
+      <a
+        href="#caixa"
+        data-page="caixa"
+        class="qcard"
+      >
+
+        <span class="qnum mono">
+          02
+        </span>
+
+        <span class="qtitle">
+          Caixa
+        </span>
+
+        <span class="qarrow">
+          →
+        </span>
+
+      </a>
+
+
+      <a
+        href="#produtos"
+        data-page="produtos"
+        class="qcard"
+      >
+
+        <span class="qnum mono">
+          03
+        </span>
+
+        <span class="qtitle">
+          Produtos
+        </span>
+
+        <span class="qarrow">
+          →
+        </span>
+
+      </a>
+
+
+      <a
+        href="#grade"
+        data-page="grade"
+        class="qcard"
+      >
+
+        <span class="qnum mono">
+          04
+        </span>
+
+        <span class="qtitle">
+          Grade curricular
+        </span>
+
+        <span class="qarrow">
+          →
+        </span>
+
+      </a>
+
+
     </div>
+
   </div>
+
 </main>
+
+
+
+<!-- =========================================================
+     DIRETORIA
+========================================================= -->
 
 <main id="page-diretoria" class="page">
+
   <section>
+
     <div class="wrap">
-      <div class="sec-head"><h2>Diretoria</h2><span class="sec-num mono">01 / tabela de membros</span></div>
-      <p class="sec-desc">Cada cargo, um elemento. Clique em "Modo edição" pra trocar nomes, cargos e siglas.</p>
-      <p class="editnote">Essas informações ficam salvas pra qualquer pessoa que abrir esse site (dados compartilhados do CA).</p>
-      <div class="tile-grid" id="membrosGrid"></div>
+
+      <div class="sec-head">
+
+        <h2>
+          Diretoria
+        </h2>
+
+        <span class="sec-num mono">
+          01 / tabela de membros
+        </span>
+
+      </div>
+
+
+      <p class="sec-desc">
+        Cada cargo, um elemento. Clique em "Modo edição"
+        pra trocar nomes, cargos e siglas.
+      </p>
+
+
+      <p class="editnote">
+        Essas informações ficam salvas pra qualquer pessoa
+        que abrir esse site.
+      </p>
+
+
+      <div
+        class="tile-grid"
+        id="membrosGrid"
+      ></div>
+
     </div>
+
   </section>
+
 </main>
+
+
+
+<!-- =========================================================
+     CAIXA
+========================================================= -->
 
 <main id="page-caixa" class="page">
+
   <section>
+
     <div class="wrap">
-      <div class="sec-head"><h2>Caixa</h2><span class="sec-num mono">02 / saldo atual</span></div>
-      <p class="sec-desc">Saldo em caixa e um registro simples de entradas e saídas.</p>
-      <p class="editnote">Saldo e notas também são compartilhados — qualquer visitante vê os mesmos valores.</p>
-      <div class="caixa-layout">
-        <div class="beaker-box">
-          <svg class="titracao" id="beakerCaixa" viewBox="0 0 100 160"><!-- filled by JS --></svg>
-          <div class="saldo-label">Saldo em caixa</div>
-          <div class="saldo-valor mono" id="saldoValor" contenteditable="false">R$ 0,00</div>
-          <div class="updated" id="saldoUpdated"></div>
-        </div>
-        <div>
-          <ul class="notas" id="notasList"></ul>
-          <button class="addnota" id="addNota">+ adicionar registro</button>
-        </div>
+
+      <div class="sec-head">
+
+        <h2>
+          Caixa
+        </h2>
+
+        <span class="sec-num mono">
+          02 / saldo atual
+        </span>
+
       </div>
+
+
+      <p class="sec-desc">
+        Saldo em caixa e um registro simples de entradas e saídas.
+      </p>
+
+
+      <p class="editnote">
+        Saldo e notas também são compartilhados —
+        qualquer visitante vê os mesmos valores.
+      </p>
+
+
+      <div class="caixa-layout">
+
+
+        <div class="beaker-box">
+
+          <svg
+            class="titracao"
+            id="beakerCaixa"
+            viewBox="0 0 100 160"
+          ></svg>
+
+          <div class="saldo-label">
+            Saldo em caixa
+          </div>
+
+          <div
+            class="saldo-valor mono"
+            id="saldoValor"
+            contenteditable="false"
+          >
+            R$ 0,00
+          </div>
+
+          <div
+            class="updated"
+            id="saldoUpdated"
+          ></div>
+
+        </div>
+
+
+        <div>
+
+          <ul
+            class="notas"
+            id="notasList"
+          ></ul>
+
+          <button
+            class="addnota"
+            id="addNota"
+          >
+            + adicionar registro
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
+
   </section>
+
 </main>
+
+
+
+<!-- =========================================================
+     PRODUTOS
+========================================================= -->
 
 <main id="page-produtos" class="page">
+
   <section>
+
     <div class="wrap">
-      <div class="sec-head"><h2>Produtos à venda</h2><span class="sec-num mono">03 / loja do CA</span></div>
-      <p class="sec-desc">Camisetas, jalecos, canecas, rifas — o que o CA tiver pra vender.</p>
-      <p class="editnote">Também compartilhado com todo mundo que visitar o site.</p>
-      <div class="prod-grid" id="produtosGrid"></div>
+
+      <div class="sec-head">
+
+        <h2>
+          Produtos à venda
+        </h2>
+
+        <span class="sec-num mono">
+          03 / loja do CA
+        </span>
+
+      </div>
+
+
+      <p class="sec-desc">
+        Camisetas, jalecos, canecas, rifas —
+        o que o CA tiver pra vender.
+      </p>
+
+
+      <p class="editnote">
+        Também compartilhado com todo mundo que visitar o site.
+      </p>
+
+
+      <div
+        class="prod-grid"
+        id="produtosGrid"
+      ></div>
+
     </div>
+
   </section>
+
 </main>
+
+
+
+<!-- =========================================================
+     GRADE
+========================================================= -->
 
 <main id="page-grade" class="page">
+
   <section>
+
     <div class="wrap">
-      <div class="sec-head"><h2>Grade curricular</h2><span class="sec-num mono">04 / interativo</span></div>
-      <p class="sec-desc">Clique numa matéria pra marcar como cursada. Só você vê o seu progresso — fica salvo na sua conta.</p>
-      <div class="grade-summary">
-        <svg class="titracao" id="beakerGrade" viewBox="0 0 100 160"></svg>
-        <div class="grade-pct" id="gradePct">0<span>% concluído</span></div>
+
+      <div class="sec-head">
+
+        <h2>
+          Grade curricular
+        </h2>
+
+        <span class="sec-num mono">
+          04 / interativo
+        </span>
+
       </div>
+
+
+      <p class="sec-desc">
+        Clique numa matéria pra marcar como cursada.
+        Só você vê o seu progresso — fica salvo na sua conta.
+      </p>
+
+
+      <div class="grade-summary">
+
+        <svg
+          class="titracao"
+          id="beakerGrade"
+          viewBox="0 0 100 160"
+        ></svg>
+
+        <div
+          class="grade-pct"
+          id="gradePct"
+        >
+          0
+          <span>% concluído</span>
+        </div>
+
+      </div>
+
+
       <div id="periodosWrap"></div>
+
     </div>
+
   </section>
+
 </main>
 
+
+
+<!-- =========================================================
+     RODAPÉ
+========================================================= -->
+
 <footer>
-  CALEQ · Centro Acadêmico Livre de Engenharia Química · UFES, Campus Alegre — edite este arquivo ou use o "modo edição" pra manter tudo atualizado
+
+  <div class="footer-main">
+
+    <div class="wrap">
+
+      <div class="footer-grid">
+
+
+        <div>
+
+          <div class="footer-brand">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+              <path
+                d="M9 2v6.2L4 18a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 18l-5-9.8V2"
+                stroke="#f2c230"
+                stroke-width="1.6"
+                stroke-linejoin="round"
+              />
+
+              <path
+                d="M7.5 15h9"
+                stroke="#b5121b"
+                stroke-width="1.6"
+              />
+
+              <path
+                d="M9 2h6"
+                stroke="#f2c230"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+
+            </svg>
+
+            <div class="footer-title">
+              CALEQ
+            </div>
+
+          </div>
+
+
+          <p class="footer-text">
+
+            Centro Acadêmico Livre de Engenharia Química,
+            representando os estudantes do curso de Engenharia
+            Química da UFES — Campus Alegre.
+
+          </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h4>
+            Engenharia Química
+          </h4>
+
+          <p>
+            Universidade Federal do Espírito Santo
+          </p>
+
+          <p>
+            Campus de Alegre
+          </p>
+
+          <p>
+            Centro Acadêmico Livre
+          </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+          <h4>
+            Contato
+          </h4>
+
+          <p>
+            Instagram:
+            <a href="#" target="_blank">
+              @caleq
+            </a>
+          </p>
+
+          <p>
+            E-mail:
+            <a href="mailto:caleq@ufes.br">
+              caleq@ufes.br
+            </a>
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    <div class="wrap">
+
+      CALEQ · Engenharia Química · UFES · Campus Alegre
+
+    </div>
+
+  </div>
+
 </footer>
 
-<script>
-(function(){
-  "use strict";
 
-  /* ---------- DADOS PADRÃO (edite aqui direto no código se preferir) ---------- */
-  const DEFAULT_STATE = {
-    sobre: "O CALEQ (Centro Acadêmico Livre de Engenharia Química) é o centro acadêmico do curso de Engenharia Química da UFES, Campus Alegre. Escreva aqui a história do CA: quando foi fundado, o que ele representa pros estudantes e o que ele já fez pelo curso.",
-    membros: [
-      {sigla:"Pr", nome:"Nome do(a) Presidente", cargo:"Presidência"},
-      {sigla:"Vp", nome:"Nome do(a) Vice", cargo:"Vice-presidência"},
-      {sigla:"Fi", nome:"Nome do(a) Diretor(a)", cargo:"Financeiro"},
-      {sigla:"Co", nome:"Nome do(a) Diretor(a)", cargo:"Comunicação"},
-      {sigla:"Ev", nome:"Nome do(a) Diretor(a)", cargo:"Eventos"},
-      {sigla:"Ac", nome:"Nome do(a) Diretor(a)", cargo:"Acadêmico"},
-      {sigla:"Se", nome:"Nome do(a) Secretário(a)", cargo:"Secretaria"},
-    ],
-    caixa: {
-      saldo: "R$ 0,00",
-      atualizadoEm: "atualize esta data",
-      notas: [
-        {texto:"Exemplo: mensalidade de agosto — +R$ 350,00"},
-        {texto:"Exemplo: compra de material pra evento — -R$ 120,00"},
-      ]
+
+<script>
+
+(function(){
+
+"use strict";
+
+
+/* =========================================================
+   DADOS PADRÃO
+========================================================= */
+
+const DEFAULT_STATE = {
+
+  sobre:
+  "O CALEQ (Centro Acadêmico Livre de Engenharia Química) é o centro acadêmico do curso de Engenharia Química da UFES, Campus Alegre. Escreva aqui a história do CA: quando foi fundado, o que ele representa pros estudantes e o que ele já fez pelo curso.",
+
+
+  membros:[
+
+    {
+      sigla:"Pr",
+      nome:"Nome do(a) Presidente",
+      cargo:"Presidência"
     },
-    produtos: [
-      {nome:"Camiseta do CA", preco:"R$ 45,00", estoque:"em estoque", desc:"Silk exclusiva, tamanhos P ao GG."},
-      {nome:"Jaleco bordado", preco:"R$ 90,00", estoque:"sob encomenda", desc:"Bordado com nome e curso."},
-      {nome:"Caneca CALEQ", preco:"R$ 30,00", estoque:"em estoque", desc:"Cerâmica, 300ml."},
-      {nome:"Rifa do CA", preco:"R$ 10,00", estoque:"disponível", desc:"Sorteio no fim do semestre."},
-    ],
-    curriculo: [
-    {periodo:1, materias:[
-      {id:"s1-1",sigla:"CDI",nome:"Cálculo I"},
-      {id:"s1-2",sigla:"ALG",nome:"Álgebra Linear"},
-      {id:"s1-3",sigla:"QGE",nome:"Química Geral"},
-      {id:"s1-4",sigla:"IEQ",nome:"Introdução à Eng. Química"},
-      {id:"s1-5",sigla:"DTE",nome:"Desenho Técnico"},
-      {id:"s1-6",sigla:"MCI",nome:"Metodologia Científica"},
-    ]},
-    {periodo:2, materias:[
-      {id:"s2-1",sigla:"CDII",nome:"Cálculo II"},
-      {id:"s2-2",sigla:"FIS1",nome:"Física I"},
-      {id:"s2-3",sigla:"QAN",nome:"Química Analítica"},
-      {id:"s2-4",sigla:"ALP",nome:"Algoritmos e Programação"},
-      {id:"s2-5",sigla:"GAN",nome:"Geometria Analítica"},
-    ]},
-    {periodo:3, materias:[
-      {id:"s3-1",sigla:"CDIII",nome:"Cálculo III"},
-      {id:"s3-2",sigla:"FIS2",nome:"Física II"},
-      {id:"s3-3",sigla:"QO1",nome:"Química Orgânica I"},
-      {id:"s3-4",sigla:"PES",nome:"Probabilidade e Estatística"},
-      {id:"s3-5",sigla:"FT1",nome:"Fenômenos de Transporte I"},
-    ]},
-    {periodo:4, materias:[
-      {id:"s4-1",sigla:"EDO",nome:"Equações Diferenciais"},
-      {id:"s4-2",sigla:"FIS3",nome:"Física III"},
-      {id:"s4-3",sigla:"QO2",nome:"Química Orgânica II"},
-      {id:"s4-4",sigla:"FT2",nome:"Fenômenos de Transporte II"},
-      {id:"s4-5",sigla:"TQ1",nome:"Termodinâmica Química I"},
-    ]},
-    {periodo:5, materias:[
-      {id:"s5-1",sigla:"FT3",nome:"Fenômenos de Transporte III"},
-      {id:"s5-2",sigla:"TQ2",nome:"Termodinâmica Química II"},
-      {id:"s5-3",sigla:"FQE",nome:"Físico-Química Experimental"},
-      {id:"s5-4",sigla:"BME",nome:"Balanços de Massa e Energia"},
-      {id:"s5-5",sigla:"MFL",nome:"Mecânica dos Fluidos"},
-    ]},
-    {periodo:6, materias:[
-      {id:"s6-1",sigla:"OU1",nome:"Operações Unitárias I"},
-      {id:"s6-2",sigla:"CQC",nome:"Cinética Química e Catálise"},
-      {id:"s6-3",sigla:"MNU",nome:"Métodos Numéricos"},
-      {id:"s6-4",sigla:"CMA",nome:"Ciência dos Materiais"},
-      {id:"s6-5",sigla:"CPR",nome:"Controle de Processos"},
-    ]},
-    {periodo:7, materias:[
-      {id:"s7-1",sigla:"OU2",nome:"Operações Unitárias II"},
-      {id:"s7-2",sigla:"RQ1",nome:"Reatores Químicos I"},
-      {id:"s7-3",sigla:"PII",nome:"Processos Industriais Inorgânicos"},
-      {id:"s7-4",sigla:"SPR",nome:"Segurança de Processos"},
-    ]},
-    {periodo:8, materias:[
-      {id:"s8-1",sigla:"OU3",nome:"Operações Unitárias III"},
-      {id:"s8-2",sigla:"RQ2",nome:"Reatores Químicos II"},
-      {id:"s8-3",sigla:"PIO",nome:"Processos Industriais Orgânicos"},
-      {id:"s8-4",sigla:"INC",nome:"Instrumentação e Controle"},
-    ]},
-    {periodo:9, materias:[
-      {id:"s9-1",sigla:"SIM",nome:"Simulação de Processos"},
-      {id:"s9-2",sigla:"PP1",nome:"Projeto de Processos I"},
-      {id:"s9-3",sigla:"GAM",nome:"Gestão Ambiental"},
-      {id:"s9-4",sigla:"EEC",nome:"Economia e Eng. Econômica"},
-    ]},
-    {periodo:10, materias:[
-      {id:"s10-1",sigla:"PP2",nome:"Projeto de Processos II"},
-      {id:"s10-2",sigla:"TC1",nome:"TCC I"},
-      {id:"s10-3",sigla:"EST",nome:"Estágio Supervisionado"},
-      {id:"s10-4",sigla:"OPT",nome:"Optativa"},
-    ]},
+
+    {
+      sigla:"Vp",
+      nome:"Nome do(a) Vice",
+      cargo:"Vice-presidência"
+    },
+
+    {
+      sigla:"Fi",
+      nome:"Nome do(a) Diretor(a)",
+      cargo:"Financeiro"
+    },
+
+    {
+      sigla:"Co",
+      nome:"Nome do(a) Diretor(a)",
+      cargo:"Comunicação"
+    },
+
+    {
+      sigla:"Ev",
+      nome:"Nome do(a) Diretor(a)",
+      cargo:"Eventos"
+    },
+
+    {
+      sigla:"Ac",
+      nome:"Nome do(a) Diretor(a)",
+      cargo:"Acadêmico"
+    },
+
+    {
+      sigla:"Se",
+      nome:"Nome do(a) Secretário(a)",
+      cargo:"Secretaria"
+    }
+
+  ],
+
+
+  caixa:{
+
+    saldo:"R$ 0,00",
+
+    atualizadoEm:"atualize esta data",
+
+    notas:[
+
+      {
+        texto:"Exemplo: mensalidade de agosto — +R$ 350,00"
+      },
+
+      {
+        texto:"Exemplo: compra de material pra evento — -R$ 120,00"
+      }
+
     ]
+
+  },
+
+
+  produtos:[
+
+    {
+      nome:"Camiseta do CA",
+      preco:"R$ 45,00",
+      estoque:"em estoque",
+      desc:"Silk exclusiva, tamanhos P ao GG."
+    },
+
+    {
+      nome:"Jaleco bordado",
+      preco:"R$ 90,00",
+      estoque:"sob encomenda",
+      desc:"Bordado com nome e curso."
+    },
+
+    {
+      nome:"Caneca CALEQ",
+      preco:"R$ 30,00",
+      estoque:"em estoque",
+      desc:"Cerâmica, 300ml."
+    },
+
+    {
+      nome:"Rifa do CA",
+      preco:"R$ 10,00",
+      estoque:"disponível",
+      desc:"Sorteio no fim do semestre."
+    }
+
+  ],
+
+
+  curriculo:[
+
+    {
+      periodo:1,
+
+      materias:[
+
+        {id:"s1-1",sigla:"CDI",nome:"Cálculo I"},
+        {id:"s1-2",sigla:"ALG",nome:"Álgebra Linear"},
+        {id:"s1-3",sigla:"QGE",nome:"Química Geral"},
+        {id:"s1-4",sigla:"IEQ",nome:"Introdução à Eng. Química"},
+        {id:"s1-5",sigla:"DTE",nome:"Desenho Técnico"},
+        {id:"s1-6",sigla:"MCI",nome:"Metodologia Científica"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:2,
+
+      materias:[
+
+        {id:"s2-1",sigla:"CDII",nome:"Cálculo II"},
+        {id:"s2-2",sigla:"FIS1",nome:"Física I"},
+        {id:"s2-3",sigla:"QAN",nome:"Química Analítica"},
+        {id:"s2-4",sigla:"ALP",nome:"Algoritmos e Programação"},
+        {id:"s2-5",sigla:"GAN",nome:"Geometria Analítica"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:3,
+
+      materias:[
+
+        {id:"s3-1",sigla:"CDIII",nome:"Cálculo III"},
+        {id:"s3-2",sigla:"FIS2",nome:"Física II"},
+        {id:"s3-3",sigla:"QO1",nome:"Química Orgânica I"},
+        {id:"s3-4",sigla:"PES",nome:"Probabilidade e Estatística"},
+        {id:"s3-5",sigla:"FT1",nome:"Fenômenos de Transporte I"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:4,
+
+      materias:[
+
+        {id:"s4-1",sigla:"EDO",nome:"Equações Diferenciais"},
+        {id:"s4-2",sigla:"FIS3",nome:"Física III"},
+        {id:"s4-3",sigla:"QO2",nome:"Química Orgânica II"},
+        {id:"s4-4",sigla:"FT2",nome:"Fenômenos de Transporte II"},
+        {id:"s4-5",sigla:"TQ1",nome:"Termodinâmica Química I"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:5,
+
+      materias:[
+
+        {id:"s5-1",sigla:"FT3",nome:"Fenômenos de Transporte III"},
+        {id:"s5-2",sigla:"TQ2",nome:"Termodinâmica Química II"},
+        {id:"s5-3",sigla:"FQE",nome:"Físico-Química Experimental"},
+        {id:"s5-4",sigla:"BME",nome:"Balanços de Massa e Energia"},
+        {id:"s5-5",sigla:"MFL",nome:"Mecânica dos Fluidos"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:6,
+
+      materias:[
+
+        {id:"s6-1",sigla:"OU1",nome:"Operações Unitárias I"},
+        {id:"s6-2",sigla:"CQC",nome:"Cinética Química e Catálise"},
+        {id:"s6-3",sigla:"MNU",nome:"Métodos Numéricos"},
+        {id:"s6-4",sigla:"CMA",nome:"Ciência dos Materiais"},
+        {id:"s6-5",sigla:"CPR",nome:"Controle de Processos"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:7,
+
+      materias:[
+
+        {id:"s7-1",sigla:"OU2",nome:"Operações Unitárias II"},
+        {id:"s7-2",sigla:"RQ1",nome:"Reatores Químicos I"},
+        {id:"s7-3",sigla:"PII",nome:"Processos Industriais Inorgânicos"},
+        {id:"s7-4",sigla:"SPR",nome:"Segurança de Processos"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:8,
+
+      materias:[
+
+        {id:"s8-1",sigla:"OU3",nome:"Operações Unitárias III"},
+        {id:"s8-2",sigla:"RQ2",nome:"Reatores Químicos II"},
+        {id:"s8-3",sigla:"PIO",nome:"Processos Industriais Orgânicos"},
+        {id:"s8-4",sigla:"INC",nome:"Instrumentação e Controle"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:9,
+
+      materias:[
+
+        {id:"s9-1",sigla:"SIM",nome:"Simulação de Processos"},
+        {id:"s9-2",sigla:"PP1",nome:"Projeto de Processos I"},
+        {id:"s9-3",sigla:"GAM",nome:"Gestão Ambiental"},
+        {id:"s9-4",sigla:"EEC",nome:"Economia e Eng. Econômica"}
+
+      ]
+
+    },
+
+
+    {
+      periodo:10,
+
+      materias:[
+
+        {id:"s10-1",sigla:"PP2",nome:"Projeto de Processos II"},
+        {id:"s10-2",sigla:"TC1",nome:"TCC I"},
+        {id:"s10-3",sigla:"EST",nome:"Estágio Supervisionado"},
+        {id:"s10-4",sigla:"OPT",nome:"Optativa"}
+
+      ]
+
+    }
+
+  ]
+
+};
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+let state =
+  JSON.parse(
+    JSON.stringify(DEFAULT_STATE)
+  );
+
+let idCounter = 1000;
+
+function novoId(){
+
+  idCounter++;
+
+  return 'novo-' + Date.now() + '-' + idCounter;
+
+}
+
+let completed = new Set();
+
+let editMode = false;
+
+let saveTimer = null;
+
+let senhaAtual = '1234';
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+async function loadAll(){
+
+  try{
+
+    const r =
+      await window.storage.get(
+        'ca:dados',
+        true
+      );
+
+    if(r && r.value){
+
+      state =
+        JSON.parse(r.value);
+
+    }
+
+  }catch(e){
+
+    /* usa DEFAULT_STATE */
+
+  }
+
+
+  try{
+
+    const r2 =
+      await window.storage.get(
+        'grade:concluidas',
+        false
+      );
+
+    if(r2 && r2.value){
+
+      completed =
+        new Set(
+          JSON.parse(r2.value)
+        );
+
+    }
+
+  }catch(e){
+
+    /* nenhuma matéria marcada */
+
+  }
+
+
+  try{
+
+    const r3 =
+      await window.storage.get(
+        'ca:senha',
+        true
+      );
+
+    if(r3 && r3.value){
+
+      senhaAtual =
+        r3.value;
+
+    }
+
+  }catch(e){
+
+    /* mantém senha padrão */
+
+  }
+
+
+  render();
+
+}
+
+
+async function saveSenha(nova){
+
+  senhaAtual = nova;
+
+  try{
+
+    await window.storage.set(
+      'ca:senha',
+      nova,
+      true
+    );
+
+  }catch(e){
+
+    console.error(
+      'Falha ao salvar senha',
+      e
+    );
+
+  }
+
+}
+
+
+function scheduleSaveState(){
+
+  clearTimeout(saveTimer);
+
+  saveTimer =
+    setTimeout(async()=>{
+
+      try{
+
+        await window.storage.set(
+          'ca:dados',
+          JSON.stringify(state),
+          true
+        );
+
+      }catch(e){
+
+        console.error(
+          'Falha ao salvar dados do CA',
+          e
+        );
+
+      }
+
+    },500);
+
+}
+
+
+async function saveCompleted(){
+
+  try{
+
+    await window.storage.set(
+      'grade:concluidas',
+      JSON.stringify([...completed]),
+      false
+    );
+
+  }catch(e){
+
+    console.error(
+      'Falha ao salvar progresso',
+      e
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+function render(){
+
+  renderSobre();
+
+  renderMembros();
+
+  renderCaixa();
+
+  renderProdutos();
+
+  renderGrade();
+
+  updateStats();
+
+}
+
+
+/* =========================================================
+   ESTATÍSTICAS DA HOME
+========================================================= */
+
+function updateStats(){
+
+  const statMembros =
+    document.getElementById(
+      'statMembros'
+    );
+
+  const statProdutos =
+    document.getElementById(
+      'statProdutos'
+    );
+
+  const statMaterias =
+    document.getElementById(
+      'statMaterias'
+    );
+
+  const statSaldo =
+    document.getElementById(
+      'statSaldo'
+    );
+
+
+  if(statMembros){
+
+    statMembros.textContent =
+      state.membros.length;
+
+  }
+
+
+  if(statProdutos){
+
+    statProdutos.textContent =
+      state.produtos.length;
+
+  }
+
+
+  if(statMaterias){
+
+    const total =
+      state.curriculo.reduce(
+        (acc,p)=>
+          acc + p.materias.length,
+        0
+      );
+
+    statMaterias.textContent =
+      total;
+
+  }
+
+
+  if(statSaldo){
+
+    statSaldo.textContent =
+      state.caixa.saldo;
+
+  }
+
+}
+
+
+/* =========================================================
+   SOBRE
+========================================================= */
+
+function renderSobre(){
+
+  const el =
+    document.getElementById(
+      'sobreTexto'
+    );
+
+  el.textContent =
+    state.sobre;
+
+  el.contentEditable =
+    editMode
+      ? 'true'
+      : 'false';
+
+  el.onblur = ()=>{
+
+    state.sobre =
+      el.textContent.trim();
+
+    scheduleSaveState();
+
   };
 
-  let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
-  let idCounter = 1000;
-  function novoId(){ idCounter++; return 'novo-' + Date.now() + '-' + idCounter; }
-  let completed = new Set();
-  let editMode = false;
-  let saveTimer = null;
-  let senhaAtual = '1234';
+}
 
-  /* ---------- STORAGE ---------- */
-  async function loadAll(){
-    try{
-      const r = await window.storage.get('ca:dados', true);
-      if(r && r.value) state = JSON.parse(r.value);
-    }catch(e){ /* usa DEFAULT_STATE */ }
-    try{
-      const r2 = await window.storage.get('grade:concluidas', false);
-      if(r2 && r2.value) completed = new Set(JSON.parse(r2.value));
-    }catch(e){ /* nenhuma matéria marcada ainda */ }
-    try{
-      const r3 = await window.storage.get('ca:senha', true);
-      if(r3 && r3.value) senhaAtual = r3.value;
-    }catch(e){ /* mantém senha padrão 1234 até alguém trocar */ }
-    render();
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
+
+const PAGES = [
+  'inicio',
+  'diretoria',
+  'caixa',
+  'produtos',
+  'grade'
+];
+
+
+function goToPage(name){
+
+  if(!PAGES.includes(name)){
+
+    name = 'inicio';
+
   }
 
-  async function saveSenha(nova){
-    senhaAtual = nova;
-    try{ await window.storage.set('ca:senha', nova, true); }
-    catch(e){ console.error('Falha ao salvar senha', e); }
-  }
 
-  function scheduleSaveState(){
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(async ()=>{
-      try{ await window.storage.set('ca:dados', JSON.stringify(state), true); }
-      catch(e){ console.error('Falha ao salvar dados do CA', e); }
-    }, 500);
-  }
-  async function saveCompleted(){
-    try{ await window.storage.set('grade:concluidas', JSON.stringify([...completed]), false); }
-    catch(e){ console.error('Falha ao salvar progresso', e); }
-  }
+  PAGES.forEach(p=>{
 
-  /* ---------- RENDER ---------- */
-  function render(){
-    renderSobre();
-    renderMembros();
-    renderCaixa();
-    renderProdutos();
-    renderGrade();
-  }
+    const page =
+      document.getElementById(
+        'page-' + p
+      );
 
-  function renderSobre(){
-    const el = document.getElementById('sobreTexto');
-    el.textContent = state.sobre;
-    el.contentEditable = editMode ? 'true' : 'false';
-    el.onblur = ()=>{
-      state.sobre = el.textContent.trim();
-      scheduleSaveState();
-    };
-  }
+    if(page){
 
-  /* ---------- NAVEGAÇÃO ENTRE PÁGINAS ---------- */
-  const PAGES = ['inicio','diretoria','caixa','produtos','grade'];
-  function goToPage(name){
-    if(!PAGES.includes(name)) name = 'inicio';
-    PAGES.forEach(p=>{
-      document.getElementById('page-'+p).classList.toggle('active', p===name);
+      page.classList.toggle(
+        'active',
+        p === name
+      );
+
+    }
+
+  });
+
+
+  document
+    .querySelectorAll(
+      '#navlinks a'
+    )
+    .forEach(a=>{
+
+      a.classList.toggle(
+        'active',
+        a.dataset.page === name
+      );
+
     });
-    document.querySelectorAll('#navlinks a').forEach(a=>{
-      a.classList.toggle('active', a.dataset.page===name);
-    });
-    window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
-  }
-  function initRouter(){
-    document.querySelectorAll('a[data-page]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        e.preventDefault();
-        const name = a.dataset.page;
-        history.replaceState(null, '', '#'+name);
-        goToPage(name);
-      });
-    });
-    window.addEventListener('hashchange', ()=>{
-      goToPage(location.hash.replace('#',''));
-    });
-    goToPage(location.hash.replace('#','') || 'inicio');
-  }
 
-  function renderMembros(){
-    const grid = document.getElementById('membrosGrid');
-    grid.innerHTML = '';
-    state.membros.forEach((m, i)=>{
-      const t = document.createElement('div');
-      t.className = 'tile';
+
+  window.scrollTo({
+    top:0,
+    behavior:
+      'instant' in window
+        ? 'instant'
+        : 'auto'
+  });
+
+}
+
+
+function initRouter(){
+
+  document
+    .querySelectorAll(
+      'a[data-page]'
+    )
+    .forEach(a=>{
+
+      a.addEventListener(
+        'click',
+        e=>{
+
+          e.preventDefault();
+
+          const name =
+            a.dataset.page;
+
+          history.replaceState(
+            null,
+            '',
+            '#' + name
+          );
+
+          goToPage(name);
+
+        }
+      );
+
+    });
+
+
+  window.addEventListener(
+    'hashchange',
+    ()=>{
+
+      goToPage(
+        location.hash.replace(
+          '#',
+          ''
+        )
+      );
+
+    }
+  );
+
+
+  goToPage(
+    location.hash.replace(
+      '#',
+      ''
+    ) || 'inicio'
+  );
+
+}
+
+
+/* =========================================================
+   DIRETORIA
+========================================================= */
+
+function renderMembros(){
+
+  const grid =
+    document.getElementById(
+      'membrosGrid'
+    );
+
+  grid.innerHTML = '';
+
+
+  state.membros.forEach(
+    (m,i)=>{
+
+      const t =
+        document.createElement(
+          'div'
+        );
+
+      t.className =
+        'tile';
+
+
       t.innerHTML = `
-        <span class="num mono">${String(i+1).padStart(2,'0')}</span>
-        <button class="del" title="remover" data-i="${i}">✕</button>
-        <div class="symbol" contenteditable="${ce()}" data-field="sigla" data-i="${i}">${esc(m.sigla)}</div>
-        <div class="name" contenteditable="${ce()}" data-field="nome" data-i="${i}">${esc(m.nome)}</div>
-        <div class="role" contenteditable="${ce()}" data-field="cargo" data-i="${i}">${esc(m.cargo)}</div>
-      `;
-      grid.appendChild(t);
-    });
-    const add = document.createElement('div');
-    add.className = 'addtile';
-    add.textContent = '+ adicionar membro';
-    add.onclick = ()=>{
-      state.membros.push({sigla:'Xx', nome:'Nome', cargo:'Cargo'});
-      scheduleSaveState(); renderMembros();
-    };
-    grid.appendChild(add);
 
-    grid.querySelectorAll('.del').forEach(b=>b.onclick = ()=>{
-      state.membros.splice(+b.dataset.i,1); scheduleSaveState(); renderMembros();
-    });
-    grid.querySelectorAll('[contenteditable]').forEach(el=>{
-      el.addEventListener('blur', ()=>{
-        state.membros[+el.dataset.i][el.dataset.field] = el.textContent.trim();
-        scheduleSaveState();
-      });
-    });
-  }
+        <span class="num mono">
+          ${String(i+1).padStart(2,'0')}
+        </span>
 
-  function renderCaixa(){
-    document.getElementById('saldoValor').textContent = state.caixa.saldo;
-    document.getElementById('saldoUpdated').textContent = 'atualizado: ' + state.caixa.atualizadoEm;
-    const list = document.getElementById('notasList');
-    list.innerHTML = '';
-    state.caixa.notas.forEach((n,i)=>{
-      const li = document.createElement('li');
-      li.className = 'nota';
-      li.innerHTML = `<span class="bullet">▸</span><span class="txt" contenteditable="${ce()}" data-i="${i}">${esc(n.texto)}</span><button class="del" data-i="${i}">✕</button>`;
-      list.appendChild(li);
-    });
-    list.querySelectorAll('.txt').forEach(el=>{
-      el.addEventListener('blur', ()=>{
-        state.caixa.notas[+el.dataset.i].texto = el.textContent.trim();
-        scheduleSaveState();
-      });
-    });
-    list.querySelectorAll('.del').forEach(b=>b.onclick=()=>{
-      state.caixa.notas.splice(+b.dataset.i,1); scheduleSaveState(); renderCaixa();
-    });
+        <button
+          class="del"
+          title="remover"
+          data-i="${i}"
+        >
+          ✕
+        </button>
 
-    // saldo & data editáveis
-    const saldoEl = document.getElementById('saldoValor');
-    saldoEl.contentEditable = editMode ? 'true':'false';
-    saldoEl.oneditblur = null;
-    saldoEl.onblur = ()=>{
-      state.caixa.saldo = saldoEl.textContent.trim();
-      scheduleSaveState();
-    };
-
-    // beaker fill: baseado no valor numérico do saldo (visual, não precisa ser exato)
-    const num = parseFloat((state.caixa.saldo||'0').replace(/[^\d,.-]/g,'').replace('.', '').replace(',', '.')) || 0;
-    const pct = Math.max(4, Math.min(96, Math.log10(Math.abs(num)+1) * 20));
-    drawBeaker('beakerCaixa', pct, num < 0 ? '#a8412f' : '#2f8f83');
-  }
-
-  function renderProdutos(){
-    const grid = document.getElementById('produtosGrid');
-    grid.innerHTML = '';
-    state.produtos.forEach((p,i)=>{
-      const c = document.createElement('div');
-      c.className = 'prod-card';
-      c.innerHTML = `
-        <button class="del" data-i="${i}">✕</button>
-        <div class="prod-top"></div>
-        <div class="prod-body">
-          <div class="name" contenteditable="${ce()}" data-field="nome" data-i="${i}">${esc(p.nome)}</div>
-          <div class="desc" contenteditable="${ce()}" data-field="desc" data-i="${i}">${esc(p.desc)}</div>
-          <div class="price" contenteditable="${ce()}" data-field="preco" data-i="${i}">${esc(p.preco)}</div>
-          <div class="stock" contenteditable="${ce()}" data-field="estoque" data-i="${i}">${esc(p.estoque)}</div>
-        </div>`;
-      grid.appendChild(c);
-    });
-    const add = document.createElement('div');
-    add.className = 'addprod';
-    add.textContent = '+ adicionar produto';
-    add.onclick = ()=>{
-      state.produtos.push({nome:'Novo produto', preco:'R$ 0,00', estoque:'em estoque', desc:'Descrição do produto.'});
-      scheduleSaveState(); renderProdutos();
-    };
-    grid.appendChild(add);
-
-    grid.querySelectorAll('.del').forEach(b=>b.onclick=()=>{
-      state.produtos.splice(+b.dataset.i,1); scheduleSaveState(); renderProdutos();
-    });
-    grid.querySelectorAll('[contenteditable]').forEach(el=>{
-      el.addEventListener('blur', ()=>{
-        state.produtos[+el.dataset.i][el.dataset.field] = el.textContent.trim();
-        scheduleSaveState();
-      });
-    });
-  }
-
-  function renderGrade(){
-    const wrap = document.getElementById('periodosWrap');
-    wrap.innerHTML = '';
-    let total=0, done=0;
-    state.curriculo.forEach((p, pi)=>{
-      total += p.materias.length;
-      const doneHere = p.materias.filter(m=>completed.has(m.id)).length;
-      done += doneHere;
-      const box = document.createElement('div');
-      box.className = 'periodo';
-      box.innerHTML = `
-        <div class="periodo-head">
-          <h3 contenteditable="${ce()}" class="periodo-titulo" data-pi="${pi}">${p.periodo}º período</h3>
-          <div class="bar"><i style="width:${(doneHere/p.materias.length*100)||0}%"></i></div>
-          <span class="mono" style="font-size:.72rem;color:var(--muted)">${doneHere}/${p.materias.length}</span>
-          <button class="del-periodo" data-pi="${pi}" title="remover período">✕ período</button>
+        <div
+          class="symbol"
+          contenteditable="${ce()}"
+          data-field="sigla"
+          data-i="${i}"
+        >
+          ${esc(m.sigla)}
         </div>
-        <div class="materia-grid"></div>
+
+        <div
+          class="name"
+          contenteditable="${ce()}"
+          data-field="nome"
+          data-i="${i}"
+        >
+          ${esc(m.nome)}
+        </div>
+
+        <div
+          class="role"
+          contenteditable="${ce()}"
+          data-field="cargo"
+          data-i="${i}"
+        >
+          ${esc(m.cargo)}
+        </div>
+
       `;
-      const mg = box.querySelector('.materia-grid');
-      p.materias.forEach((m, mi)=>{
-        const isDone = completed.has(m.id);
-        const el = document.createElement('div');
-        el.className = 'materia' + (isDone?' done':'');
-        el.innerHTML = `
-          <button class="del-materia" data-pi="${pi}" data-mi="${mi}" title="remover matéria">✕</button>
-          <span class="check"></span>
-          <div class="sigla" contenteditable="${ce()}" data-pi="${pi}" data-mi="${mi}" data-field="sigla">${esc(m.sigla)}</div>
-          <div class="nm" contenteditable="${ce()}" data-pi="${pi}" data-mi="${mi}" data-field="nome">${esc(m.nome)}</div>`;
-        el.addEventListener('click', (e)=>{
-          if(e.target.closest('[contenteditable]') || e.target.closest('.del-materia')) return;
-          if(completed.has(m.id)) completed.delete(m.id); else completed.add(m.id);
-          saveCompleted();
-          renderGrade();
-        });
-        mg.appendChild(el);
-      });
-      const addMateria = document.createElement('div');
-      addMateria.className = 'materia add-materia';
-      addMateria.innerHTML = `<div class="nm" style="text-align:center;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.75rem;">+ matéria</div>`;
-      addMateria.addEventListener('click', ()=>{
-        p.materias.push({id:novoId(), sigla:'XX', nome:'Nova matéria'});
-        scheduleSaveState();
-        renderGrade();
-      });
-      mg.appendChild(addMateria);
-      wrap.appendChild(box);
-    });
 
-    const addPeriodo = document.createElement('button');
-    addPeriodo.className = 'addnota';
-    addPeriodo.style.display = editMode ? 'block' : 'none';
-    addPeriodo.textContent = '+ adicionar período';
-    addPeriodo.onclick = ()=>{
-      state.curriculo.push({periodo: state.curriculo.length+1, materias:[{id:novoId(), sigla:'XX', nome:'Nova matéria'}]});
-      scheduleSaveState();
-      renderGrade();
-    };
-    wrap.appendChild(addPeriodo);
 
-    // edição: siglas, nomes e títulos de período
-    wrap.querySelectorAll('.sigla[contenteditable], .nm[contenteditable]').forEach(el=>{
-      el.addEventListener('blur', ()=>{
-        const pi = +el.dataset.pi, mi = +el.dataset.mi, field = el.dataset.field;
-        state.curriculo[pi].materias[mi][field] = el.textContent.trim();
-        scheduleSaveState();
-      });
-      el.addEventListener('click', e=>{ if(editMode) e.stopPropagation(); });
-    });
-    wrap.querySelectorAll('.periodo-titulo').forEach(el=>{
-      el.addEventListener('blur', ()=>{
-        const pi = +el.dataset.pi;
-        const n = parseInt(el.textContent) || state.curriculo[pi].periodo;
-        state.curriculo[pi].periodo = n;
-        scheduleSaveState();
-      });
-    });
-    wrap.querySelectorAll('.del-materia').forEach(b=>{
-      b.addEventListener('click', (e)=>{
-        e.stopPropagation();
-        const pi = +b.dataset.pi, mi = +b.dataset.mi;
-        state.curriculo[pi].materias.splice(mi,1);
-        scheduleSaveState();
-        renderGrade();
-      });
-    });
-    wrap.querySelectorAll('.del-periodo').forEach(b=>{
-      b.addEventListener('click', ()=>{
-        const pi = +b.dataset.pi;
-        state.curriculo.splice(pi,1);
-        scheduleSaveState();
-        renderGrade();
-      });
-    });
+      grid.appendChild(t);
 
-    const pct = total ? Math.round(done/total*100) : 0;
-    document.getElementById('gradePct').innerHTML = pct + '<span>% concluído</span>';
-    drawBeaker('beakerGrade', Math.max(4,pct), '#2f8f83');
-  }
-
-  function drawBeaker(id, pct, color){
-    const svg = document.getElementById(id);
-    const h = 150, w=100, fillH = h*pct/100;
-    svg.innerHTML = `
-      <rect x="10" y="5" width="80" height="150" rx="6" fill="none" stroke="#c9bfa2" stroke-width="3"/>
-      <clipPath id="clip-${id}"><rect x="10" y="${155-fillH}" width="80" height="${fillH}" rx="4"/></clipPath>
-      <rect x="10" y="5" width="80" height="150" rx="6" fill="${color}" opacity=".18" clip-path="url(#clip-${id})"/>
-      <rect x="10" y="${155-fillH}" width="80" height="4" fill="${color}"/>
-    `;
-  }
-
-  function ce(){ return editMode ? 'true' : 'false'; }
-
-  function esc(s){
-    const d = document.createElement('div');
-    d.textContent = s == null ? '' : s;
-    return d.innerHTML;
-  }
-
-  /* ---------- ACESSO SECRETO AO MODO EDIÇÃO ---------- */
-  // Clique 5x seguidas na logo "CALEQ" (em até 3s) pra abrir o prompt de senha.
-  // Visitantes comuns nunca veem nenhum botão de edição na tela.
-  let cliquesLogo = 0;
-  let cliqueTimer = null;
-  document.getElementById('brandLogo').addEventListener('click', ()=>{
-    if(editMode) return; // já está editando, nada a fazer aqui
-    cliquesLogo++;
-    clearTimeout(cliqueTimer);
-    cliqueTimer = setTimeout(()=>{ cliquesLogo = 0; }, 3000);
-    if(cliquesLogo >= 5){
-      cliquesLogo = 0;
-      clearTimeout(cliqueTimer);
-      tentarEntrarModoEdicao();
     }
-  });
+  );
 
-  function tentarEntrarModoEdicao(){
-    const tentativa = window.prompt('Digite a senha de edição do CALEQ:');
-    if(tentativa === null) return; // cancelou
-    if(tentativa !== senhaAtual){
-      alert('Senha incorreta.');
-      return;
-    }
-    editMode = true;
-    document.body.classList.add('editing');
-    document.getElementById('editToggle').style.display = 'inline-block';
-    document.getElementById('editToggle').classList.add('on');
-    document.getElementById('editToggle').textContent = 'Sair da edição';
-    document.getElementById('trocarSenha').style.display = 'inline-block';
-    render();
-  }
 
-  document.getElementById('editToggle').addEventListener('click', ()=>{
-    // esse botão só fica visível depois que alguém já entrou no modo edição — serve só pra sair
-    editMode = false;
-    document.body.classList.remove('editing');
-    document.getElementById('editToggle').style.display = 'none';
-    document.getElementById('editToggle').classList.remove('on');
-    document.getElementById('trocarSenha').style.display = 'none';
-    render();
-  });
+  const add =
+    document.createElement(
+      'div'
+    );
 
-  document.getElementById('trocarSenha').addEventListener('click', ()=>{
-    const atual = window.prompt('Confirme a senha atual:');
-    if(atual === null) return;
-    if(atual !== senhaAtual){ alert('Senha atual incorreta.'); return; }
-    const nova = window.prompt('Digite a nova senha:');
-    if(!nova) return;
-    saveSenha(nova.trim());
-    alert('Senha alterada! Guarde com quem for editar o site.');
-  });
+  add.className =
+    'addtile';
 
-  document.getElementById('addNota').addEventListener('click', ()=>{
-    state.caixa.notas.push({texto:'Novo registro — R$ 0,00'});
+  add.textContent =
+    '+ adicionar membro';
+
+
+  add.onclick = ()=>{
+
+    state.membros.push({
+
+      sigla:'Xx',
+
+      nome:'Nome',
+
+      cargo:'Cargo'
+
+    });
+
     scheduleSaveState();
-    renderCaixa();
-  });
 
-  loadAll();
-  initRouter();
+    renderMembros();
+
+    updateStats();
+
+  };
+
+
+  grid.appendChild(add);
+
+
+  grid
+    .querySelectorAll('.del')
+    .forEach(b=>{
+
+      b.onclick = ()=>{
+
+        state.membros.splice(
+          +b.dataset.i,
+          1
+        );
+
+        scheduleSaveState();
+
+        renderMembros();
+
+        updateStats();
+
+      };
+
+    });
+
+
+  grid
+    .querySelectorAll(
+      '[contenteditable]'
+    )
+    .forEach(el=>{
+
+      el.addEventListener(
+        'blur',
+        ()=>{
+
+          state.membros[
+            +el.dataset.i
+          ][el.dataset.field] =
+            el.textContent.trim();
+
+          scheduleSaveState();
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   CAIXA
+========================================================= */
+
+function renderCaixa(){
+
+  document.getElementById(
+    'saldoValor'
+  ).textContent =
+    state.caixa.saldo;
+
+
+  document.getElementById(
+    'saldoUpdated'
+  ).textContent =
+    'atualizado: ' +
+    state.caixa.atualizadoEm;
+
+
+  const list =
+    document.getElementById(
+      'notasList'
+    );
+
+  list.innerHTML = '';
+
+
+  state.caixa.notas.forEach(
+    (n,i)=>{
+
+      const li =
+        document.createElement(
+          'li'
+        );
+
+      li.className =
+        'nota';
+
+
+      li.innerHTML = `
+
+        <span class="bullet">
+          ▸
+        </span>
+
+        <span
+          class="txt"
+          contenteditable="${ce()}"
+          data-i="${i}"
+        >
+          ${esc(n.texto)}
+        </span>
+
+        <button
+          class="del"
+          data-i="${i}"
+        >
+          ✕
+        </button>
+
+      `;
+
+
+      list.appendChild(li);
+
+    }
+  );
+
+
+  list
+    .querySelectorAll('.txt')
+    .forEach(el=>{
+
+      el.addEventListener(
+        'blur',
+        ()=>{
+
+          state.caixa.notas[
+            +el.dataset.i
+          ].texto =
+            el.textContent.trim();
+
+          scheduleSaveState();
+
+        }
+      );
+
+    });
+
+
+  list
+    .querySelectorAll('.del')
+    .forEach(b=>{
+
+      b.onclick = ()=>{
+
+        state.caixa.notas.splice(
+          +b.dataset.i,
+          1
+        );
+
+        scheduleSaveState();
+
+        renderCaixa();
+
+      };
+
+    });
+
+
+  const saldoEl =
+    document.getElementById(
+      'saldoValor'
+    );
+
+
+  saldoEl.contentEditable =
+    editMode
+      ? 'true'
+      : 'false';
+
+
+  saldoEl.onblur = ()=>{
+
+    state.caixa.saldo =
+      saldoEl.textContent.trim();
+
+    scheduleSaveState();
+
+    updateStats();
+
+  };
+
+
+  const num =
+    parseFloat(
+      (state.caixa.saldo || '0')
+        .replace(/[^\d,.-]/g,'')
+        .replace('.','')
+        .replace(',','.')
+    ) || 0;
+
+
+  const pct =
+    Math.max(
+      4,
+      Math.min(
+        96,
+        Math.log10(
+          Math.abs(num)+1
+        ) * 20
+      )
+    );
+
+
+  drawBeaker(
+    'beakerCaixa',
+    pct,
+    num < 0
+      ? '#b5121b'
+      : '#f2c230'
+  );
+
+}
+
+
+/* =========================================================
+   PRODUTOS
+========================================================= */
+
+function renderProdutos(){
+
+  const grid =
+    document.getElementById(
+      'produtosGrid'
+    );
+
+  grid.innerHTML = '';
+
+
+  state.produtos.forEach(
+    (p,i)=>{
+
+      const c =
+        document.createElement(
+          'div'
+        );
+
+      c.className =
+        'prod-card';
+
+
+      c.innerHTML = `
+
+        <button
+          class="del"
+          data-i="${i}"
+        >
+          ✕
+        </button>
+
+        <div class="prod-top"></div>
+
+        <div class="prod-body">
+
+          <div
+            class="name"
+            contenteditable="${ce()}"
+            data-field="nome"
+            data-i="${i}"
+          >
+            ${esc(p.nome)}
+          </div>
+
+          <div
+            class="desc"
+            contenteditable="${ce()}"
+            data-field="desc"
+            data-i="${i}"
+          >
+            ${esc(p.desc)}
+          </div>
+
+          <div
+            class="price"
+            contenteditable="${ce()}"
+            data-field="preco"
+            data-i="${i}"
+          >
+            ${esc(p.preco)}
+          </div>
+
+          <div
+            class="stock"
+            contenteditable="${ce()}"
+            data-field="estoque"
+            data-i="${i}"
+          >
+            ${esc(p.estoque)}
+          </div>
+
+        </div>
+
+      `;
+
+
+      grid.appendChild(c);
+
+    }
+  );
+
+
+  const add =
+    document.createElement(
+      'div'
+    );
+
+  add.className =
+    'addprod';
+
+  add.textContent =
+    '+ adicionar produto';
+
+
+  add.onclick = ()=>{
+
+    state.produtos.push({
+
+      nome:'Novo produto',
+
+      preco:'R$ 0,00',
+
+      estoque:'em estoque',
+
+      desc:'Descrição do produto.'
+
+    });
+
+    scheduleSaveState();
+
+    renderProdutos();
+
+    updateStats();
+
+  };
+
+
+  grid.appendChild(add);
+
+
+  grid
+    .querySelectorAll('.del')
+    .forEach(b=>{
+
+      b.onclick = ()=>{
+
+        state.produtos.splice(
+          +b.dataset.i,
+          1
+        );
+
+        scheduleSaveState();
+
+        renderProdutos();
+
+        updateStats();
+
+      };
+
+    });
+
+
+  grid
+    .querySelectorAll(
+      '[contenteditable]'
+    )
+    .forEach(el=>{
+
+      el.addEventListener(
+        'blur',
+        ()=>{
+
+          state.produtos[
+            +el.dataset.i
+          ][el.dataset.field] =
+            el.textContent.trim();
+
+          scheduleSaveState();
+
+        }
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   GRADE
+========================================================= */
+
+function renderGrade(){
+
+  const wrap =
+    document.getElementById(
+      'periodosWrap'
+    );
+
+  wrap.innerHTML = '';
+
+
+  let total = 0;
+
+  let done = 0;
+
+
+  state.curriculo.forEach(
+    (p,pi)=>{
+
+      total +=
+        p.materias.length;
+
+
+      const doneHere =
+        p.materias.filter(
+          m =>
+            completed.has(m.id)
+        ).length;
+
+
+      done += doneHere;
+
+
+      const box =
+        document.createElement(
+          'div'
+        );
+
+      box.className =
+        'periodo';
+
+
+      box.innerHTML = `
+
+        <div class="periodo-head">
+
+          <h3
+            contenteditable="${ce()}"
+            class="periodo-titulo"
+            data-pi="${pi}"
+          >
+            ${p.periodo}º período
+          </h3>
+
+          <div class="bar">
+
+            <i
+              style="width:${
+                (doneHere /
+                p.materias.length *
+                100) || 0
+              }%"
+            ></i>
+
+          </div>
+
+          <span
+            class="mono"
+            style="
+              font-size:.72rem;
+              color:var(--muted)
+            "
+          >
+            ${doneHere}/${p.materias.length}
+          </span>
+
+          <button
+            class="del-periodo"
+            data-pi="${pi}"
+            title="remover período"
+          >
+            ✕ período
+          </button>
+
+        </div>
+
+
+        <div class="materia-grid"></div>
+
+      `;
+
+
+      const mg =
+        box.querySelector(
+          '.materia-grid'
+        );
+
+
+      p.materias.forEach(
+        (m,mi)=>{
+
+          const isDone =
+            completed.has(m.id);
+
+
+          const el =
+            document.createElement(
+              'div'
+            );
+
+
+          el.className =
+            'materia' +
+            (
+              isDone
+                ? ' done'
+                : ''
+            );
+
+
+          el.innerHTML = `
+
+            <button
+              class="del-materia"
+              data-pi="${pi}"
+              data-mi="${mi}"
+              title="remover matéria"
+            >
+              ✕
+            </button>
+
+            <span class="check"></span>
+
+            <div
+              class="sigla"
+              contenteditable="${ce()}"
+              data-pi="${pi}"
+              data-mi="${mi}"
+              data-field="sigla"
+            >
+              ${esc(m.sigla)}
+            </div>
+
+            <div
+              class="nm"
+              contenteditable="${ce()}"
+              data-pi="${pi}"
+              data-mi="${mi}"
+              data-field="nome"
+            >
+              ${esc(m.nome)}
+            </div>
+
+          `;
+
+
+          el.addEventListener(
+            'click',
+            e=>{
+
+              if(
+                e.target.closest(
+                  '[contenteditable]'
+                ) ||
+                e.target.closest(
+                  '.del-materia'
+                )
+              ){
+
+                return;
+
+              }
+
+
+              if(
+                completed.has(m.id)
+              ){
+
+                completed.delete(
+                  m.id
+                );
+
+              }else{
+
+                completed.add(
+                  m.id
+                );
+
+              }
+
+
+              saveCompleted();
+
+              renderGrade();
+
+            }
+          );
+
+
+          mg.appendChild(el);
+
+        }
+      );
+
+
+      const addMateria =
+        document.createElement(
+          'div'
+        );
+
+      addMateria.className =
+        'materia add-materia';
+
+
+      addMateria.innerHTML = `
+
+        <div
+          class="nm"
+          style="
+            text-align:center;
+            color:var(--muted);
+            font-family:'JetBrains Mono',monospace;
+            font-size:.75rem;
+          "
+        >
+          + matéria
+        </div>
+
+      `;
+
+
+      addMateria.addEventListener(
+        'click',
+        ()=>{
+
+          p.materias.push({
+
+            id:novoId(),
+
+            sigla:'XX',
+
+            nome:'Nova matéria'
+
+          });
+
+          scheduleSaveState();
+
+          renderGrade();
+
+          updateStats();
+
+        }
+      );
+
+
+      mg.appendChild(
+        addMateria
+      );
+
+
+      wrap.appendChild(box);
+
+    }
+  );
+
+
+  const addPeriodo =
+    document.createElement(
+      'button'
+    );
+
+  addPeriodo.className =
+    'addnota';
+
+  addPeriodo.style.display =
+    editMode
+      ? 'block'
+      : 'none';
+
+  addPeriodo.textContent =
+    '+ adicionar período';
+
+
+  addPeriodo.onclick = ()=>{
+
+    state.curriculo.push({
+
+      periodo:
+        state.curriculo.length + 1,
+
+      materias:[
+
+        {
+          id:novoId(),
+
+          sigla:'XX',
+
+          nome:'Nova matéria'
+        }
+
+      ]
+
+    });
+
+
+    scheduleSaveState();
+
+    renderGrade();
+
+    updateStats();
+
+  };
+
+
+  wrap.appendChild(
+    addPeriodo
+  );
+
+
+  wrap
+    .querySelectorAll(
+      '.sigla[contenteditable], .nm[contenteditable]'
+    )
+    .forEach(el=>{
+
+      el.addEventListener(
+        'blur',
+        ()=>{
+
+          const pi =
+            +el.dataset.pi;
+
+          const mi =
+            +el.dataset.mi;
+
+          const field =
+            el.dataset.field;
+
+
+          state
+            .curriculo[pi]
+            .materias[mi][field] =
+              el.textContent.trim();
+
+
+          scheduleSaveState();
+
+        }
+      );
+
+
+      el.addEventListener(
+        'click',
+        e=>{
+
+          if(editMode){
+
+            e.stopPropagation();
+
+          }
+
+        }
+      );
+
+    });
+
+
+  wrap
+    .querySelectorAll(
+      '.periodo-titulo'
+    )
+    .forEach(el=>{
+
+      el.addEventListener(
+        'blur',
+        ()=>{
+
+          const pi =
+            +el.dataset.pi;
+
+
+          const n =
+            parseInt(
+              el.textContent
+            ) ||
+            state.curriculo[
+              pi
+            ].periodo;
+
+
+          state.curriculo[
+            pi
+          ].periodo = n;
+
+
+          scheduleSaveState();
+
+        }
+      );
+
+    });
+
+
+  wrap
+    .querySelectorAll(
+      '.del-materia'
+    )
+    .forEach(b=>{
+
+      b.addEventListener(
+        'click',
+        e=>{
+
+          e.stopPropagation();
+
+
+          const pi =
+            +b.dataset.pi;
+
+          const mi =
+            +b.dataset.mi;
+
+
+          state
+            .curriculo[pi]
+            .materias.splice(
+              mi,
+              1
+            );
+
+
+          scheduleSaveState();
+
+          renderGrade();
+
+          updateStats();
+
+        }
+      );
+
+    });
+
+
+  wrap
+    .querySelectorAll(
+      '.del-periodo'
+    )
+    .forEach(b=>{
+
+      b.addEventListener(
+        'click',
+        ()=>{
+
+          const pi =
+            +b.dataset.pi;
+
+
+          state.curriculo.splice(
+            pi,
+            1
+          );
+
+
+          scheduleSaveState();
+
+          renderGrade();
+
+          updateStats();
+
+        }
+      );
+
+    });
+
+
+  const pct =
+    total
+      ? Math.round(
+          done / total * 100
+        )
+      : 0;
+
+
+  document.getElementById(
+    'gradePct'
+  ).innerHTML =
+    pct +
+    '<span>% concluído</span>';
+
+
+  drawBeaker(
+    'beakerGrade',
+    Math.max(4,pct),
+    '#b5121b'
+  );
+
+}
+
+
+/* =========================================================
+   BÉQUER
+========================================================= */
+
+function drawBeaker(
+  id,
+  pct,
+  color
+){
+
+  const svg =
+    document.getElementById(id);
+
+
+  const h = 150;
+
+  const fillH =
+    h * pct / 100;
+
+
+  svg.innerHTML = `
+
+    <rect
+      x="10"
+      y="5"
+      width="80"
+      height="150"
+      rx="6"
+      fill="none"
+      stroke="#d7d0bf"
+      stroke-width="3"
+    />
+
+
+    <clipPath id="clip-${id}">
+
+      <rect
+        x="10"
+        y="${155-fillH}"
+        width="80"
+        height="${fillH}"
+        rx="4"
+      />
+
+    </clipPath>
+
+
+    <rect
+      x="10"
+      y="5"
+      width="80"
+      height="150"
+      rx="6"
+      fill="${color}"
+      opacity=".22"
+      clip-path="url(#clip-${id})"
+    />
+
+
+    <rect
+      x="10"
+      y="${155-fillH}"
+      width="80"
+      height="4"
+      fill="${color}"
+    />
+
+  `;
+
+}
+
+
+/* =========================================================
+   UTILITÁRIOS
+========================================================= */
+
+function ce(){
+
+  return editMode
+    ? 'true'
+    : 'false';
+
+}
+
+
+function esc(s){
+
+  const d =
+    document.createElement(
+      'div'
+    );
+
+  d.textContent =
+    s == null
+      ? ''
+      : s;
+
+  return d.innerHTML;
+
+}
+
+
+/* =========================================================
+   ACESSO AO MODO EDIÇÃO
+========================================================= */
+
+let cliquesLogo = 0;
+
+let cliqueTimer = null;
+
+
+document
+  .getElementById(
+    'brandLogo'
+  )
+  .addEventListener(
+    'click',
+    ()=>{
+
+      if(editMode){
+
+        return;
+
+      }
+
+
+      cliquesLogo++;
+
+
+      clearTimeout(
+        cliqueTimer
+      );
+
+
+      cliqueTimer =
+        setTimeout(
+          ()=>{
+            cliquesLogo = 0;
+          },
+          3000
+        );
+
+
+      if(cliquesLogo >= 5){
+
+        cliquesLogo = 0;
+
+        clearTimeout(
+          cliqueTimer
+        );
+
+        tentarEntrarModoEdicao();
+
+      }
+
+    }
+  );
+
+
+function tentarEntrarModoEdicao(){
+
+  const tentativa =
+    window.prompt(
+      'Digite a senha de edição do CALEQ:'
+    );
+
+
+  if(tentativa === null){
+
+    return;
+
+  }
+
+
+  if(
+    tentativa !==
+    senhaAtual
+  ){
+
+    alert(
+      'Senha incorreta.'
+    );
+
+    return;
+
+  }
+
+
+  editMode = true;
+
+
+  document.body.classList.add(
+    'editing'
+  );
+
+
+  document
+    .getElementById(
+      'editToggle'
+    )
+    .style.display =
+      'inline-block';
+
+
+  document
+    .getElementById(
+      'editToggle'
+    )
+    .classList.add(
+      'on'
+    );
+
+
+  document
+    .getElementById(
+      'editToggle'
+    )
+    .textContent =
+      'Sair da edição';
+
+
+  document
+    .getElementById(
+      'trocarSenha'
+    )
+    .style.display =
+      'inline-block';
+
+
+  render();
+
+}
+
+
+document
+  .getElementById(
+    'editToggle'
+  )
+  .addEventListener(
+    'click',
+    ()=>{
+
+      editMode = false;
+
+
+      document.body.classList.remove(
+        'editing'
+      );
+
+
+      document
+        .getElementById(
+          'editToggle'
+        )
+        .style.display =
+          'none';
+
+
+      document
+        .getElementById(
+          'editToggle'
+        )
+        .classList.remove(
+          'on'
+        );
+
+
+      document
+        .getElementById(
+          'trocarSenha'
+        )
+        .style.display =
+          'none';
+
+
+      render();
+
+    }
+  );
+
+
+document
+  .getElementById(
+    'trocarSenha'
+  )
+  .addEventListener(
+    'click',
+    ()=>{
+
+      const atual =
+        window.prompt(
+          'Confirme a senha atual:'
+        );
+
+
+      if(atual === null){
+
+        return;
+
+      }
+
+
+      if(
+        atual !==
+        senhaAtual
+      ){
+
+        alert(
+          'Senha atual incorreta.'
+        );
+
+        return;
+
+      }
+
+
+      const nova =
+        window.prompt(
+          'Digite a nova senha:'
+        );
+
+
+      if(!nova){
+
+        return;
+
+      }
+
+
+      saveSenha(
+        nova.trim()
+      );
+
+
+      alert(
+        'Senha alterada! Guarde com quem for editar o site.'
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   ADICIONAR REGISTRO
+========================================================= */
+
+document
+  .getElementById(
+    'addNota'
+  )
+  .addEventListener(
+    'click',
+    ()=>{
+
+      state.caixa.notas.push({
+
+        texto:
+          'Novo registro — R$ 0,00'
+
+      });
+
+
+      scheduleSaveState();
+
+      renderCaixa();
+
+    }
+  );
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+function initReveal(){
+
+  const elements =
+    document.querySelectorAll(
+      '.reveal'
+    );
+
+
+  const observer =
+    new IntersectionObserver(
+      entries=>{
+
+        entries.forEach(
+          entry=>{
+
+            if(
+              entry.isIntersecting
+            ){
+
+              entry.target.classList.add(
+                'in'
+              );
+
+            }
+
+          }
+        );
+
+      },
+      {
+        threshold:.12
+      }
+    );
+
+
+  elements.forEach(
+    el =>
+      observer.observe(el)
+  );
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
+
+loadAll();
+
+initRouter();
+
+initReveal();
+
 })();
+
 </script>
+
 </body>
 </html>
