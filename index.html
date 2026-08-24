@@ -4,39 +4,50 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CALEQ TESTE — NOVA VERSÃO</title>
+<title>CALEQ — Engenharia Química | UFES</title>
+
+<meta name="description" content="Centro Acadêmico Livre de Engenharia Química — UFES, Campus Alegre">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
 
+/* =========================================================
+   CALEQ — IDENTIDADE VISUAL
+========================================================= */
+
 :root{
-  --black:#151515;
-  --black-2:#202020;
+  --black:#111111;
+  --black-2:#1b1b1b;
+  --black-3:#242424;
 
-  --paper:#f7f5ee;
-  --paper-2:#ece8dc;
+  --paper:#faf9f5;
+  --paper-2:#f0ede4;
+  --paper-3:#e7e2d7;
 
-  --line:#ddd7c8;
-  --line-dark:rgba(247,245,238,.14);
+  --line:#ddd8cc;
+  --line-dark:rgba(255,255,255,.13);
 
   --red:#b5121b;
-  --red-dark:#7f0d14;
-  --red-light:#d62b35;
+  --red-dark:#800b12;
+  --red-light:#d92c36;
 
-  --yellow:#f2c230;
+  --yellow:#e9b91f;
   --yellow-light:#ffd95a;
-  --yellow-dark:#c99c00;
+  --yellow-dark:#b88c00;
 
-  --muted:#6f6a5e;
-  --muted-dark:#aaa69c;
+  --muted:#6d685f;
+  --muted-dark:#aaa69d;
 
   --white:#fff;
 
   --radius:14px;
 
-  --shadow:0 20px 44px -26px rgba(17,18,21,.4);
+  --shadow:
+    0 18px 42px -26px rgba(0,0,0,.42);
 }
 
 *{
@@ -51,12 +62,25 @@ body{
   margin:0;
   background:var(--paper);
   color:var(--black);
-  font-family:'Literata', Georgia, serif;
+  font-family:'Literata',Georgia,serif;
   line-height:1.55;
 }
 
-h1,h2,h3,.display{
-  font-family:'Big Shoulders Display', sans-serif;
+body::selection{
+  background:var(--yellow);
+  color:var(--black);
+}
+
+::selection{
+  background:var(--yellow);
+  color:var(--black);
+}
+
+h1,
+h2,
+h3,
+.display{
+  font-family:'Big Shoulders Display',sans-serif;
   font-weight:800;
   letter-spacing:.01em;
   text-transform:uppercase;
@@ -64,22 +88,22 @@ h1,h2,h3,.display{
 }
 
 .mono{
-  font-family:'JetBrains Mono', monospace;
+  font-family:'JetBrains Mono',monospace;
 }
 
 a{
   color:inherit;
 }
 
+button{
+  font-family:inherit;
+}
+
 .wrap{
+  width:100%;
   max-width:1120px;
   margin:0 auto;
   padding:0 24px;
-}
-
-::selection{
-  background:var(--yellow);
-  color:var(--black);
 }
 
 
@@ -90,11 +114,11 @@ a{
 nav.topnav{
   position:sticky;
   top:0;
-  z-index:50;
+  z-index:100;
 
-  background:rgba(21,21,21,.95);
+  background:rgba(17,17,17,.96);
 
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
 
   border-bottom:1px solid var(--line-dark);
 }
@@ -104,10 +128,10 @@ nav.topnav .wrap{
   align-items:center;
   justify-content:space-between;
 
-  padding-top:14px;
-  padding-bottom:14px;
+  gap:18px;
 
-  gap:20px;
+  padding-top:12px;
+  padding-bottom:12px;
 
   flex-wrap:wrap;
 }
@@ -117,46 +141,54 @@ nav.topnav .wrap{
   align-items:center;
   gap:10px;
 
+  color:#fff;
+
   font-family:'Big Shoulders Display',sans-serif;
-  font-weight:800;
-  font-size:1.3rem;
+  font-size:1.45rem;
+  font-weight:900;
 
-  color:#f7f5ee;
-
-  letter-spacing:.03em;
+  letter-spacing:.05em;
 
   cursor:pointer;
-
   user-select:none;
+
+  transition:.2s ease;
 }
 
-.brand svg{
-  width:28px;
-  height:28px;
+.brand:hover{
+  color:var(--yellow);
+}
+
+.brand-logo{
+  width:32px;
+  height:32px;
+  flex:none;
 }
 
 .navlinks{
   display:flex;
+  align-items:center;
+  justify-content:center;
+
   gap:2px;
+
   flex-wrap:wrap;
 }
 
 .navlinks a{
   position:relative;
 
+  padding:10px 13px;
+
+  color:#aaa69d;
+
   font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;
 
-  font-size:.7rem;
-
+  letter-spacing:.07em;
   text-transform:uppercase;
 
-  letter-spacing:.08em;
-
-  padding:10px 14px;
-
   text-decoration:none;
-
-  color:var(--muted-dark);
 
   transition:.2s ease;
 }
@@ -166,26 +198,26 @@ nav.topnav .wrap{
 
   position:absolute;
 
-  left:14px;
-  right:14px;
-  bottom:6px;
+  left:13px;
+  right:13px;
+  bottom:5px;
 
   height:2px;
 
   background:var(--yellow);
 
   transform:scaleX(0);
-
   transform-origin:left;
 
-  transition:transform .2s ease;
+  transition:.2s ease;
 }
 
 .navlinks a:hover{
   color:#fff;
 }
 
-.navlinks a:hover::after{
+.navlinks a:hover::after,
+.navlinks a.active::after{
   transform:scaleX(1);
 }
 
@@ -193,71 +225,44 @@ nav.topnav .wrap{
   color:#fff;
 }
 
-.navlinks a.active::after{
-  transform:scaleX(1);
-  background:var(--yellow);
-}
-
-#editToggle{
+#editToggle,
+#trocarSenha{
   font-family:'JetBrains Mono',monospace;
-
-  font-size:.7rem;
-
+  font-size:.65rem;
   letter-spacing:.05em;
-
   text-transform:uppercase;
-
-  padding:9px 16px;
 
   border-radius:999px;
 
-  border:1px solid var(--yellow);
-
-  background:transparent;
-
-  color:var(--yellow);
+  padding:9px 14px;
 
   cursor:pointer;
 
   transition:.2s ease;
 }
 
-#editToggle:hover{
-  background:var(--yellow);
-  color:var(--black);
+#editToggle{
+  border:1px solid var(--red);
+  background:transparent;
+  color:#fff;
 }
 
+#editToggle:hover,
 #editToggle.on{
-  background:var(--yellow);
-  color:var(--black);
-  font-weight:700;
+  background:var(--red);
+  border-color:var(--red);
+  color:#fff;
 }
 
 #trocarSenha{
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.66rem;
-
-  letter-spacing:.05em;
-
-  text-transform:uppercase;
-
-  padding:9px 14px;
-
-  border-radius:999px;
-
-  border:1px dashed var(--muted-dark);
-
+  border:1px dashed #777;
   background:transparent;
-
-  color:var(--muted-dark);
-
-  cursor:pointer;
+  color:#aaa;
 }
 
 #trocarSenha:hover{
-  border-color:#fff;
-  color:#fff;
+  border-color:var(--yellow);
+  color:var(--yellow);
 }
 
 
@@ -267,14 +272,24 @@ nav.topnav .wrap{
 
 header.hero{
   position:relative;
-
   overflow:hidden;
 
-  background:var(--black);
+  background:
+    radial-gradient(
+      600px 420px at 88% -5%,
+      rgba(181,18,27,.62),
+      transparent 65%
+    ),
+    radial-gradient(
+      400px 300px at 100% 75%,
+      rgba(233,185,31,.16),
+      transparent 70%
+    ),
+    var(--black);
 
-  color:#f5f4ef;
+  color:#fff;
 
-  padding:96px 0 70px;
+  padding:92px 0 70px;
 }
 
 header.hero::before{
@@ -282,22 +297,15 @@ header.hero::before{
 
   position:absolute;
 
-  inset:0;
+  width:340px;
+  height:340px;
 
-  background:
-    radial-gradient(
-      560px 420px at 82% -10%,
-      rgba(181,18,27,.62),
-      transparent 60%
-    ),
+  right:-160px;
+  top:70px;
 
-    radial-gradient(
-      420px 320px at 105% 60%,
-      rgba(242,194,48,.20),
-      transparent 65%
-    );
+  border:2px solid rgba(233,185,31,.14);
 
-  pointer-events:none;
+  transform:rotate(45deg);
 }
 
 header.hero::after{
@@ -305,146 +313,121 @@ header.hero::after{
 
   position:absolute;
 
-  width:260px;
-  height:260px;
+  width:160px;
+  height:160px;
 
-  right:-100px;
-  bottom:-120px;
+  right:90px;
+  bottom:-110px;
 
-  border:2px solid rgba(242,194,48,.18);
+  border:1px solid rgba(181,18,27,.32);
 
   transform:rotate(45deg);
 }
 
 header.hero .wrap{
   position:relative;
-  z-index:1;
+  z-index:2;
 }
 
-header.hero .eyebrow{
-  display:inline-block;
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
 
-  font-family:'JetBrains Mono',monospace;
+  padding:7px 12px;
 
-  font-size:.72rem;
-
-  letter-spacing:.1em;
-
-  text-transform:uppercase;
-
-  color:var(--black);
-
-  background:var(--yellow);
-
-  padding:6px 12px;
+  margin-bottom:22px;
 
   border-radius:999px;
 
-  margin-bottom:22px;
+  background:var(--yellow);
+
+  color:var(--black);
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;
+  font-weight:700;
+
+  letter-spacing:.07em;
+  text-transform:uppercase;
 }
 
 header.hero h1{
-  font-size:clamp(2.8rem,7vw,5.6rem);
+  margin:0 0 22px;
 
-  margin:0 0 .28em;
-
-  max-width:15ch;
+  max-width:760px;
 
   color:#fff;
+
+  font-size:clamp(3.5rem,8vw,6.8rem);
+
+  letter-spacing:.015em;
 }
 
-header.hero h1::first-line{
-  color:#fff;
+header.hero h1 .red{
+  color:var(--red-light);
 }
 
-header.hero p.lede{
-  max-width:52ch;
+.lede{
+  max-width:620px;
 
-  font-size:1.15rem;
+  margin:0;
 
-  color:#c9c7bd;
+  color:#cbc7bd;
+
+  font-size:1.12rem;
 
   font-style:italic;
 }
 
 .stats-row{
   position:relative;
-  z-index:1;
+  z-index:2;
 
   display:grid;
-
   grid-template-columns:repeat(4,1fr);
 
   gap:1px;
 
-  margin-top:56px;
+  margin-top:58px;
 
-  background:var(--line-dark);
+  background:rgba(255,255,255,.12);
 
-  border-top:1px solid var(--line-dark);
-
-  border-bottom:1px solid var(--line-dark);
+  border-top:1px solid rgba(255,255,255,.12);
+  border-bottom:1px solid rgba(255,255,255,.12);
 }
 
 .stat{
-  background:var(--black);
-
   padding:22px 18px;
+
+  background:var(--black);
 
   transition:.2s ease;
 }
 
 .stat:hover{
-  background:#1d1d1d;
+  background:var(--black-2);
 }
 
 .stat .num{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:clamp(1.8rem,3.4vw,2.6rem);
-
   color:var(--yellow);
+
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:900;
 
   line-height:1;
 }
 
 .stat .lbl{
-  font-family:'JetBrains Mono',monospace;
+  margin-top:7px;
 
-  font-size:.64rem;
+  color:#99958c;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.61rem;
 
   letter-spacing:.06em;
-
   text-transform:uppercase;
-
-  color:var(--muted-dark);
-
-  margin-top:6px;
-}
-
-@media (max-width:700px){
-
-  .stats-row{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-}
-
-
-/* =========================================================
-   SEÇÕES
-========================================================= */
-
-section{
-  padding:76px 0;
-
-  border-bottom:1px solid var(--line);
-}
-
-section:last-of-type{
-  border-bottom:none;
 }
 
 
@@ -460,140 +443,10 @@ section:last-of-type{
   display:block;
 }
 
+section{
+  padding:76px 0;
 
-/* =========================================================
-   QUEM SOMOS
-========================================================= */
-
-.quote-mark{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-size:3.4rem;
-
-  color:var(--red);
-
-  line-height:.6;
-
-  display:block;
-
-  margin-bottom:6px;
-}
-
-.sobre-texto{
-  max-width:68ch;
-
-  font-size:1.18rem;
-
-  color:#2b2a26;
-
-  min-height:1.6em;
-
-  white-space:pre-wrap;
-
-  border-left:3px solid var(--red);
-
-  padding-left:22px;
-}
-
-body.editing .sobre-texto{
-  background:#fff;
-
-  box-shadow:0 0 0 1px var(--red) inset;
-
-  border-radius:0 8px 8px 0;
-
-  padding:12px 20px;
-}
-
-
-/* =========================================================
-   CARDS DA HOME
-========================================================= */
-
-.quicklinks{
-  display:grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(220px,1fr));
-
-  gap:2px;
-
-  margin-top:44px;
-
-  background:var(--line);
-}
-
-.qcard{
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:space-between;
-
-  gap:34px;
-
-  text-decoration:none;
-
-  color:var(--black);
-
-  background:var(--paper);
-
-  padding:28px 24px;
-
-  min-height:150px;
-
-  transition:
-    background .18s ease,
-    color .18s ease,
-    transform .18s ease;
-}
-
-.qcard:hover{
-  background:var(--red);
-
-  color:#fff;
-
-  transform:translateY(-3px);
-}
-
-.qcard:hover .qarrow{
-  transform:translateX(4px);
-
-  color:var(--yellow);
-}
-
-.qcard .qnum{
-  color:var(--red);
-
-  font-size:.78rem;
-
-  font-family:'JetBrains Mono',monospace;
-
-  letter-spacing:.05em;
-}
-
-.qcard:hover .qnum{
-  color:var(--yellow);
-}
-
-.qcard .qtitle{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:1.5rem;
-}
-
-.qcard .qarrow{
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:1.1rem;
-
-  transition:
-    transform .18s ease,
-    color .18s ease;
-
-  align-self:flex-end;
+  border-bottom:1px solid var(--line);
 }
 
 
@@ -603,12 +456,10 @@ body.editing .sobre-texto{
 
 .sec-head{
   display:flex;
-
   align-items:baseline;
-
   justify-content:space-between;
 
-  gap:16px;
+  gap:18px;
 
   margin-bottom:10px;
 
@@ -616,53 +467,184 @@ body.editing .sobre-texto{
 }
 
 .sec-head h2{
-  font-size:clamp(2rem,4.4vw,2.9rem);
-
   margin:0;
+
+  color:var(--black);
+
+  font-size:clamp(2.3rem,5vw,3.5rem);
 }
 
 .sec-num{
-  font-family:'JetBrains Mono',monospace;
-
   color:var(--red);
 
-  font-size:.82rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
 
-  letter-spacing:.04em;
+  letter-spacing:.06em;
+  text-transform:uppercase;
 }
 
 .sec-desc{
-  color:var(--muted);
-
-  max-width:60ch;
+  max-width:650px;
 
   margin:0 0 34px;
 
-  font-size:1.02rem;
+  color:var(--muted);
+
+  font-size:1rem;
 }
 
 .editnote{
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.72rem;
-
-  color:var(--red-dark);
-
-  background:#fff2d1;
-
-  border:1px dashed var(--red);
-
-  padding:9px 14px;
-
-  border-radius:8px;
+  display:none;
 
   margin:0 0 26px;
 
-  display:none;
+  padding:10px 14px;
+
+  border:1px dashed var(--red);
+
+  border-radius:8px;
+
+  background:#fff4df;
+
+  color:var(--red-dark);
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.68rem;
 }
 
 body.editing .editnote{
   display:block;
+}
+
+
+/* =========================================================
+   QUEM SOMOS
+========================================================= */
+
+.quote-mark{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:var(--red);
+
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:4rem;
+  font-weight:900;
+
+  line-height:.5;
+}
+
+.sobre-texto{
+  max-width:750px;
+
+  min-height:80px;
+
+  padding-left:22px;
+
+  border-left:4px solid var(--red);
+
+  color:#2b2925;
+
+  font-size:1.15rem;
+
+  white-space:pre-wrap;
+}
+
+body.editing .sobre-texto{
+  padding:13px 18px;
+
+  border-radius:0 8px 8px 0;
+
+  background:#fff;
+
+  box-shadow:0 0 0 1px rgba(181,18,27,.25) inset;
+}
+
+
+/* =========================================================
+   QUICK CARDS
+========================================================= */
+
+.quicklinks{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:2px;
+
+  margin:0 0 70px;
+
+  background:var(--line);
+}
+
+.qcard{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+
+  min-height:190px;
+
+  padding:26px 24px;
+
+  border-top:4px solid transparent;
+
+  background:var(--paper);
+
+  color:var(--black);
+
+  text-decoration:none;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease,
+    border-color .2s ease;
+}
+
+.qcard:hover{
+  background:var(--red);
+
+  border-top-color:var(--yellow);
+
+  color:#fff;
+
+  transform:translateY(-5px);
+}
+
+.qnum{
+  color:var(--red);
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
+}
+
+.qcard:hover .qnum{
+  color:var(--yellow);
+}
+
+.qtitle{
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:1.7rem;
+  font-weight:900;
+
+  text-transform:uppercase;
+}
+
+.qarrow{
+  align-self:flex-end;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.3rem;
+
+  transition:.2s ease;
+}
+
+.qcard:hover .qarrow{
+  color:var(--yellow);
+
+  transform:translateX(5px);
 }
 
 
@@ -673,72 +655,59 @@ body.editing .editnote{
 .tile-grid{
   display:grid;
 
-  grid-template-columns:
-    repeat(auto-fill,minmax(200px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
 
   gap:16px;
 }
 
 .tile{
+  position:relative;
+
+  padding:22px 18px 20px;
+
   background:#fff;
 
   border:1px solid var(--line);
+  border-top:4px solid var(--red);
 
   border-radius:var(--radius);
 
-  padding:20px 18px 18px;
-
-  position:relative;
-
   box-shadow:var(--shadow);
 
-  transition:
-    transform .18s ease,
-    border-color .18s ease;
-
-  border-top:4px solid var(--red);
+  transition:.2s ease;
 }
 
 .tile:hover{
-  transform:translateY(-4px);
+  border-top-color:var(--yellow);
 
-  border-color:var(--red);
+  transform:translateY(-4px);
 }
 
 .tile .num{
   position:absolute;
 
   top:14px;
-
-  right:16px;
-
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.66rem;
+  right:15px;
 
   color:var(--muted);
+
+  font-size:.63rem;
 }
 
 .tile .del{
   position:absolute;
 
-  top:12px;
-
-  left:14px;
+  top:10px;
+  left:12px;
 
   display:none;
 
   border:none;
-
   background:none;
 
   color:var(--red);
 
   cursor:pointer;
-
-  font-size:1rem;
-
-  line-height:1;
 }
 
 body.editing .tile .del{
@@ -746,78 +715,52 @@ body.editing .tile .del{
 }
 
 .tile .symbol{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:2.3rem;
+  margin-top:8px;
 
   color:var(--red);
 
-  margin-top:6px;
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:2.5rem;
+  font-weight:900;
 }
 
 .tile .name{
-  font-size:1.02rem;
+  margin-top:7px;
 
   font-weight:600;
-
-  margin-top:8px;
-
-  font-family:'Literata',serif;
 }
 
 .tile .role{
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.66rem;
+  margin-top:5px;
 
   color:var(--red);
 
-  text-transform:uppercase;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;
 
   letter-spacing:.05em;
-
-  margin-top:4px;
-}
-
-[contenteditable="true"]{
-  outline:none;
-}
-
-body.editing [contenteditable="true"]{
-  background:#fffaf0;
-
-  box-shadow:
-    0 0 0 1px var(--red) inset;
-
-  border-radius:4px;
-
-  padding:1px 3px;
+  text-transform:uppercase;
 }
 
 .addtile{
   display:none;
 
   align-items:center;
-
   justify-content:center;
-
-  border:1.5px dashed var(--line);
-
-  border-radius:var(--radius);
 
   min-height:150px;
 
-  background:transparent;
+  border:1.5px dashed var(--line);
+  border-radius:var(--radius);
 
-  cursor:pointer;
+  background:transparent;
 
   color:var(--muted);
 
-  font-family:'JetBrains Mono',monospace;
+  cursor:pointer;
 
-  font-size:.78rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
 }
 
 body.editing .addtile{
@@ -826,8 +769,26 @@ body.editing .addtile{
 
 .addtile:hover{
   border-color:var(--red);
-
   color:var(--red);
+}
+
+
+/* =========================================================
+   EDIÇÃO
+========================================================= */
+
+[contenteditable="true"]{
+  outline:none;
+}
+
+body.editing [contenteditable="true"]{
+  background:#fff9e9;
+
+  box-shadow:0 0 0 1px rgba(181,18,27,.35) inset;
+
+  border-radius:4px;
+
+  padding:2px 4px;
 }
 
 
@@ -835,20 +796,20 @@ body.editing .addtile{
    CAIXA
 ========================================================= */
 
-header.hero + section#page-caixa-anchor{
-  display:none;
-}
-
 #page-caixa section{
   background:var(--black);
 
-  color:#f5f4ef;
+  color:#f7f5ef;
 
   border-bottom:none;
 }
 
+#page-caixa .sec-head h2{
+  color:#fff;
+}
+
 #page-caixa .sec-desc{
-  color:var(--muted-dark);
+  color:#aaa69d;
 }
 
 #page-caixa .sec-num{
@@ -856,7 +817,7 @@ header.hero + section#page-caixa-anchor{
 }
 
 #page-caixa .editnote{
-  background:rgba(242,194,48,.08);
+  background:rgba(233,185,31,.08);
 
   border-color:var(--yellow);
 
@@ -866,87 +827,82 @@ header.hero + section#page-caixa-anchor{
 .caixa-layout{
   display:grid;
 
-  grid-template-columns:200px 1fr;
+  grid-template-columns:220px 1fr;
 
-  gap:46px;
+  gap:50px;
 
   align-items:start;
 }
 
-@media (max-width:700px){
-
-  .caixa-layout{
-    grid-template-columns:1fr;
-  }
-
-}
-
 .beaker-box{
   display:flex;
-
   flex-direction:column;
-
   align-items:flex-start;
 
-  gap:8px;
+  gap:7px;
 }
 
-.beaker-box svg{
+.titracao{
   width:120px;
-
   height:170px;
 }
 
 .saldo-label{
+  color:#99958c;
+
   font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;
 
-  font-size:.7rem;
-
+  letter-spacing:.07em;
   text-transform:uppercase;
-
-  letter-spacing:.08em;
-
-  color:var(--muted-dark);
 }
 
 .saldo-valor{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:2.6rem;
-
   color:var(--yellow);
+
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:2.8rem;
+  font-weight:900;
+
+  line-height:1;
+}
+
+.updated{
+  margin-top:5px;
+
+  color:#77736c;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.62rem;
 }
 
 .notas{
-  list-style:none;
-
-  padding:0;
-
-  margin:0;
-
   display:flex;
-
   flex-direction:column;
 
   gap:10px;
+
+  margin:0;
+  padding:0;
+
+  list-style:none;
 }
 
 .nota{
   display:flex;
+  align-items:flex-start;
 
   gap:12px;
 
-  align-items:flex-start;
+  padding:13px 15px;
 
   background:var(--black-2);
 
   border:1px solid var(--line-dark);
 
-  border-radius:8px;
+  border-left:3px solid var(--red);
 
-  padding:12px 14px;
+  border-radius:8px;
 }
 
 .nota .bullet{
@@ -958,17 +914,16 @@ header.hero + section#page-caixa-anchor{
 .nota .txt{
   flex:1;
 
-  color:#e7e5dc;
+  color:#e8e5dc;
 }
 
 .nota .del{
   display:none;
 
-  border:none;
-
+  border:0;
   background:none;
 
-  color:#e07a6c;
+  color:#d35b62;
 
   cursor:pointer;
 }
@@ -980,27 +935,25 @@ body.editing .nota .del{
 .addnota{
   display:none;
 
+  width:100%;
+
   margin-top:12px;
-
-  border:1px dashed var(--muted-dark);
-
-  border-radius:8px;
 
   padding:11px 14px;
 
+  border:1px dashed #777;
+  border-radius:8px;
+
   background:transparent;
 
-  color:var(--muted-dark);
-
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.8rem;
+  color:#999;
 
   cursor:pointer;
 
-  width:100%;
-
   text-align:left;
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
 }
 
 body.editing .addnota{
@@ -1009,18 +962,7 @@ body.editing .addnota{
 
 .addnota:hover{
   border-color:var(--yellow);
-
   color:var(--yellow);
-}
-
-.updated{
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.68rem;
-
-  color:var(--muted-dark);
-
-  margin-top:8px;
 }
 
 
@@ -1031,44 +973,62 @@ body.editing .addnota{
 .prod-grid{
   display:grid;
 
-  grid-template-columns:
-    repeat(auto-fill,minmax(230px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
 
   gap:20px;
 }
 
 .prod-card{
+  position:relative;
+
+  overflow:hidden;
+
   background:#fff;
 
   border:1px solid var(--line);
+  border-top:4px solid var(--red);
 
   border-radius:var(--radius);
 
   box-shadow:var(--shadow);
 
-  overflow:hidden;
-
-  position:relative;
-
-  transition:transform .18s ease;
+  transition:.2s ease;
 }
 
 .prod-card:hover{
-  transform:translateY(-4px);
+  border-top-color:var(--yellow);
+
+  transform:translateY(-5px);
 }
 
 .prod-top{
-  height:100px;
+  position:relative;
+
+  height:110px;
 
   background:
     linear-gradient(
       135deg,
-      var(--red) 0%,
-      var(--red-dark) 55%,
-      var(--black) 100%
+      var(--red),
+      var(--red-dark) 60%,
+      var(--black)
     );
+}
 
-  position:relative;
+.prod-top::before{
+  content:'';
+
+  position:absolute;
+
+  width:85px;
+  height:85px;
+
+  right:20px;
+  top:13px;
+
+  border:1px solid rgba(255,255,255,.15);
+
+  transform:rotate(45deg);
 }
 
 .prod-top::after{
@@ -1080,92 +1040,83 @@ body.editing .addnota{
 
   background:
     repeating-linear-gradient(
-      45deg,
-      rgba(242,194,48,.12) 0 8px,
-      transparent 8px 16px
+      135deg,
+      rgba(233,185,31,.12) 0 7px,
+      transparent 7px 17px
     );
 }
 
 .prod-body{
-  padding:16px;
+  padding:18px;
 }
 
 .prod-body .name{
+  color:var(--black);
+
   font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:1.3rem;
+  font-size:1.45rem;
+  font-weight:900;
 
   text-transform:uppercase;
 }
 
 .prod-body .desc{
-  color:var(--muted);
-
-  font-size:.9rem;
-
   margin:8px 0;
 
-  font-family:'Literata',serif;
+  color:var(--muted);
+
+  font-size:.87rem;
 }
 
 .prod-body .price{
-  font-family:'JetBrains Mono',monospace;
-
-  font-weight:700;
-
   color:var(--red);
 
-  font-size:1.1rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.05rem;
+  font-weight:700;
 }
 
 .prod-body .stock{
-  font-family:'JetBrains Mono',monospace;
-
-  font-size:.64rem;
-
-  color:var(--black);
-
-  text-transform:uppercase;
-
-  background:var(--yellow);
-
   display:inline-block;
 
-  padding:3px 8px;
+  margin-top:9px;
+  padding:4px 9px;
 
   border-radius:999px;
 
-  margin-top:8px;
+  background:var(--yellow);
+
+  color:var(--black);
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:.59rem;
+  font-weight:700;
 
   letter-spacing:.04em;
+  text-transform:uppercase;
 }
 
 .prod-card .del{
   position:absolute;
 
-  top:8px;
+  top:9px;
+  right:9px;
 
-  right:8px;
+  z-index:3;
 
   display:none;
 
+  width:26px;
+  height:26px;
+
   border:none;
-
-  background:rgba(255,255,255,.9);
-
   border-radius:50%;
 
-  width:24px;
-
-  height:24px;
+  background:#fff;
 
   color:var(--red);
 
   cursor:pointer;
-
-  z-index:2;
 }
 
 body.editing .prod-card .del{
@@ -1176,24 +1127,21 @@ body.editing .prod-card .del{
   display:none;
 
   align-items:center;
-
   justify-content:center;
 
+  min-height:210px;
+
   border:1.5px dashed var(--line);
-
   border-radius:var(--radius);
-
-  min-height:200px;
 
   background:transparent;
 
-  cursor:pointer;
-
   color:var(--muted);
 
-  font-family:'JetBrains Mono',monospace;
+  cursor:pointer;
 
-  font-size:.78rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
 }
 
 body.editing .addprod{
@@ -1202,7 +1150,6 @@ body.editing .addprod{
 
 .addprod:hover{
   border-color:var(--red);
-
   color:var(--red);
 }
 
@@ -1213,74 +1160,55 @@ body.editing .addprod{
 
 .grade-summary{
   display:flex;
-
   align-items:center;
 
   gap:28px;
 
-  margin-bottom:40px;
+  margin-bottom:42px;
 
   flex-wrap:wrap;
 }
 
-.titracao{
-  width:60px;
-
-  height:110px;
-}
-
 .grade-pct{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:clamp(2.4rem,5vw,3.4rem);
-
   color:var(--red);
 
-  text-transform:none;
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:clamp(2.8rem,6vw,4rem);
+  font-weight:900;
+
+  line-height:1;
 }
 
 .grade-pct span{
-  font-size:.95rem;
-
   color:var(--muted);
 
   font-family:'JetBrains Mono',monospace;
-
+  font-size:.72rem;
   font-weight:400;
 
-  text-transform:uppercase;
-
   letter-spacing:.04em;
+  text-transform:uppercase;
 }
 
 .periodo{
-  margin-bottom:32px;
+  margin-bottom:34px;
 }
 
 .periodo-head{
   display:flex;
-
   align-items:center;
 
   gap:14px;
 
-  margin-bottom:12px;
+  margin-bottom:13px;
 }
 
 .periodo-head h3{
-  font-size:1.4rem;
-
   margin:0;
-
-  font-family:'Big Shoulders Display',sans-serif;
-
-  letter-spacing:.03em;
 
   color:var(--black);
 
-  font-weight:800;
+  font-size:1.45rem;
 }
 
 .periodo-head .bar{
@@ -1288,11 +1216,11 @@ body.editing .addprod{
 
   height:5px;
 
-  background:var(--paper-2);
-
-  border-radius:3px;
-
   overflow:hidden;
+
+  border-radius:4px;
+
+  background:var(--paper-2);
 }
 
 .periodo-head .bar i{
@@ -1301,81 +1229,64 @@ body.editing .addprod{
   height:100%;
 
   background:var(--red);
-
-  width:0%;
 }
 
 .materia-grid{
   display:grid;
 
-  grid-template-columns:
-    repeat(auto-fill,minmax(160px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
 
   gap:12px;
 }
 
 .materia{
+  position:relative;
+
+  padding:13px 12px 15px;
+
   border:1.5px solid var(--line);
-
   border-radius:10px;
-
-  padding:12px 12px 14px;
-
-  cursor:pointer;
 
   background:#fff;
 
-  transition:
-    background .15s,
-    border-color .15s,
-    transform .1s;
-
+  cursor:pointer;
   user-select:none;
 
-  position:relative;
+  transition:.15s ease;
 }
 
 .materia:hover{
   border-color:var(--red);
-}
 
-.materia:active{
-  transform:scale(.97);
+  transform:translateY(-2px);
 }
 
 .materia .sigla{
-  font-family:'JetBrains Mono',monospace;
-
-  font-weight:700;
-
-  font-size:1.15rem;
-
   color:var(--red);
+
+  font-family:'JetBrains Mono',monospace;
+  font-size:1.08rem;
+  font-weight:700;
 }
 
 .materia .nm{
-  font-size:.8rem;
-
   margin-top:5px;
 
   color:var(--black);
 
-  font-family:'Literata',serif;
+  font-size:.78rem;
 }
 
 .materia .check{
   position:absolute;
 
   top:10px;
-
   right:10px;
 
   width:16px;
-
   height:16px;
 
   border:1.5px solid var(--line);
-
   border-radius:4px;
 }
 
@@ -1399,39 +1310,31 @@ body.editing .addprod{
 .materia.done .check::after{
   content:'✓';
 
-  color:var(--black);
-
-  font-size:11px;
-
   position:absolute;
 
   left:2px;
-
   top:-3px;
 
-  font-weight:700;
+  color:var(--black);
+
+  font-size:11px;
+  font-weight:900;
 }
 
 .materia .del-materia{
   position:absolute;
 
-  top:8px;
-
-  left:8px;
+  top:7px;
+  left:7px;
 
   display:none;
 
-  border:none;
-
+  border:0;
   background:none;
 
   color:var(--red);
 
   cursor:pointer;
-
-  font-size:.85rem;
-
-  line-height:1;
 }
 
 body.editing .materia .del-materia{
@@ -1442,14 +1345,13 @@ body.editing .materia .del-materia{
   display:none;
 
   align-items:center;
-
   justify-content:center;
+
+  min-height:90px;
 
   border:1.5px dashed var(--line);
 
   background:transparent;
-
-  cursor:pointer;
 }
 
 body.editing .materia.add-materia{
@@ -1459,8 +1361,7 @@ body.editing .materia.add-materia{
 .periodo-head .del-periodo{
   display:none;
 
-  border:none;
-
+  border:0;
   background:none;
 
   color:var(--red);
@@ -1468,18 +1369,11 @@ body.editing .materia.add-materia{
   cursor:pointer;
 
   font-family:'JetBrains Mono',monospace;
-
-  font-size:.68rem;
-
-  white-space:nowrap;
+  font-size:.62rem;
 }
 
 body.editing .periodo-head .del-periodo{
   display:inline-block;
-}
-
-.periodo-titulo[contenteditable="true"]{
-  cursor:text;
 }
 
 
@@ -1488,55 +1382,47 @@ body.editing .periodo-head .del-periodo{
 ========================================================= */
 
 footer{
-  padding:0;
+  background:var(--black);
 
   color:#c5c2b9;
 
   font-family:'JetBrains Mono',monospace;
-
-  background:var(--black);
-
-  letter-spacing:.02em;
 }
 
 .footer-main{
-  border-top:4px solid var(--red);
+  padding:46px 0 32px;
 
-  padding:42px 0 30px;
+  border-top:5px solid var(--red);
 }
 
 .footer-grid{
   display:grid;
 
-  grid-template-columns:
-    1.5fr 1fr 1fr;
+  grid-template-columns:1.5fr 1fr 1fr;
 
-  gap:40px;
+  gap:45px;
 }
 
 .footer-brand{
   display:flex;
-
   align-items:center;
 
   gap:12px;
 
-  margin-bottom:12px;
+  margin-bottom:14px;
 }
 
-.footer-brand svg{
-  width:34px;
-  height:34px;
+.footer-brand .brand-logo{
+  width:38px;
+  height:38px;
 }
 
 .footer-title{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-weight:800;
-
-  font-size:1.8rem;
-
   color:#fff;
+
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:2rem;
+  font-weight:900;
 
   letter-spacing:.04em;
 }
@@ -1544,25 +1430,24 @@ footer{
 .footer-text{
   max-width:480px;
 
-  font-family:'Literata',serif;
-
-  color:#aaa69c;
-
-  font-size:.92rem;
-
-  line-height:1.6;
-
   margin:0;
+
+  color:#aaa69d;
+
+  font-family:'Literata',serif;
+  font-size:.88rem;
+
+  line-height:1.65;
 }
 
 .footer-column h4{
-  font-family:'Big Shoulders Display',sans-serif;
-
-  font-size:1.05rem;
+  margin:0 0 13px;
 
   color:var(--yellow);
 
-  margin:0 0 12px;
+  font-family:'Big Shoulders Display',sans-serif;
+  font-size:1.1rem;
+  font-weight:900;
 
   text-transform:uppercase;
 }
@@ -1570,19 +1455,17 @@ footer{
 .footer-column p{
   margin:5px 0;
 
-  font-size:.7rem;
+  color:#99958c;
 
-  color:#aaa69c;
+  font-size:.65rem;
 
   line-height:1.6;
 }
 
 .footer-column a{
-  color:#aaa69c;
+  color:#aaa69d;
 
   text-decoration:none;
-
-  transition:.2s ease;
 }
 
 .footer-column a:hover{
@@ -1590,29 +1473,22 @@ footer{
 }
 
 .footer-bottom{
+  padding:16px 0;
+
   border-top:1px solid var(--line-dark);
 
-  padding:16px 0;
+  color:#6f6b64;
 
   text-align:center;
 
-  font-size:.64rem;
+  font-size:.59rem;
 
-  color:#77736b;
-}
-
-@media(max-width:750px){
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:25px;
-  }
-
+  letter-spacing:.04em;
 }
 
 
 /* =========================================================
-   ANIMAÇÃO
+   ANIMAÇÕES
 ========================================================= */
 
 .reveal{
@@ -1631,11 +1507,17 @@ footer{
   transform:translateY(0);
 }
 
-@media (prefers-reduced-motion:reduce){
+@media(prefers-reduced-motion:reduce){
 
-  *{
+  *,
+  *::before,
+  *::after{
     transition:none !important;
     animation:none !important;
+  }
+
+  html{
+    scroll-behavior:auto;
   }
 
   .reveal{
@@ -1650,7 +1532,7 @@ footer{
    RESPONSIVIDADE
 ========================================================= */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
   nav.topnav .wrap{
     justify-content:center;
@@ -1662,15 +1544,36 @@ footer{
   }
 
   .navlinks{
-    justify-content:center;
+    width:100%;
+  }
+
+  .quicklinks{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats-row{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
   }
 
 }
 
-@media(max-width:600px){
+@media(max-width:700px){
 
   .wrap{
     padding:0 18px;
+  }
+
+  nav.topnav .wrap{
+    gap:10px;
+  }
+
+  .navlinks a{
+    padding:8px 8px;
+    font-size:.57rem;
   }
 
   header.hero{
@@ -1678,18 +1581,75 @@ footer{
   }
 
   header.hero h1{
-    font-size:3.3rem;
+    font-size:3.5rem;
   }
 
-  .navlinks a{
-    padding:8px 9px;
-    font-size:.62rem;
+  .lede{
+    font-size:1rem;
   }
 
   section{
-    padding:55px 0;
+    padding:56px 0;
   }
 
+  .caixa-layout{
+    grid-template-columns:1fr;
+    gap:35px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .quicklinks{
+    grid-template-columns:1fr;
+  }
+
+  .stats-row{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stat{
+    padding:18px 13px;
+  }
+
+  .stat .num{
+    font-size:1.9rem;
+  }
+
+  .navlinks{
+    gap:0;
+  }
+
+  .navlinks a{
+    padding:7px 6px;
+    font-size:.52rem;
+  }
+
+  header.hero h1{
+    font-size:3rem;
+  }
+
+  .eyebrow{
+    font-size:.57rem;
+  }
+
+}
+
+
+/* =========================================================
+   LOGO SVG
+========================================================= */
+
+.logo-svg{
+  display:block;
+  width:100%;
+  height:100%;
 }
 
 </style>
@@ -1706,28 +1666,39 @@ footer{
 
   <div class="wrap">
 
-    <div class="brand" id="brandLogo">
+    <div class="brand" id="brandLogo" title="CALEQ">
 
-      <svg viewBox="0 0 24 24" fill="none">
+      <svg class="brand-logo logo-svg" viewBox="0 0 40 40" fill="none">
 
+        <!-- béquer -->
         <path
-          d="M9 2v6.2L4 18a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 18l-5-9.8V2"
-          stroke="#f2c230"
-          stroke-width="1.6"
+          d="M12 5h16M15 5v10L8 30.5A4 4 0 0 0 11.6 36h16.8A4 4 0 0 0 32 30.5L25 15V5"
+          stroke="#ffffff"
+          stroke-width="2.2"
           stroke-linejoin="round"
         />
 
+        <!-- líquido -->
         <path
-          d="M7.5 15h9"
+          d="M11 27h18"
           stroke="#b5121b"
-          stroke-width="1.6"
+          stroke-width="3"
+          stroke-linecap="round"
         />
 
+        <!-- detalhe dourado -->
         <path
-          d="M9 2h6"
-          stroke="#f2c230"
-          stroke-width="1.6"
+          d="M18 5h4"
+          stroke="#e9b91f"
+          stroke-width="2.5"
           stroke-linecap="round"
+        />
+
+        <circle
+          cx="24"
+          cy="23"
+          r="2"
+          fill="#e9b91f"
         />
 
       </svg>
@@ -1762,25 +1733,17 @@ footer{
     </div>
 
 
-    <button
-      id="editToggle"
-      style="display:none;"
-    >
-      Modo edição
+    <button id="editToggle" style="display:none;">
+      Editar site
     </button>
 
-
-    <button
-      id="trocarSenha"
-      style="display:none;"
-    >
+    <button id="trocarSenha" style="display:none;">
       Trocar senha
     </button>
 
   </div>
 
 </nav>
-
 
 
 <!-- =========================================================
@@ -1794,18 +1757,18 @@ footer{
     <div class="wrap">
 
       <span class="eyebrow">
-        Centro Acadêmico Livre · Eng. Química · UFES, Campus Alegre
+        Centro Acadêmico Livre · Engenharia Química · UFES
       </span>
 
       <h1>
         Tudo sobre<br>
-        o CALEQ.
+        o <span class="red">CALEQ.</span>
       </h1>
 
       <p class="lede">
-        Quem tá na diretoria, quanto tem em caixa, o que a gente vende
-        — e um jeito rápido de marcar as matérias que você já cursou
-        na grade.
+        Quem está na diretoria, quanto temos em caixa, o que o CA está
+        vendendo e um jeito simples de acompanhar sua trajetória
+        pela grade de Engenharia Química.
       </p>
 
 
@@ -1854,17 +1817,13 @@ footer{
 
       </div>
 
-
       <p class="editnote">
-        Esse texto é compartilhado — qualquer visitante vê a mesma
-        história. Clique em "Modo edição" pra reescrever.
+        Esse texto é compartilhado. Entre no modo de edição para alterar.
       </p>
-
 
       <span class="quote-mark">
         "
       </span>
-
 
       <div
         id="sobreTexto"
@@ -1881,16 +1840,9 @@ footer{
 
     <div class="quicklinks">
 
+      <a href="#diretoria" data-page="diretoria" class="qcard">
 
-      <a
-        href="#diretoria"
-        data-page="diretoria"
-        class="qcard"
-      >
-
-        <span class="qnum mono">
-          01
-        </span>
+        <span class="qnum mono">01</span>
 
         <span class="qtitle">
           Diretoria
@@ -1903,15 +1855,9 @@ footer{
       </a>
 
 
-      <a
-        href="#caixa"
-        data-page="caixa"
-        class="qcard"
-      >
+      <a href="#caixa" data-page="caixa" class="qcard">
 
-        <span class="qnum mono">
-          02
-        </span>
+        <span class="qnum mono">02</span>
 
         <span class="qtitle">
           Caixa
@@ -1924,15 +1870,9 @@ footer{
       </a>
 
 
-      <a
-        href="#produtos"
-        data-page="produtos"
-        class="qcard"
-      >
+      <a href="#produtos" data-page="produtos" class="qcard">
 
-        <span class="qnum mono">
-          03
-        </span>
+        <span class="qnum mono">03</span>
 
         <span class="qtitle">
           Produtos
@@ -1945,15 +1885,9 @@ footer{
       </a>
 
 
-      <a
-        href="#grade"
-        data-page="grade"
-        class="qcard"
-      >
+      <a href="#grade" data-page="grade" class="qcard">
 
-        <span class="qnum mono">
-          04
-        </span>
+        <span class="qnum mono">04</span>
 
         <span class="qtitle">
           Grade curricular
@@ -1965,13 +1899,11 @@ footer{
 
       </a>
 
-
     </div>
 
   </div>
 
 </main>
-
 
 
 <!-- =========================================================
@@ -1986,40 +1918,30 @@ footer{
 
       <div class="sec-head">
 
-        <h2>
-          Diretoria
-        </h2>
+        <h2>Diretoria</h2>
 
         <span class="sec-num mono">
-          01 / tabela de membros
+          01 / membros
         </span>
 
       </div>
 
-
       <p class="sec-desc">
-        Cada cargo, um elemento. Clique em "Modo edição"
-        pra trocar nomes, cargos e siglas.
+        Conheça quem está à frente do CALEQ e quais são as funções
+        de cada integrante.
       </p>
-
 
       <p class="editnote">
-        Essas informações ficam salvas pra qualquer pessoa
-        que abrir esse site.
+        Clique em Editar site para alterar nomes, cargos e siglas.
       </p>
 
-
-      <div
-        class="tile-grid"
-        id="membrosGrid"
-      ></div>
+      <div class="tile-grid" id="membrosGrid"></div>
 
     </div>
 
   </section>
 
 </main>
-
 
 
 <!-- =========================================================
@@ -2034,30 +1956,24 @@ footer{
 
       <div class="sec-head">
 
-        <h2>
-          Caixa
-        </h2>
+        <h2>Caixa</h2>
 
         <span class="sec-num mono">
-          02 / saldo atual
+          02 / transparência
         </span>
 
       </div>
 
-
       <p class="sec-desc">
-        Saldo em caixa e um registro simples de entradas e saídas.
+        Saldo atual e registros financeiros do Centro Acadêmico.
       </p>
-
 
       <p class="editnote">
-        Saldo e notas também são compartilhados —
-        qualquer visitante vê os mesmos valores.
+        O saldo e os registros são compartilhados. Use o modo edição
+        para atualizar essas informações.
       </p>
 
-
       <div class="caixa-layout">
-
 
         <div class="beaker-box">
 
@@ -2089,15 +2005,9 @@ footer{
 
         <div>
 
-          <ul
-            class="notas"
-            id="notasList"
-          ></ul>
+          <ul class="notas" id="notasList"></ul>
 
-          <button
-            class="addnota"
-            id="addNota"
-          >
+          <button class="addnota" id="addNota">
             + adicionar registro
           </button>
 
@@ -2112,7 +2022,6 @@ footer{
 </main>
 
 
-
 <!-- =========================================================
      PRODUTOS
 ========================================================= -->
@@ -2125,9 +2034,7 @@ footer{
 
       <div class="sec-head">
 
-        <h2>
-          Produtos à venda
-        </h2>
+        <h2>Produtos à venda</h2>
 
         <span class="sec-num mono">
           03 / loja do CA
@@ -2135,29 +2042,22 @@ footer{
 
       </div>
 
-
       <p class="sec-desc">
-        Camisetas, jalecos, canecas, rifas —
-        o que o CA tiver pra vender.
+        Produtos oficiais, encomendas, campanhas e itens disponíveis
+        para os estudantes.
       </p>
-
 
       <p class="editnote">
-        Também compartilhado com todo mundo que visitar o site.
+        Entre no modo edição para adicionar, remover ou alterar produtos.
       </p>
 
-
-      <div
-        class="prod-grid"
-        id="produtosGrid"
-      ></div>
+      <div class="prod-grid" id="produtosGrid"></div>
 
     </div>
 
   </section>
 
 </main>
-
 
 
 <!-- =========================================================
@@ -2172,9 +2072,7 @@ footer{
 
       <div class="sec-head">
 
-        <h2>
-          Grade curricular
-        </h2>
+        <h2>Grade curricular</h2>
 
         <span class="sec-num mono">
           04 / interativo
@@ -2182,12 +2080,10 @@ footer{
 
       </div>
 
-
       <p class="sec-desc">
-        Clique numa matéria pra marcar como cursada.
-        Só você vê o seu progresso — fica salvo na sua conta.
+        Clique nas matérias que você já cursou para acompanhar
+        seu progresso ao longo da graduação.
       </p>
-
 
       <div class="grade-summary">
 
@@ -2207,7 +2103,6 @@ footer{
 
       </div>
 
-
       <div id="periodosWrap"></div>
 
     </div>
@@ -2215,7 +2110,6 @@ footer{
   </section>
 
 </main>
-
 
 
 <!-- =========================================================
@@ -2230,31 +2124,38 @@ footer{
 
       <div class="footer-grid">
 
-
         <div>
 
           <div class="footer-brand">
 
-            <svg viewBox="0 0 24 24" fill="none">
+            <svg class="brand-logo logo-svg" viewBox="0 0 40 40" fill="none">
 
               <path
-                d="M9 2v6.2L4 18a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 18l-5-9.8V2"
-                stroke="#f2c230"
-                stroke-width="1.6"
+                d="M12 5h16M15 5v10L8 30.5A4 4 0 0 0 11.6 36h16.8A4 4 0 0 0 32 30.5L25 15V5"
+                stroke="#ffffff"
+                stroke-width="2.2"
                 stroke-linejoin="round"
               />
 
               <path
-                d="M7.5 15h9"
+                d="M11 27h18"
                 stroke="#b5121b"
-                stroke-width="1.6"
+                stroke-width="3"
+                stroke-linecap="round"
               />
 
               <path
-                d="M9 2h6"
-                stroke="#f2c230"
-                stroke-width="1.6"
+                d="M18 5h4"
+                stroke="#e9b91f"
+                stroke-width="2.5"
                 stroke-linecap="round"
+              />
+
+              <circle
+                cx="24"
+                cy="23"
+                r="2"
+                fill="#e9b91f"
               />
 
             </svg>
@@ -2265,13 +2166,10 @@ footer{
 
           </div>
 
-
           <p class="footer-text">
-
             Centro Acadêmico Livre de Engenharia Química,
             representando os estudantes do curso de Engenharia
             Química da UFES — Campus Alegre.
-
           </p>
 
         </div>
@@ -2320,7 +2218,6 @@ footer{
 
         </div>
 
-
       </div>
 
     </div>
@@ -2331,15 +2228,12 @@ footer{
   <div class="footer-bottom">
 
     <div class="wrap">
-
       CALEQ · Engenharia Química · UFES · Campus Alegre
-
     </div>
 
   </div>
 
 </footer>
-
 
 
 <script>
@@ -2356,7 +2250,7 @@ footer{
 const DEFAULT_STATE = {
 
   sobre:
-  "O CALEQ (Centro Acadêmico Livre de Engenharia Química) é o centro acadêmico do curso de Engenharia Química da UFES, Campus Alegre. Escreva aqui a história do CA: quando foi fundado, o que ele representa pros estudantes e o que ele já fez pelo curso.",
+  "O CALEQ (Centro Acadêmico Livre de Engenharia Química) é o centro acadêmico do curso de Engenharia Química da UFES, Campus Alegre. Escreva aqui a história do CA: quando foi fundado, o que ele representa para os estudantes e o que ele já fez pelo curso.",
 
 
   membros:[
@@ -2419,7 +2313,7 @@ const DEFAULT_STATE = {
       },
 
       {
-        texto:"Exemplo: compra de material pra evento — -R$ 120,00"
+        texto:"Exemplo: compra de material para evento — -R$ 120,00"
       }
 
     ]
@@ -2464,158 +2358,109 @@ const DEFAULT_STATE = {
 
     {
       periodo:1,
-
       materias:[
-
         {id:"s1-1",sigla:"CDI",nome:"Cálculo I"},
         {id:"s1-2",sigla:"ALG",nome:"Álgebra Linear"},
         {id:"s1-3",sigla:"QGE",nome:"Química Geral"},
         {id:"s1-4",sigla:"IEQ",nome:"Introdução à Eng. Química"},
         {id:"s1-5",sigla:"DTE",nome:"Desenho Técnico"},
         {id:"s1-6",sigla:"MCI",nome:"Metodologia Científica"}
-
       ]
-
     },
-
 
     {
       periodo:2,
-
       materias:[
-
         {id:"s2-1",sigla:"CDII",nome:"Cálculo II"},
         {id:"s2-2",sigla:"FIS1",nome:"Física I"},
         {id:"s2-3",sigla:"QAN",nome:"Química Analítica"},
         {id:"s2-4",sigla:"ALP",nome:"Algoritmos e Programação"},
         {id:"s2-5",sigla:"GAN",nome:"Geometria Analítica"}
-
       ]
-
     },
-
 
     {
       periodo:3,
-
       materias:[
-
         {id:"s3-1",sigla:"CDIII",nome:"Cálculo III"},
         {id:"s3-2",sigla:"FIS2",nome:"Física II"},
         {id:"s3-3",sigla:"QO1",nome:"Química Orgânica I"},
         {id:"s3-4",sigla:"PES",nome:"Probabilidade e Estatística"},
         {id:"s3-5",sigla:"FT1",nome:"Fenômenos de Transporte I"}
-
       ]
-
     },
-
 
     {
       periodo:4,
-
       materias:[
-
         {id:"s4-1",sigla:"EDO",nome:"Equações Diferenciais"},
         {id:"s4-2",sigla:"FIS3",nome:"Física III"},
         {id:"s4-3",sigla:"QO2",nome:"Química Orgânica II"},
         {id:"s4-4",sigla:"FT2",nome:"Fenômenos de Transporte II"},
         {id:"s4-5",sigla:"TQ1",nome:"Termodinâmica Química I"}
-
       ]
-
     },
-
 
     {
       periodo:5,
-
       materias:[
-
         {id:"s5-1",sigla:"FT3",nome:"Fenômenos de Transporte III"},
         {id:"s5-2",sigla:"TQ2",nome:"Termodinâmica Química II"},
         {id:"s5-3",sigla:"FQE",nome:"Físico-Química Experimental"},
         {id:"s5-4",sigla:"BME",nome:"Balanços de Massa e Energia"},
         {id:"s5-5",sigla:"MFL",nome:"Mecânica dos Fluidos"}
-
       ]
-
     },
-
 
     {
       periodo:6,
-
       materias:[
-
         {id:"s6-1",sigla:"OU1",nome:"Operações Unitárias I"},
         {id:"s6-2",sigla:"CQC",nome:"Cinética Química e Catálise"},
         {id:"s6-3",sigla:"MNU",nome:"Métodos Numéricos"},
         {id:"s6-4",sigla:"CMA",nome:"Ciência dos Materiais"},
         {id:"s6-5",sigla:"CPR",nome:"Controle de Processos"}
-
       ]
-
     },
-
 
     {
       periodo:7,
-
       materias:[
-
         {id:"s7-1",sigla:"OU2",nome:"Operações Unitárias II"},
         {id:"s7-2",sigla:"RQ1",nome:"Reatores Químicos I"},
         {id:"s7-3",sigla:"PII",nome:"Processos Industriais Inorgânicos"},
         {id:"s7-4",sigla:"SPR",nome:"Segurança de Processos"}
-
       ]
-
     },
-
 
     {
       periodo:8,
-
       materias:[
-
         {id:"s8-1",sigla:"OU3",nome:"Operações Unitárias III"},
         {id:"s8-2",sigla:"RQ2",nome:"Reatores Químicos II"},
         {id:"s8-3",sigla:"PIO",nome:"Processos Industriais Orgânicos"},
         {id:"s8-4",sigla:"INC",nome:"Instrumentação e Controle"}
-
       ]
-
     },
-
 
     {
       periodo:9,
-
       materias:[
-
         {id:"s9-1",sigla:"SIM",nome:"Simulação de Processos"},
         {id:"s9-2",sigla:"PP1",nome:"Projeto de Processos I"},
         {id:"s9-3",sigla:"GAM",nome:"Gestão Ambiental"},
         {id:"s9-4",sigla:"EEC",nome:"Economia e Eng. Econômica"}
-
       ]
-
     },
-
 
     {
       periodo:10,
-
       materias:[
-
         {id:"s10-1",sigla:"PP2",nome:"Projeto de Processos II"},
         {id:"s10-2",sigla:"TC1",nome:"TCC I"},
         {id:"s10-3",sigla:"EST",nome:"Estágio Supervisionado"},
         {id:"s10-4",sigla:"OPT",nome:"Optativa"}
-
       ]
-
     }
 
   ]
@@ -2634,14 +2479,6 @@ let state =
 
 let idCounter = 1000;
 
-function novoId(){
-
-  idCounter++;
-
-  return 'novo-' + Date.now() + '-' + idCounter;
-
-}
-
 let completed = new Set();
 
 let editMode = false;
@@ -2649,6 +2486,18 @@ let editMode = false;
 let saveTimer = null;
 
 let senhaAtual = '1234';
+
+
+function novoId(){
+
+  idCounter++;
+
+  return 'novo-' +
+    Date.now() +
+    '-' +
+    idCounter;
+
+}
 
 
 /* =========================================================
@@ -2674,7 +2523,10 @@ async function loadAll(){
 
   }catch(e){
 
-    /* usa DEFAULT_STATE */
+    console.warn(
+      'Usando dados padrão:',
+      e
+    );
 
   }
 
@@ -2698,7 +2550,9 @@ async function loadAll(){
 
   }catch(e){
 
-    /* nenhuma matéria marcada */
+    console.warn(
+      'Nenhum progresso salvo.'
+    );
 
   }
 
@@ -2720,7 +2574,9 @@ async function loadAll(){
 
   }catch(e){
 
-    /* mantém senha padrão */
+    console.warn(
+      'Senha padrão em uso.'
+    );
 
   }
 
@@ -2745,7 +2601,7 @@ async function saveSenha(nova){
   }catch(e){
 
     console.error(
-      'Falha ao salvar senha',
+      'Falha ao salvar senha:',
       e
     );
 
@@ -2772,7 +2628,7 @@ function scheduleSaveState(){
       }catch(e){
 
         console.error(
-          'Falha ao salvar dados do CA',
+          'Falha ao salvar dados:',
           e
         );
 
@@ -2796,7 +2652,7 @@ async function saveCompleted(){
   }catch(e){
 
     console.error(
-      'Falha ao salvar progresso',
+      'Falha ao salvar progresso:',
       e
     );
 
@@ -2806,7 +2662,7 @@ async function saveCompleted(){
 
 
 /* =========================================================
-   RENDER
+   RENDER GERAL
 ========================================================= */
 
 function render(){
@@ -2827,7 +2683,7 @@ function render(){
 
 
 /* =========================================================
-   ESTATÍSTICAS DA HOME
+   ESTATÍSTICAS
 ========================================================= */
 
 function updateStats(){
@@ -2904,6 +2760,8 @@ function renderSobre(){
     document.getElementById(
       'sobreTexto'
     );
+
+  if(!el) return;
 
   el.textContent =
     state.sobre;
@@ -2982,10 +2840,7 @@ function goToPage(name){
 
   window.scrollTo({
     top:0,
-    behavior:
-      'instant' in window
-        ? 'instant'
-        : 'auto'
+    behavior:'auto'
   });
 
 }
@@ -3058,6 +2913,8 @@ function renderMembros(){
       'membrosGrid'
     );
 
+  if(!grid) return;
+
   grid.innerHTML = '';
 
 
@@ -3081,7 +2938,7 @@ function renderMembros(){
 
         <button
           class="del"
-          title="remover"
+          title="Remover"
           data-i="${i}"
         >
           ✕
@@ -3212,9 +3069,15 @@ function renderMembros(){
 
 function renderCaixa(){
 
-  document.getElementById(
-    'saldoValor'
-  ).textContent =
+  const saldo =
+    document.getElementById(
+      'saldoValor'
+    );
+
+  if(!saldo) return;
+
+
+  saldo.textContent =
     state.caixa.saldo;
 
 
@@ -3262,6 +3125,7 @@ function renderCaixa(){
         <button
           class="del"
           data-i="${i}"
+          title="Remover"
         >
           ✕
         </button>
@@ -3316,22 +3180,16 @@ function renderCaixa(){
     });
 
 
-  const saldoEl =
-    document.getElementById(
-      'saldoValor'
-    );
-
-
-  saldoEl.contentEditable =
+  saldo.contentEditable =
     editMode
       ? 'true'
       : 'false';
 
 
-  saldoEl.onblur = ()=>{
+  saldo.onblur = ()=>{
 
     state.caixa.saldo =
-      saldoEl.textContent.trim();
+      saldo.textContent.trim();
 
     scheduleSaveState();
 
@@ -3366,7 +3224,7 @@ function renderCaixa(){
     pct,
     num < 0
       ? '#b5121b'
-      : '#f2c230'
+      : '#e9b91f'
   );
 
 }
@@ -3382,6 +3240,8 @@ function renderProdutos(){
     document.getElementById(
       'produtosGrid'
     );
+
+  if(!grid) return;
 
   grid.innerHTML = '';
 
@@ -3403,6 +3263,7 @@ function renderProdutos(){
         <button
           class="del"
           data-i="${i}"
+          title="Remover"
         >
           ✕
         </button>
@@ -3554,11 +3415,12 @@ function renderGrade(){
       'periodosWrap'
     );
 
+  if(!wrap) return;
+
   wrap.innerHTML = '';
 
 
   let total = 0;
-
   let done = 0;
 
 
@@ -3604,9 +3466,13 @@ function renderGrade(){
 
             <i
               style="width:${
-                (doneHere /
-                p.materias.length *
-                100) || 0
+                p.materias.length
+                  ? (
+                    doneHere /
+                    p.materias.length *
+                    100
+                  )
+                  : 0
               }%"
             ></i>
 
@@ -3615,7 +3481,7 @@ function renderGrade(){
           <span
             class="mono"
             style="
-              font-size:.72rem;
+              font-size:.65rem;
               color:var(--muted)
             "
           >
@@ -3625,13 +3491,11 @@ function renderGrade(){
           <button
             class="del-periodo"
             data-pi="${pi}"
-            title="remover período"
           >
             ✕ período
           </button>
 
         </div>
-
 
         <div class="materia-grid"></div>
 
@@ -3672,7 +3536,6 @@ function renderGrade(){
               class="del-materia"
               data-pi="${pi}"
               data-mi="${mi}"
-              title="remover matéria"
             >
               ✕
             </button>
@@ -3768,7 +3631,7 @@ function renderGrade(){
             text-align:center;
             color:var(--muted);
             font-family:'JetBrains Mono',monospace;
-            font-size:.75rem;
+            font-size:.7rem;
           "
         >
           + matéria
@@ -4058,6 +3921,8 @@ function drawBeaker(
   const svg =
     document.getElementById(id);
 
+  if(!svg) return;
+
 
   const h = 150;
 
@@ -4074,10 +3939,9 @@ function drawBeaker(
       height="150"
       rx="6"
       fill="none"
-      stroke="#d7d0bf"
+      stroke="#5f5b54"
       stroke-width="3"
     />
-
 
     <clipPath id="clip-${id}">
 
@@ -4091,7 +3955,6 @@ function drawBeaker(
 
     </clipPath>
 
-
     <rect
       x="10"
       y="5"
@@ -4102,7 +3965,6 @@ function drawBeaker(
       opacity=".22"
       clip-path="url(#clip-${id})"
     />
-
 
     <rect
       x="10"
@@ -4241,37 +4103,27 @@ function tentarEntrarModoEdicao(){
   );
 
 
-  document
-    .getElementById(
+  const editToggle =
+    document.getElementById(
       'editToggle'
-    )
-    .style.display =
-      'inline-block';
-
-
-  document
-    .getElementById(
-      'editToggle'
-    )
-    .classList.add(
-      'on'
     );
 
 
-  document
-    .getElementById(
-      'editToggle'
-    )
-    .textContent =
-      'Sair da edição';
+  editToggle.style.display =
+    'inline-block';
+
+  editToggle.classList.add(
+    'on'
+  );
+
+  editToggle.textContent =
+    'Sair da edição';
 
 
-  document
-    .getElementById(
-      'trocarSenha'
-    )
-    .style.display =
-      'inline-block';
+  document.getElementById(
+    'trocarSenha'
+  ).style.display =
+    'inline-block';
 
 
   render();
@@ -4295,29 +4147,24 @@ document
       );
 
 
-      document
-        .getElementById(
+      const editToggle =
+        document.getElementById(
           'editToggle'
-        )
-        .style.display =
-          'none';
-
-
-      document
-        .getElementById(
-          'editToggle'
-        )
-        .classList.remove(
-          'on'
         );
 
 
-      document
-        .getElementById(
-          'trocarSenha'
-        )
-        .style.display =
-          'none';
+      editToggle.style.display =
+        'none';
+
+      editToggle.classList.remove(
+        'on'
+      );
+
+
+      document.getElementById(
+        'trocarSenha'
+      ).style.display =
+        'none';
 
 
       render();
@@ -4325,6 +4172,10 @@ document
     }
   );
 
+
+/* =========================================================
+   TROCAR SENHA
+========================================================= */
 
 document
   .getElementById(
