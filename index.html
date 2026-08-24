@@ -1,4331 +1,2096 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>CALEQ — Engenharia Química | UFES</title>
-
-<meta name="description" content="Centro Acadêmico Livre de Engenharia Química — UFES, Campus Alegre">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* =========================================================
-   CALEQ — IDENTIDADE VISUAL
-========================================================= */
-
-:root{
-  --black:#111111;
-  --black-2:#1b1b1b;
-  --black-3:#242424;
-
-  --paper:#faf9f5;
-  --paper-2:#f0ede4;
-  --paper-3:#e7e2d7;
-
-  --line:#ddd8cc;
-  --line-dark:rgba(255,255,255,.13);
-
-  --red:#b5121b;
-  --red-dark:#800b12;
-  --red-light:#d92c36;
-
-  --yellow:#e9b91f;
-  --yellow-light:#ffd95a;
-  --yellow-dark:#b88c00;
-
-  --muted:#6d685f;
-  --muted-dark:#aaa69d;
-
-  --white:#fff;
-
-  --radius:14px;
-
-  --shadow:
-    0 18px 42px -26px rgba(0,0,0,.42);
-}
-
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--black);
-  font-family:'Literata',Georgia,serif;
-  line-height:1.55;
-}
-
-body::selection{
-  background:var(--yellow);
-  color:var(--black);
-}
-
-::selection{
-  background:var(--yellow);
-  color:var(--black);
-}
-
-h1,
-h2,
-h3,
-.display{
-  font-family:'Big Shoulders Display',sans-serif;
-  font-weight:800;
-  letter-spacing:.01em;
-  text-transform:uppercase;
-  line-height:.95;
-}
-
-.mono{
-  font-family:'JetBrains Mono',monospace;
-}
-
-a{
-  color:inherit;
-}
-
-button{
-  font-family:inherit;
-}
-
-.wrap{
-  width:100%;
-  max-width:1120px;
-  margin:0 auto;
-  padding:0 24px;
-}
-
-
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
-
-nav.topnav{
-  position:sticky;
-  top:0;
-  z-index:100;
-
-  background:rgba(17,17,17,.96);
-
-  backdrop-filter:blur(10px);
-
-  border-bottom:1px solid var(--line-dark);
-}
-
-nav.topnav .wrap{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  gap:18px;
-
-  padding-top:12px;
-  padding-bottom:12px;
-
-  flex-wrap:wrap;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  color:#fff;
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:1.45rem;
-  font-weight:900;
-
-  letter-spacing:.05em;
-
-  cursor:pointer;
-  user-select:none;
-
-  transition:.2s ease;
-}
-
-.brand:hover{
-  color:var(--yellow);
-}
-
-.brand-logo{
-  width:32px;
-  height:32px;
-  flex:none;
-}
-
-.navlinks{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  gap:2px;
-
-  flex-wrap:wrap;
-}
-
-.navlinks a{
-  position:relative;
-
-  padding:10px 13px;
-
-  color:#aaa69d;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.68rem;
-
-  letter-spacing:.07em;
-  text-transform:uppercase;
-
-  text-decoration:none;
-
-  transition:.2s ease;
-}
-
-.navlinks a::after{
-  content:'';
-
-  position:absolute;
-
-  left:13px;
-  right:13px;
-  bottom:5px;
-
-  height:2px;
-
-  background:var(--yellow);
-
-  transform:scaleX(0);
-  transform-origin:left;
-
-  transition:.2s ease;
-}
-
-.navlinks a:hover{
-  color:#fff;
-}
-
-.navlinks a:hover::after,
-.navlinks a.active::after{
-  transform:scaleX(1);
-}
-
-.navlinks a.active{
-  color:#fff;
-}
-
-#editToggle,
-#trocarSenha{
-  font-family:'JetBrains Mono',monospace;
-  font-size:.65rem;
-  letter-spacing:.05em;
-  text-transform:uppercase;
-
-  border-radius:999px;
-
-  padding:9px 14px;
-
-  cursor:pointer;
-
-  transition:.2s ease;
-}
-
-#editToggle{
-  border:1px solid var(--red);
-  background:transparent;
-  color:#fff;
-}
-
-#editToggle:hover,
-#editToggle.on{
-  background:var(--red);
-  border-color:var(--red);
-  color:#fff;
-}
-
-#trocarSenha{
-  border:1px dashed #777;
-  background:transparent;
-  color:#aaa;
-}
-
-#trocarSenha:hover{
-  border-color:var(--yellow);
-  color:var(--yellow);
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-header.hero{
-  position:relative;
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      600px 420px at 88% -5%,
-      rgba(181,18,27,.62),
-      transparent 65%
-    ),
-    radial-gradient(
-      400px 300px at 100% 75%,
-      rgba(233,185,31,.16),
-      transparent 70%
-    ),
-    var(--black);
-
-  color:#fff;
-
-  padding:92px 0 70px;
-}
-
-header.hero::before{
-  content:'';
-
-  position:absolute;
-
-  width:340px;
-  height:340px;
-
-  right:-160px;
-  top:70px;
-
-  border:2px solid rgba(233,185,31,.14);
-
-  transform:rotate(45deg);
-}
-
-header.hero::after{
-  content:'';
-
-  position:absolute;
-
-  width:160px;
-  height:160px;
-
-  right:90px;
-  bottom:-110px;
-
-  border:1px solid rgba(181,18,27,.32);
-
-  transform:rotate(45deg);
-}
-
-header.hero .wrap{
-  position:relative;
-  z-index:2;
-}
-
-.eyebrow{
-  display:inline-flex;
-  align-items:center;
-
-  padding:7px 12px;
-
-  margin-bottom:22px;
-
-  border-radius:999px;
-
-  background:var(--yellow);
-
-  color:var(--black);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.68rem;
-  font-weight:700;
-
-  letter-spacing:.07em;
-  text-transform:uppercase;
-}
-
-header.hero h1{
-  margin:0 0 22px;
-
-  max-width:760px;
-
-  color:#fff;
-
-  font-size:clamp(3.5rem,8vw,6.8rem);
-
-  letter-spacing:.015em;
-}
-
-header.hero h1 .red{
-  color:var(--red-light);
-}
-
-.lede{
-  max-width:620px;
-
-  margin:0;
-
-  color:#cbc7bd;
-
-  font-size:1.12rem;
-
-  font-style:italic;
-}
-
-.stats-row{
-  position:relative;
-  z-index:2;
-
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-
-  gap:1px;
-
-  margin-top:58px;
-
-  background:rgba(255,255,255,.12);
-
-  border-top:1px solid rgba(255,255,255,.12);
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
-
-.stat{
-  padding:22px 18px;
-
-  background:var(--black);
-
-  transition:.2s ease;
-}
-
-.stat:hover{
-  background:var(--black-2);
-}
-
-.stat .num{
-  color:var(--yellow);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:clamp(2rem,4vw,3rem);
-  font-weight:900;
-
-  line-height:1;
-}
-
-.stat .lbl{
-  margin-top:7px;
-
-  color:#99958c;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.61rem;
-
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
-
-
-/* =========================================================
-   PÁGINAS
-========================================================= */
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-section{
-  padding:76px 0;
-
-  border-bottom:1px solid var(--line);
-}
-
-
-/* =========================================================
-   CABEÇALHOS
-========================================================= */
-
-.sec-head{
-  display:flex;
-  align-items:baseline;
-  justify-content:space-between;
-
-  gap:18px;
-
-  margin-bottom:10px;
-
-  flex-wrap:wrap;
-}
-
-.sec-head h2{
-  margin:0;
-
-  color:var(--black);
-
-  font-size:clamp(2.3rem,5vw,3.5rem);
-}
-
-.sec-num{
-  color:var(--red);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;
-
-  letter-spacing:.06em;
-  text-transform:uppercase;
-}
-
-.sec-desc{
-  max-width:650px;
-
-  margin:0 0 34px;
-
-  color:var(--muted);
-
-  font-size:1rem;
-}
-
-.editnote{
-  display:none;
-
-  margin:0 0 26px;
-
-  padding:10px 14px;
-
-  border:1px dashed var(--red);
-
-  border-radius:8px;
-
-  background:#fff4df;
-
-  color:var(--red-dark);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.68rem;
-}
-
-body.editing .editnote{
-  display:block;
-}
-
-
-/* =========================================================
-   QUEM SOMOS
-========================================================= */
-
-.quote-mark{
-  display:block;
-
-  margin-bottom:8px;
-
-  color:var(--red);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:4rem;
-  font-weight:900;
-
-  line-height:.5;
-}
-
-.sobre-texto{
-  max-width:750px;
-
-  min-height:80px;
-
-  padding-left:22px;
-
-  border-left:4px solid var(--red);
-
-  color:#2b2925;
-
-  font-size:1.15rem;
-
-  white-space:pre-wrap;
-}
-
-body.editing .sobre-texto{
-  padding:13px 18px;
-
-  border-radius:0 8px 8px 0;
-
-  background:#fff;
-
-  box-shadow:0 0 0 1px rgba(181,18,27,.25) inset;
-}
-
-
-/* =========================================================
-   QUICK CARDS
-========================================================= */
-
-.quicklinks{
-  display:grid;
-
-  grid-template-columns:repeat(4,1fr);
-
-  gap:2px;
-
-  margin:0 0 70px;
-
-  background:var(--line);
-}
-
-.qcard{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-
-  min-height:190px;
-
-  padding:26px 24px;
-
-  border-top:4px solid transparent;
-
-  background:var(--paper);
-
-  color:var(--black);
-
-  text-decoration:none;
-
-  transition:
-    background .2s ease,
-    color .2s ease,
-    transform .2s ease,
-    border-color .2s ease;
-}
-
-.qcard:hover{
-  background:var(--red);
-
-  border-top-color:var(--yellow);
-
-  color:#fff;
-
-  transform:translateY(-5px);
-}
-
-.qnum{
-  color:var(--red);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;
-}
-
-.qcard:hover .qnum{
-  color:var(--yellow);
-}
-
-.qtitle{
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:1.7rem;
-  font-weight:900;
-
-  text-transform:uppercase;
-}
-
-.qarrow{
-  align-self:flex-end;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:1.3rem;
-
-  transition:.2s ease;
-}
-
-.qcard:hover .qarrow{
-  color:var(--yellow);
-
-  transform:translateX(5px);
-}
-
-
-/* =========================================================
-   DIRETORIA
-========================================================= */
-
-.tile-grid{
-  display:grid;
-
-  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
-
-  gap:16px;
-}
-
-.tile{
-  position:relative;
-
-  padding:22px 18px 20px;
-
-  background:#fff;
-
-  border:1px solid var(--line);
-  border-top:4px solid var(--red);
-
-  border-radius:var(--radius);
-
-  box-shadow:var(--shadow);
-
-  transition:.2s ease;
-}
-
-.tile:hover{
-  border-top-color:var(--yellow);
-
-  transform:translateY(-4px);
-}
-
-.tile .num{
-  position:absolute;
-
-  top:14px;
-  right:15px;
-
-  color:var(--muted);
-
-  font-size:.63rem;
-}
-
-.tile .del{
-  position:absolute;
-
-  top:10px;
-  left:12px;
-
-  display:none;
-
-  border:none;
-  background:none;
-
-  color:var(--red);
-
-  cursor:pointer;
-}
-
-body.editing .tile .del{
-  display:block;
-}
-
-.tile .symbol{
-  margin-top:8px;
-
-  color:var(--red);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:2.5rem;
-  font-weight:900;
-}
-
-.tile .name{
-  margin-top:7px;
-
-  font-weight:600;
-}
-
-.tile .role{
-  margin-top:5px;
-
-  color:var(--red);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;
-
-  letter-spacing:.05em;
-  text-transform:uppercase;
-}
-
-.addtile{
-  display:none;
-
-  align-items:center;
-  justify-content:center;
-
-  min-height:150px;
-
-  border:1.5px dashed var(--line);
-  border-radius:var(--radius);
-
-  background:transparent;
-
-  color:var(--muted);
-
-  cursor:pointer;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;
-}
-
-body.editing .addtile{
-  display:flex;
-}
-
-.addtile:hover{
-  border-color:var(--red);
-  color:var(--red);
-}
-
-
-/* =========================================================
-   EDIÇÃO
-========================================================= */
-
-[contenteditable="true"]{
-  outline:none;
-}
-
-body.editing [contenteditable="true"]{
-  background:#fff9e9;
-
-  box-shadow:0 0 0 1px rgba(181,18,27,.35) inset;
-
-  border-radius:4px;
-
-  padding:2px 4px;
-}
-
-
-/* =========================================================
-   CAIXA
-========================================================= */
-
-#page-caixa section{
-  background:var(--black);
-
-  color:#f7f5ef;
-
-  border-bottom:none;
-}
-
-#page-caixa .sec-head h2{
-  color:#fff;
-}
-
-#page-caixa .sec-desc{
-  color:#aaa69d;
-}
-
-#page-caixa .sec-num{
-  color:var(--yellow);
-}
-
-#page-caixa .editnote{
-  background:rgba(233,185,31,.08);
-
-  border-color:var(--yellow);
-
-  color:var(--yellow);
-}
-
-.caixa-layout{
-  display:grid;
-
-  grid-template-columns:220px 1fr;
-
-  gap:50px;
-
-  align-items:start;
-}
-
-.beaker-box{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-
-  gap:7px;
-}
-
-.titracao{
-  width:120px;
-  height:170px;
-}
-
-.saldo-label{
-  color:#99958c;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;
-
-  letter-spacing:.07em;
-  text-transform:uppercase;
-}
-
-.saldo-valor{
-  color:var(--yellow);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:2.8rem;
-  font-weight:900;
-
-  line-height:1;
-}
-
-.updated{
-  margin-top:5px;
-
-  color:#77736c;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;
-}
-
-.notas{
-  display:flex;
-  flex-direction:column;
-
-  gap:10px;
-
-  margin:0;
-  padding:0;
-
-  list-style:none;
-}
-
-.nota{
-  display:flex;
-  align-items:flex-start;
-
-  gap:12px;
-
-  padding:13px 15px;
-
-  background:var(--black-2);
-
-  border:1px solid var(--line-dark);
-
-  border-left:3px solid var(--red);
-
-  border-radius:8px;
-}
-
-.nota .bullet{
-  color:var(--yellow);
-
-  font-family:'JetBrains Mono',monospace;
-}
-
-.nota .txt{
-  flex:1;
-
-  color:#e8e5dc;
-}
-
-.nota .del{
-  display:none;
-
-  border:0;
-  background:none;
-
-  color:#d35b62;
-
-  cursor:pointer;
-}
-
-body.editing .nota .del{
-  display:block;
-}
-
-.addnota{
-  display:none;
-
-  width:100%;
-
-  margin-top:12px;
-
-  padding:11px 14px;
-
-  border:1px dashed #777;
-  border-radius:8px;
-
-  background:transparent;
-
-  color:#999;
-
-  cursor:pointer;
-
-  text-align:left;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;
-}
-
-body.editing .addnota{
-  display:block;
-}
-
-.addnota:hover{
-  border-color:var(--yellow);
-  color:var(--yellow);
-}
-
-
-/* =========================================================
-   PRODUTOS
-========================================================= */
-
-.prod-grid{
-  display:grid;
-
-  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
-
-  gap:20px;
-}
-
-.prod-card{
-  position:relative;
-
-  overflow:hidden;
-
-  background:#fff;
-
-  border:1px solid var(--line);
-  border-top:4px solid var(--red);
-
-  border-radius:var(--radius);
-
-  box-shadow:var(--shadow);
-
-  transition:.2s ease;
-}
-
-.prod-card:hover{
-  border-top-color:var(--yellow);
-
-  transform:translateY(-5px);
-}
-
-.prod-top{
-  position:relative;
-
-  height:110px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--red),
-      var(--red-dark) 60%,
-      var(--black)
-    );
-}
-
-.prod-top::before{
-  content:'';
-
-  position:absolute;
-
-  width:85px;
-  height:85px;
-
-  right:20px;
-  top:13px;
-
-  border:1px solid rgba(255,255,255,.15);
-
-  transform:rotate(45deg);
-}
-
-.prod-top::after{
-  content:'';
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(233,185,31,.12) 0 7px,
-      transparent 7px 17px
-    );
-}
-
-.prod-body{
-  padding:18px;
-}
-
-.prod-body .name{
-  color:var(--black);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:1.45rem;
-  font-weight:900;
-
-  text-transform:uppercase;
-}
-
-.prod-body .desc{
-  margin:8px 0;
-
-  color:var(--muted);
-
-  font-size:.87rem;
-}
-
-.prod-body .price{
-  color:var(--red);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:1.05rem;
-  font-weight:700;
-}
-
-.prod-body .stock{
-  display:inline-block;
-
-  margin-top:9px;
-  padding:4px 9px;
-
-  border-radius:999px;
-
-  background:var(--yellow);
-
-  color:var(--black);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.59rem;
-  font-weight:700;
-
-  letter-spacing:.04em;
-  text-transform:uppercase;
-}
-
-.prod-card .del{
-  position:absolute;
-
-  top:9px;
-  right:9px;
-
-  z-index:3;
-
-  display:none;
-
-  width:26px;
-  height:26px;
-
-  border:none;
-  border-radius:50%;
-
-  background:#fff;
-
-  color:var(--red);
-
-  cursor:pointer;
-}
-
-body.editing .prod-card .del{
-  display:block;
-}
-
-.addprod{
-  display:none;
-
-  align-items:center;
-  justify-content:center;
-
-  min-height:210px;
-
-  border:1.5px dashed var(--line);
-  border-radius:var(--radius);
-
-  background:transparent;
-
-  color:var(--muted);
-
-  cursor:pointer;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;
-}
-
-body.editing .addprod{
-  display:flex;
-}
-
-.addprod:hover{
-  border-color:var(--red);
-  color:var(--red);
-}
-
-
-/* =========================================================
-   GRADE CURRICULAR
-========================================================= */
-
-.grade-summary{
-  display:flex;
-  align-items:center;
-
-  gap:28px;
-
-  margin-bottom:42px;
-
-  flex-wrap:wrap;
-}
-
-.grade-pct{
-  color:var(--red);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:clamp(2.8rem,6vw,4rem);
-  font-weight:900;
-
-  line-height:1;
-}
-
-.grade-pct span{
-  color:var(--muted);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.72rem;
-  font-weight:400;
-
-  letter-spacing:.04em;
-  text-transform:uppercase;
-}
-
-.periodo{
-  margin-bottom:34px;
-}
-
-.periodo-head{
-  display:flex;
-  align-items:center;
-
-  gap:14px;
-
-  margin-bottom:13px;
-}
-
-.periodo-head h3{
-  margin:0;
-
-  color:var(--black);
-
-  font-size:1.45rem;
-}
-
-.periodo-head .bar{
-  flex:1;
-
-  height:5px;
-
-  overflow:hidden;
-
-  border-radius:4px;
-
-  background:var(--paper-2);
-}
-
-.periodo-head .bar i{
-  display:block;
-
-  height:100%;
-
-  background:var(--red);
-}
-
-.materia-grid{
-  display:grid;
-
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-
-  gap:12px;
-}
-
-.materia{
-  position:relative;
-
-  padding:13px 12px 15px;
-
-  border:1.5px solid var(--line);
-  border-radius:10px;
-
-  background:#fff;
-
-  cursor:pointer;
-  user-select:none;
-
-  transition:.15s ease;
-}
-
-.materia:hover{
-  border-color:var(--red);
-
-  transform:translateY(-2px);
-}
-
-.materia .sigla{
-  color:var(--red);
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:1.08rem;
-  font-weight:700;
-}
-
-.materia .nm{
-  margin-top:5px;
-
-  color:var(--black);
-
-  font-size:.78rem;
-}
-
-.materia .check{
-  position:absolute;
-
-  top:10px;
-  right:10px;
-
-  width:16px;
-  height:16px;
-
-  border:1.5px solid var(--line);
-  border-radius:4px;
-}
-
-.materia.done{
-  background:var(--red);
-
-  border-color:var(--red-dark);
-}
-
-.materia.done .sigla,
-.materia.done .nm{
-  color:#fff;
-}
-
-.materia.done .check{
-  background:var(--yellow);
-
-  border-color:var(--yellow);
-}
-
-.materia.done .check::after{
-  content:'✓';
-
-  position:absolute;
-
-  left:2px;
-  top:-3px;
-
-  color:var(--black);
-
-  font-size:11px;
-  font-weight:900;
-}
-
-.materia .del-materia{
-  position:absolute;
-
-  top:7px;
-  left:7px;
-
-  display:none;
-
-  border:0;
-  background:none;
-
-  color:var(--red);
-
-  cursor:pointer;
-}
-
-body.editing .materia .del-materia{
-  display:block;
-}
-
-.materia.add-materia{
-  display:none;
-
-  align-items:center;
-  justify-content:center;
-
-  min-height:90px;
-
-  border:1.5px dashed var(--line);
-
-  background:transparent;
-}
-
-body.editing .materia.add-materia{
-  display:flex;
-}
-
-.periodo-head .del-periodo{
-  display:none;
-
-  border:0;
-  background:none;
-
-  color:var(--red);
-
-  cursor:pointer;
-
-  font-family:'JetBrains Mono',monospace;
-  font-size:.62rem;
-}
-
-body.editing .periodo-head .del-periodo{
-  display:inline-block;
-}
-
-
-/* =========================================================
-   RODAPÉ
-========================================================= */
-
-footer{
-  background:var(--black);
-
-  color:#c5c2b9;
-
-  font-family:'JetBrains Mono',monospace;
-}
-
-.footer-main{
-  padding:46px 0 32px;
-
-  border-top:5px solid var(--red);
-}
-
-.footer-grid{
-  display:grid;
-
-  grid-template-columns:1.5fr 1fr 1fr;
-
-  gap:45px;
-}
-
-.footer-brand{
-  display:flex;
-  align-items:center;
-
-  gap:12px;
-
-  margin-bottom:14px;
-}
-
-.footer-brand .brand-logo{
-  width:38px;
-  height:38px;
-}
-
-.footer-title{
-  color:#fff;
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:2rem;
-  font-weight:900;
-
-  letter-spacing:.04em;
-}
-
-.footer-text{
-  max-width:480px;
-
-  margin:0;
-
-  color:#aaa69d;
-
-  font-family:'Literata',serif;
-  font-size:.88rem;
-
-  line-height:1.65;
-}
-
-.footer-column h4{
-  margin:0 0 13px;
-
-  color:var(--yellow);
-
-  font-family:'Big Shoulders Display',sans-serif;
-  font-size:1.1rem;
-  font-weight:900;
-
-  text-transform:uppercase;
-}
-
-.footer-column p{
-  margin:5px 0;
-
-  color:#99958c;
-
-  font-size:.65rem;
-
-  line-height:1.6;
-}
-
-.footer-column a{
-  color:#aaa69d;
-
-  text-decoration:none;
-}
-
-.footer-column a:hover{
-  color:var(--yellow);
-}
-
-.footer-bottom{
-  padding:16px 0;
-
-  border-top:1px solid var(--line-dark);
-
-  color:#6f6b64;
-
-  text-align:center;
-
-  font-size:.59rem;
-
-  letter-spacing:.04em;
-}
-
-
-/* =========================================================
-   ANIMAÇÕES
-========================================================= */
-
-.reveal{
-  opacity:0;
-
-  transform:translateY(18px);
-
-  transition:
-    opacity .6s ease,
-    transform .6s ease;
-}
-
-.reveal.in{
-  opacity:1;
-
-  transform:translateY(0);
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    transition:none !important;
-    animation:none !important;
-  }
-
-  html{
-    scroll-behavior:auto;
-  }
-
-  .reveal{
-    opacity:1;
-    transform:none;
-  }
-
-}
-
-
-/* =========================================================
-   RESPONSIVIDADE
-========================================================= */
-
-@media(max-width:900px){
-
-  nav.topnav .wrap{
-    justify-content:center;
-  }
-
-  .brand{
-    width:100%;
-    justify-content:center;
-  }
-
-  .navlinks{
-    width:100%;
-  }
-
-  .quicklinks{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .stats-row{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-}
-
-@media(max-width:700px){
-
-  .wrap{
-    padding:0 18px;
-  }
-
-  nav.topnav .wrap{
-    gap:10px;
-  }
-
-  .navlinks a{
-    padding:8px 8px;
-    font-size:.57rem;
-  }
-
-  header.hero{
-    padding:70px 0 50px;
-  }
-
-  header.hero h1{
-    font-size:3.5rem;
-  }
-
-  .lede{
-    font-size:1rem;
-  }
-
-  section{
-    padding:56px 0;
-  }
-
-  .caixa-layout{
-    grid-template-columns:1fr;
-    gap:35px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
-    gap:28px;
-  }
-
-}
-
-@media(max-width:520px){
-
-  .quicklinks{
-    grid-template-columns:1fr;
-  }
-
-  .stats-row{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .stat{
-    padding:18px 13px;
-  }
-
-  .stat .num{
-    font-size:1.9rem;
-  }
-
-  .navlinks{
-    gap:0;
-  }
-
-  .navlinks a{
-    padding:7px 6px;
-    font-size:.52rem;
-  }
-
-  header.hero h1{
-    font-size:3rem;
-  }
-
-  .eyebrow{
-    font-size:.57rem;
-  }
-
-}
-
-
-/* =========================================================
-   LOGO SVG
-========================================================= */
-
-.logo-svg{
-  display:block;
-  width:100%;
-  height:100%;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CALEQ</title>
+
+    <meta name="description" content="Centro Acadêmico de Engenharia Química">
+
+    <style>
+        /* ============================================================
+           CALEQ — ESTILOS
+           ============================================================ */
+
+        :root {
+            --preto: #0a0a0a;
+            --preto-2: #111111;
+            --cinza-escuro: #1a1a1a;
+            --cinza: #777777;
+            --cinza-claro: #d9d9d9;
+            --branco: #f5f5f0;
+            --branco-puro: #ffffff;
+
+            --fonte-principal: Arial, Helvetica, sans-serif;
+            --fonte-mono: "Courier New", Courier, monospace;
+
+            --largura: 1400px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--branco);
+            color: var(--preto);
+            font-family: var(--fonte-principal);
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* ============================================================
+           BARRA SUPERIOR
+           ============================================================ */
+
+        .top-bar {
+            background: var(--preto);
+            color: var(--branco);
+            padding: 8px 30px;
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .top-bar-inner {
+            max-width: var(--largura);
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+
+        header {
+            background: var(--branco);
+            border-bottom: 1px solid var(--preto);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: var(--largura);
+            margin: auto;
+            min-height: 82px;
+            padding: 0 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: max-content;
+        }
+
+        .logo-symbol {
+            width: 44px;
+            height: 44px;
+            border: 2px solid var(--preto);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: var(--fonte-mono);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .logo-subtitle {
+            font-family: var(--fonte-mono);
+            font-size: 9px;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        nav a {
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            padding: 8px 0;
+            border-bottom: 1px solid transparent;
+
+            transition: 0.2s ease;
+        }
+
+        nav a:hover {
+            border-bottom-color: var(--preto);
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            border: 1px solid var(--preto);
+            padding: 10px 14px;
+            cursor: pointer;
+            font-family: var(--fonte-mono);
+            font-weight: bold;
+        }
+
+        /* ============================================================
+           ESTRUTURA GERAL
+           ============================================================ */
+
+        section {
+            scroll-margin-top: 90px;
+        }
+
+        .container {
+            max-width: var(--largura);
+            margin: auto;
+            padding: 0 30px;
+        }
+
+        .section {
+            padding: 110px 0;
+            border-bottom: 1px solid var(--preto);
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+            margin-bottom: 70px;
+        }
+
+        .section-number {
+            font-family: var(--fonte-mono);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-size: clamp(42px, 7vw, 100px);
+            line-height: 0.9;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+        }
+
+        .section-description {
+            max-width: 700px;
+            margin-top: 25px;
+
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+
+        .hero {
+            min-height: calc(100vh - 130px);
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--branco) 0%,
+                    var(--branco) 65%,
+                    #deded8 65%,
+                    #deded8 100%
+                );
+
+            border-bottom: 1px solid var(--preto);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr;
+            gap: 50px;
+            align-items: end;
+            width: 100%;
+        }
+
+        .hero-label {
+            font-family: var(--fonte-mono);
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(80px, 17vw, 260px);
+            line-height: 0.72;
+            letter-spacing: -14px;
+            font-weight: 900;
+        }
+
+        .hero-text {
+            max-width: 620px;
+            margin-top: 50px;
+            font-size: 19px;
+            line-height: 1.55;
+        }
+
+        .hero-side {
+            border-left: 1px solid var(--preto);
+            padding-left: 30px;
+        }
+
+        .hero-side-number {
+            font-family: var(--fonte-mono);
+            font-size: 90px;
+            line-height: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .hero-side p {
+            font-family: var(--fonte-mono);
+            font-size: 12px;
+            line-height: 1.7;
+            text-transform: uppercase;
+        }
+
+        .hero-button {
+            display: inline-flex;
+            margin-top: 35px;
+            padding: 16px 24px;
+
+            background: var(--preto);
+            color: var(--branco);
+
+            font-family: var(--fonte-mono);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            transition: 0.2s ease;
+        }
+
+        .hero-button:hover {
+            background: var(--cinza-escuro);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           QUEM SOMOS
+           ============================================================ */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .about-card {
+            border: 1px solid var(--preto);
+            padding: 35px;
+            min-height: 260px;
+        }
+
+        .about-card-number {
+            font-family: var(--fonte-mono);
+            font-size: 12px;
+            margin-bottom: 60px;
+        }
+
+        .about-card h3 {
+            font-size: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .about-card p {
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           DIRETORIA
+           ============================================================ */
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--preto);
+            border-left: 1px solid var(--preto);
+        }
+
+        .member {
+            min-height: 240px;
+            padding: 25px;
+
+            border-right: 1px solid var(--preto);
+            border-bottom: 1px solid var(--preto);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .member-number {
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+        }
+
+        .member-name {
+            font-size: 26px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .member-role {
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           PROJETOS
+           ============================================================ */
+
+        .projects {
+            border-top: 1px solid var(--preto);
+        }
+
+        .project {
+            display: grid;
+            grid-template-columns: 100px 1fr 80px;
+            gap: 30px;
+            align-items: center;
+
+            padding: 30px 0;
+            border-bottom: 1px solid var(--preto);
+
+            transition: 0.2s ease;
+        }
+
+        .project:hover {
+            padding-left: 15px;
+            padding-right: 15px;
+            background: var(--preto);
+            color: var(--branco);
+        }
+
+        .project-number {
+            font-family: var(--fonte-mono);
+            font-size: 12px;
+        }
+
+        .project-name {
+            font-size: 34px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .project-arrow {
+            text-align: right;
+            font-size: 25px;
+        }
+
+        /* ============================================================
+           NOTÍCIAS / AVISOS
+           ============================================================ */
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .news-card {
+            border: 1px solid var(--preto);
+            padding: 30px;
+        }
+
+        .news-date {
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            margin-bottom: 45px;
+        }
+
+        .news-card h3 {
+            font-size: 28px;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .news-card p {
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* ============================================================
+           CONTATO
+           ============================================================ */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-title {
+            font-size: clamp(45px, 7vw, 100px);
+            line-height: 0.85;
+            letter-spacing: -5px;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            border-top: 1px solid var(--preto);
+        }
+
+        .contact-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--preto);
+        }
+
+        .contact-label {
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            font-size: 17px;
+        }
+
+        .contact-value a {
+            border-bottom: 1px solid var(--preto);
+        }
+
+        /* ============================================================
+           REDES SOCIAIS
+           ============================================================ */
+
+        .social-section {
+            background: var(--preto);
+            color: var(--branco);
+        }
+
+        .social-section .section-number {
+            color: #aaa;
+        }
+
+        .social-section .section-title {
+            color: var(--branco);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .social-link {
+            border: 1px solid #555;
+            padding: 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            font-family: var(--fonte-mono);
+            font-size: 12px;
+            text-transform: uppercase;
+
+            transition: 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--branco);
+            color: var(--preto);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+
+        footer {
+            background: var(--preto);
+            color: var(--branco);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 70px;
+        }
+
+        .footer-logo {
+            font-size: 90px;
+            line-height: 0.8;
+            letter-spacing: -6px;
+            font-weight: 900;
+        }
+
+        .footer-description {
+            max-width: 450px;
+            margin-top: 30px;
+
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            line-height: 1.7;
+            text-transform: uppercase;
+            color: #aaa;
+        }
+
+        .footer-column-title {
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: #aaa;
+            font-family: var(--fonte-mono);
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a:hover {
+            color: var(--branco);
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid #444;
+
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+
+            color: #888;
+            font-family: var(--fonte-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           RESPONSIVO
+           ============================================================ */
+
+        @media (max-width: 900px) {
+
+            .header-inner {
+                min-height: 70px;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 70px;
+
+                background: var(--branco);
+                border-bottom: 1px solid var(--preto);
+
+                padding: 20px 30px;
+
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .hero-grid,
+            .section-header,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 100px 0;
+            }
+
+            .hero-side {
+                border-left: none;
+                border-top: 1px solid var(--preto);
+                padding-left: 0;
+                padding-top: 30px;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-logo {
+                font-size: 70px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .top-bar-inner {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .header-inner {
+                padding: 0 20px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .section {
+                padding: 75px 0;
+            }
+
+            .section-title {
+                letter-spacing: -3px;
+            }
+
+            .hero h1 {
+                letter-spacing: -8px;
+            }
+
+            .about-grid,
+            .news-grid,
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project {
+                grid-template-columns: 50px 1fr 30px;
+                gap: 15px;
+            }
+
+            .project-name {
+                font-size: 22px;
+            }
+
+            .contact-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
+    <!-- ============================================================
+         CONFIGURAÇÕES EDITÁVEIS
+         
+         ALTERE SOMENTE ESTA PARTE PARA PERSONALIZAR O SITE.
+         ============================================================ -->
 
-<!-- =========================================================
-     NAVEGAÇÃO
-========================================================= -->
+    <script>
 
-<nav class="topnav">
+        const SITE = {
 
-  <div class="wrap">
+            /* --------------------------------------------------------
+               IDENTIDADE
+               -------------------------------------------------------- */
 
-    <div class="brand" id="brandLogo" title="CALEQ">
+            nome: "CALEQ",
 
-      <svg class="brand-logo logo-svg" viewBox="0 0 40 40" fill="none">
+            nomeCompleto: "Centro Acadêmico de Engenharia Química",
 
-        <!-- béquer -->
-        <path
-          d="M12 5h16M15 5v10L8 30.5A4 4 0 0 0 11.6 36h16.8A4 4 0 0 0 32 30.5L25 15V5"
-          stroke="#ffffff"
-          stroke-width="2.2"
-          stroke-linejoin="round"
-        />
+            logo: "CQ",
 
-        <!-- líquido -->
-        <path
-          d="M11 27h18"
-          stroke="#b5121b"
-          stroke-width="3"
-          stroke-linecap="round"
-        />
+            descricaoCurta:
+                "Centro Acadêmico dedicado à representação, integração e desenvolvimento dos estudantes de Engenharia Química.",
 
-        <!-- detalhe dourado -->
-        <path
-          d="M18 5h4"
-          stroke="#e9b91f"
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
 
-        <circle
-          cx="24"
-          cy="23"
-          r="2"
-          fill="#e9b91f"
-        />
+            /* --------------------------------------------------------
+               CONTATO
+               
+               O E-MAIL ESTÁ DEIXADO COMO CAMPO EDITÁVEL.
+               
+               Quando você criar o e-mail, basta trocar:
+               
+               endereco: ""
+               
+               por exemplo:
+               
+               endereco: "caleq@exemplo.com"
+               
+               -------------------------------------------------------- */
 
-      </svg>
+            instagram: {
+                nome: "@calequfes",
+                link: "https://instagram.com/calequfes"
+            },
 
-      CALEQ
+            email: {
+                endereco: "",
+                texto: "E-mail em breve"
+            },
+
+            telefone: {
+                numero: "",
+                texto: "Telefone em breve"
+            },
+
+            endereco: {
+                texto: "Endereço da instituição em breve"
+            },
+
+
+            /* --------------------------------------------------------
+               RODAPÉ
+               -------------------------------------------------------- */
+
+            rodape: {
+                texto:
+                    "Centro Acadêmico de Engenharia Química — representação estudantil, integração e desenvolvimento acadêmico.",
+                ano: "2026"
+            },
+
+
+            /* --------------------------------------------------------
+               MENU
+               
+               Para adicionar uma página/seção:
+               
+               {
+                   nome: "NOVA SEÇÃO",
+                   link: "#nova-secao"
+               }
+               
+               -------------------------------------------------------- */
+
+            menu: [
+                {
+                    nome: "INÍCIO",
+                    link: "#inicio"
+                },
+                {
+                    nome: "QUEM SOMOS",
+                    link: "#quem-somos"
+                },
+                {
+                    nome: "DIRETORIA",
+                    link: "#diretoria"
+                },
+                {
+                    nome: "PROJETOS",
+                    link: "#projetos"
+                },
+                {
+                    nome: "AVISOS",
+                    link: "#avisos"
+                },
+                {
+                    nome: "CONTATO",
+                    link: "#contato"
+                }
+            ],
+
+
+            /* --------------------------------------------------------
+               REDES SOCIAIS
+               
+               Para adicionar outra rede, copie um bloco.
+               -------------------------------------------------------- */
+
+            redesSociais: [
+                {
+                    nome: "INSTAGRAM",
+                    texto: "@calequfes",
+                    link: "https://instagram.com/calequfes"
+                }
+            ]
+
+        };
+
+
+        /* ============================================================
+           CONTEÚDO DAS SEÇÕES
+           
+           VOCÊ TAMBÉM PODE ALTERAR OS TEXTOS AQUI.
+           ============================================================ */
+
+        const SECOES = {
+
+            inicio: {
+
+                etiqueta: "CENTRO ACADÊMICO",
+
+                titulo: "CALEQ",
+
+                numero: "00",
+
+                texto:
+                    "Representação estudantil, integração e desenvolvimento para os estudantes de Engenharia Química.",
+
+                botao:
+                    "CONHEÇA O CALEQ",
+
+                botaoLink:
+                    "#quem-somos"
+
+            },
+
+
+            quemSomos: {
+
+                numero: "01 / QUEM SOMOS",
+
+                titulo: "QUEM SOMOS",
+
+                descricao:
+                    "O CALEQ existe para representar os estudantes, fortalecer a comunidade acadêmica e criar oportunidades de integração, participação e desenvolvimento.",
+
+                cards: [
+
+                    {
+                        numero: "01",
+                        titulo: "REPRESENTAÇÃO",
+                        texto:
+                            "Atuamos na representação dos estudantes e na defesa de seus interesses dentro do ambiente acadêmico."
+                    },
+
+                    {
+                        numero: "02",
+                        titulo: "INTEGRAÇÃO",
+                        texto:
+                            "Criamos espaços, atividades e iniciativas para aproximar estudantes e fortalecer a comunidade."
+                    },
+
+                    {
+                        numero: "03",
+                        titulo: "DESENVOLVIMENTO",
+                        texto:
+                            "Buscamos contribuir para a formação acadêmica, profissional e pessoal dos estudantes."
+                    },
+
+                    {
+                        numero: "04",
+                        titulo: "PARTICIPAÇÃO",
+                        texto:
+                            "O CALEQ é construído com a participação dos estudantes. Sua opinião também faz parte dessa história."
+                    }
+
+                ]
+
+            },
+
+
+            diretoria: {
+
+                numero: "02 / DIRETORIA",
+
+                titulo: "DIRETORIA",
+
+                descricao:
+                    "Conheça as pessoas responsáveis pela organização e representação do CALEQ.",
+
+                membros: [
+
+                    {
+                        nome: "NOME DO(A) PRESIDENTE",
+                        cargo: "PRESIDÊNCIA"
+                    },
+
+                    {
+                        nome: "NOME DO(A) VICE",
+                        cargo: "VICE-PRESIDÊNCIA"
+                    },
+
+                    {
+                        nome: "NOME DO(A) SECRETÁRIO(A)",
+                        cargo: "SECRETARIA"
+                    },
+
+                    {
+                        nome: "NOME DO(A) TESOUREIRO(A)",
+                        cargo: "TESOURARIA"
+                    },
+
+                    {
+                        nome: "NOME DO(A) DIRETOR(A)",
+                        cargo: "DIRETORIA DE EVENTOS"
+                    },
+
+                    {
+                        nome: "NOME DO(A) DIRETOR(A)",
+                        cargo: "DIRETORIA DE COMUNICAÇÃO"
+                    }
+
+                ]
+
+            },
+
+
+            projetos: {
+
+                numero: "03 / PROJETOS",
+
+                titulo: "PROJETOS",
+
+                descricao:
+                    "Confira as iniciativas, projetos e atividades desenvolvidas pelo CALEQ.",
+
+                itens: [
+
+                    {
+                        nome: "EVENTOS ACADÊMICOS",
+                        descricao: "Eventos e atividades voltadas à formação dos estudantes."
+                    },
+
+                    {
+                        nome: "INTEGRAÇÃO",
+                        descricao: "Ações para aproximar estudantes e fortalecer a comunidade acadêmica."
+                    },
+
+                    {
+                        nome: "REPRESENTAÇÃO",
+                        descricao: "Participação e representação estudantil dentro da instituição."
+                    },
+
+                    {
+                        nome: "EXTENSÃO",
+                        descricao: "Projetos que aproximam a universidade e a comunidade."
+                    }
+
+                ]
+
+            },
+
+
+            avisos: {
+
+                numero: "04 / AVISOS",
+
+                titulo: "AVISOS",
+
+                descricao:
+                    "Espaço para comunicados, notícias e informações importantes.",
+
+                noticias: [
+
+                    {
+                        data: "EM BREVE",
+                        titulo: "NOVOS AVISOS",
+                        texto:
+                            "As novidades e comunicados do CALEQ aparecerão aqui."
+                    },
+
+                    {
+                        data: "EM BREVE",
+                        titulo: "ACOMPANHE O INSTAGRAM",
+                        texto:
+                            "Acompanhe o Instagram oficial do CALEQ para receber novidades e informações."
+                    }
+
+                ]
+
+            },
+
+
+            contato: {
+
+                numero: "05 / CONTATO",
+
+                titulo: "FALE CONOSCO",
+
+                descricao:
+                    "Entre em contato com o CALEQ. Em breve disponibilizaremos todos os canais oficiais."
+
+            }
+
+        };
+
+    </script>
+
+
+    <!-- ============================================================
+         BARRA SUPERIOR
+         ============================================================ -->
+
+    <div class="top-bar">
+
+        <div class="top-bar-inner">
+
+            <span id="topNome"></span>
+
+            <span>REPRESENTAÇÃO ESTUDANTIL</span>
+
+        </div>
 
     </div>
 
 
-    <div class="navlinks" id="navlinks">
+    <!-- ============================================================
+         HEADER
+         ============================================================ -->
 
-      <a href="#inicio" data-page="inicio">
-        Início
-      </a>
+    <header>
 
-      <a href="#diretoria" data-page="diretoria">
-        Diretoria
-      </a>
+        <div class="header-inner">
 
-      <a href="#caixa" data-page="caixa">
-        Caixa
-      </a>
+            <a href="#inicio" class="logo">
 
-      <a href="#produtos" data-page="produtos">
-        Produtos
-      </a>
+                <div class="logo-symbol" id="logoSymbol"></div>
 
-      <a href="#grade" data-page="grade">
-        Grade curricular
-      </a>
+                <div>
 
-    </div>
+                    <div class="logo-text" id="logoNome"></div>
 
+                    <div class="logo-subtitle" id="logoSubtitulo"></div>
 
-    <button id="editToggle" style="display:none;">
-      Editar site
-    </button>
+                </div>
 
-    <button id="trocarSenha" style="display:none;">
-      Trocar senha
-    </button>
-
-  </div>
-
-</nav>
-
-
-<!-- =========================================================
-     INÍCIO
-========================================================= -->
-
-<main id="page-inicio" class="page">
-
-  <header class="hero">
-
-    <div class="wrap">
-
-      <span class="eyebrow">
-        Centro Acadêmico Livre · Engenharia Química · UFES
-      </span>
-
-      <h1>
-        Tudo sobre<br>
-        o <span class="red">CALEQ.</span>
-      </h1>
-
-      <p class="lede">
-        Quem está na diretoria, quanto temos em caixa, o que o CA está
-        vendendo e um jeito simples de acompanhar sua trajetória
-        pela grade de Engenharia Química.
-      </p>
-
-
-      <div class="stats-row">
-
-        <div class="stat">
-          <div class="num mono" id="statMembros">—</div>
-          <div class="lbl">na diretoria</div>
-        </div>
-
-        <div class="stat">
-          <div class="num mono" id="statProdutos">—</div>
-          <div class="lbl">produtos à venda</div>
-        </div>
-
-        <div class="stat">
-          <div class="num mono" id="statMaterias">—</div>
-          <div class="lbl">matérias na grade</div>
-        </div>
-
-        <div class="stat">
-          <div class="num mono" id="statSaldo">—</div>
-          <div class="lbl">saldo em caixa</div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </header>
-
-
-  <section>
-
-    <div class="wrap reveal">
-
-      <div class="sec-head">
-
-        <h2>
-          Quem somos
-        </h2>
-
-        <span class="sec-num mono">
-          00 / história
-        </span>
-
-      </div>
-
-      <p class="editnote">
-        Esse texto é compartilhado. Entre no modo de edição para alterar.
-      </p>
-
-      <span class="quote-mark">
-        "
-      </span>
-
-      <div
-        id="sobreTexto"
-        class="sobre-texto"
-        contenteditable="false"
-      ></div>
-
-    </div>
-
-  </section>
-
-
-  <div class="wrap reveal">
-
-    <div class="quicklinks">
-
-      <a href="#diretoria" data-page="diretoria" class="qcard">
-
-        <span class="qnum mono">01</span>
-
-        <span class="qtitle">
-          Diretoria
-        </span>
-
-        <span class="qarrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a href="#caixa" data-page="caixa" class="qcard">
-
-        <span class="qnum mono">02</span>
-
-        <span class="qtitle">
-          Caixa
-        </span>
-
-        <span class="qarrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a href="#produtos" data-page="produtos" class="qcard">
-
-        <span class="qnum mono">03</span>
-
-        <span class="qtitle">
-          Produtos
-        </span>
-
-        <span class="qarrow">
-          →
-        </span>
-
-      </a>
-
-
-      <a href="#grade" data-page="grade" class="qcard">
-
-        <span class="qnum mono">04</span>
-
-        <span class="qtitle">
-          Grade curricular
-        </span>
-
-        <span class="qarrow">
-          →
-        </span>
-
-      </a>
-
-    </div>
-
-  </div>
-
-</main>
-
-
-<!-- =========================================================
-     DIRETORIA
-========================================================= -->
-
-<main id="page-diretoria" class="page">
-
-  <section>
-
-    <div class="wrap">
-
-      <div class="sec-head">
-
-        <h2>Diretoria</h2>
-
-        <span class="sec-num mono">
-          01 / membros
-        </span>
-
-      </div>
-
-      <p class="sec-desc">
-        Conheça quem está à frente do CALEQ e quais são as funções
-        de cada integrante.
-      </p>
-
-      <p class="editnote">
-        Clique em Editar site para alterar nomes, cargos e siglas.
-      </p>
-
-      <div class="tile-grid" id="membrosGrid"></div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<!-- =========================================================
-     CAIXA
-========================================================= -->
-
-<main id="page-caixa" class="page">
-
-  <section>
-
-    <div class="wrap">
-
-      <div class="sec-head">
-
-        <h2>Caixa</h2>
-
-        <span class="sec-num mono">
-          02 / transparência
-        </span>
-
-      </div>
-
-      <p class="sec-desc">
-        Saldo atual e registros financeiros do Centro Acadêmico.
-      </p>
-
-      <p class="editnote">
-        O saldo e os registros são compartilhados. Use o modo edição
-        para atualizar essas informações.
-      </p>
-
-      <div class="caixa-layout">
-
-        <div class="beaker-box">
-
-          <svg
-            class="titracao"
-            id="beakerCaixa"
-            viewBox="0 0 100 160"
-          ></svg>
-
-          <div class="saldo-label">
-            Saldo em caixa
-          </div>
-
-          <div
-            class="saldo-valor mono"
-            id="saldoValor"
-            contenteditable="false"
-          >
-            R$ 0,00
-          </div>
-
-          <div
-            class="updated"
-            id="saldoUpdated"
-          ></div>
-
-        </div>
-
-
-        <div>
-
-          <ul class="notas" id="notasList"></ul>
-
-          <button class="addnota" id="addNota">
-            + adicionar registro
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<!-- =========================================================
-     PRODUTOS
-========================================================= -->
-
-<main id="page-produtos" class="page">
-
-  <section>
-
-    <div class="wrap">
-
-      <div class="sec-head">
-
-        <h2>Produtos à venda</h2>
-
-        <span class="sec-num mono">
-          03 / loja do CA
-        </span>
-
-      </div>
-
-      <p class="sec-desc">
-        Produtos oficiais, encomendas, campanhas e itens disponíveis
-        para os estudantes.
-      </p>
-
-      <p class="editnote">
-        Entre no modo edição para adicionar, remover ou alterar produtos.
-      </p>
-
-      <div class="prod-grid" id="produtosGrid"></div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<!-- =========================================================
-     GRADE
-========================================================= -->
-
-<main id="page-grade" class="page">
-
-  <section>
-
-    <div class="wrap">
-
-      <div class="sec-head">
-
-        <h2>Grade curricular</h2>
-
-        <span class="sec-num mono">
-          04 / interativo
-        </span>
-
-      </div>
-
-      <p class="sec-desc">
-        Clique nas matérias que você já cursou para acompanhar
-        seu progresso ao longo da graduação.
-      </p>
-
-      <div class="grade-summary">
-
-        <svg
-          class="titracao"
-          id="beakerGrade"
-          viewBox="0 0 100 160"
-        ></svg>
-
-        <div
-          class="grade-pct"
-          id="gradePct"
-        >
-          0
-          <span>% concluído</span>
-        </div>
-
-      </div>
-
-      <div id="periodosWrap"></div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<!-- =========================================================
-     RODAPÉ
-========================================================= -->
-
-<footer>
-
-  <div class="footer-main">
-
-    <div class="wrap">
-
-      <div class="footer-grid">
-
-        <div>
-
-          <div class="footer-brand">
-
-            <svg class="brand-logo logo-svg" viewBox="0 0 40 40" fill="none">
-
-              <path
-                d="M12 5h16M15 5v10L8 30.5A4 4 0 0 0 11.6 36h16.8A4 4 0 0 0 32 30.5L25 15V5"
-                stroke="#ffffff"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-              />
-
-              <path
-                d="M11 27h18"
-                stroke="#b5121b"
-                stroke-width="3"
-                stroke-linecap="round"
-              />
-
-              <path
-                d="M18 5h4"
-                stroke="#e9b91f"
-                stroke-width="2.5"
-                stroke-linecap="round"
-              />
-
-              <circle
-                cx="24"
-                cy="23"
-                r="2"
-                fill="#e9b91f"
-              />
-
-            </svg>
-
-            <div class="footer-title">
-              CALEQ
-            </div>
-
-          </div>
-
-          <p class="footer-text">
-            Centro Acadêmico Livre de Engenharia Química,
-            representando os estudantes do curso de Engenharia
-            Química da UFES — Campus Alegre.
-          </p>
-
-        </div>
-
-
-        <div class="footer-column">
-
-          <h4>
-            Engenharia Química
-          </h4>
-
-          <p>
-            Universidade Federal do Espírito Santo
-          </p>
-
-          <p>
-            Campus de Alegre
-          </p>
-
-          <p>
-            Centro Acadêmico Livre
-          </p>
-
-        </div>
-
-
-        <div class="footer-column">
-
-          <h4>
-            Contato
-          </h4>
-
-          <p>
-            Instagram:
-            <a href="#" target="_blank">
-              @caleq
             </a>
-          </p>
 
-          <p>
-            E-mail:
-            <a href="mailto:caleq@ufes.br">
-              caleq@ufes.br
-            </a>
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="footer-bottom">
-
-    <div class="wrap">
-      CALEQ · Engenharia Química · UFES · Campus Alegre
-    </div>
-
-  </div>
-
-</footer>
-
-
-<script>
-
-(function(){
-
-"use strict";
-
-
-/* =========================================================
-   DADOS PADRÃO
-========================================================= */
-
-const DEFAULT_STATE = {
-
-  sobre:
-  "O CALEQ (Centro Acadêmico Livre de Engenharia Química) é o centro acadêmico do curso de Engenharia Química da UFES, Campus Alegre. Escreva aqui a história do CA: quando foi fundado, o que ele representa para os estudantes e o que ele já fez pelo curso.",
-
-
-  membros:[
-
-    {
-      sigla:"Pr",
-      nome:"Nome do(a) Presidente",
-      cargo:"Presidência"
-    },
-
-    {
-      sigla:"Vp",
-      nome:"Nome do(a) Vice",
-      cargo:"Vice-presidência"
-    },
-
-    {
-      sigla:"Fi",
-      nome:"Nome do(a) Diretor(a)",
-      cargo:"Financeiro"
-    },
-
-    {
-      sigla:"Co",
-      nome:"Nome do(a) Diretor(a)",
-      cargo:"Comunicação"
-    },
-
-    {
-      sigla:"Ev",
-      nome:"Nome do(a) Diretor(a)",
-      cargo:"Eventos"
-    },
-
-    {
-      sigla:"Ac",
-      nome:"Nome do(a) Diretor(a)",
-      cargo:"Acadêmico"
-    },
-
-    {
-      sigla:"Se",
-      nome:"Nome do(a) Secretário(a)",
-      cargo:"Secretaria"
-    }
-
-  ],
-
-
-  caixa:{
-
-    saldo:"R$ 0,00",
-
-    atualizadoEm:"atualize esta data",
-
-    notas:[
-
-      {
-        texto:"Exemplo: mensalidade de agosto — +R$ 350,00"
-      },
-
-      {
-        texto:"Exemplo: compra de material para evento — -R$ 120,00"
-      }
-
-    ]
-
-  },
-
-
-  produtos:[
-
-    {
-      nome:"Camiseta do CA",
-      preco:"R$ 45,00",
-      estoque:"em estoque",
-      desc:"Silk exclusiva, tamanhos P ao GG."
-    },
-
-    {
-      nome:"Jaleco bordado",
-      preco:"R$ 90,00",
-      estoque:"sob encomenda",
-      desc:"Bordado com nome e curso."
-    },
-
-    {
-      nome:"Caneca CALEQ",
-      preco:"R$ 30,00",
-      estoque:"em estoque",
-      desc:"Cerâmica, 300ml."
-    },
-
-    {
-      nome:"Rifa do CA",
-      preco:"R$ 10,00",
-      estoque:"disponível",
-      desc:"Sorteio no fim do semestre."
-    }
-
-  ],
-
-
-  curriculo:[
-
-    {
-      periodo:1,
-      materias:[
-        {id:"s1-1",sigla:"CDI",nome:"Cálculo I"},
-        {id:"s1-2",sigla:"ALG",nome:"Álgebra Linear"},
-        {id:"s1-3",sigla:"QGE",nome:"Química Geral"},
-        {id:"s1-4",sigla:"IEQ",nome:"Introdução à Eng. Química"},
-        {id:"s1-5",sigla:"DTE",nome:"Desenho Técnico"},
-        {id:"s1-6",sigla:"MCI",nome:"Metodologia Científica"}
-      ]
-    },
-
-    {
-      periodo:2,
-      materias:[
-        {id:"s2-1",sigla:"CDII",nome:"Cálculo II"},
-        {id:"s2-2",sigla:"FIS1",nome:"Física I"},
-        {id:"s2-3",sigla:"QAN",nome:"Química Analítica"},
-        {id:"s2-4",sigla:"ALP",nome:"Algoritmos e Programação"},
-        {id:"s2-5",sigla:"GAN",nome:"Geometria Analítica"}
-      ]
-    },
-
-    {
-      periodo:3,
-      materias:[
-        {id:"s3-1",sigla:"CDIII",nome:"Cálculo III"},
-        {id:"s3-2",sigla:"FIS2",nome:"Física II"},
-        {id:"s3-3",sigla:"QO1",nome:"Química Orgânica I"},
-        {id:"s3-4",sigla:"PES",nome:"Probabilidade e Estatística"},
-        {id:"s3-5",sigla:"FT1",nome:"Fenômenos de Transporte I"}
-      ]
-    },
-
-    {
-      periodo:4,
-      materias:[
-        {id:"s4-1",sigla:"EDO",nome:"Equações Diferenciais"},
-        {id:"s4-2",sigla:"FIS3",nome:"Física III"},
-        {id:"s4-3",sigla:"QO2",nome:"Química Orgânica II"},
-        {id:"s4-4",sigla:"FT2",nome:"Fenômenos de Transporte II"},
-        {id:"s4-5",sigla:"TQ1",nome:"Termodinâmica Química I"}
-      ]
-    },
-
-    {
-      periodo:5,
-      materias:[
-        {id:"s5-1",sigla:"FT3",nome:"Fenômenos de Transporte III"},
-        {id:"s5-2",sigla:"TQ2",nome:"Termodinâmica Química II"},
-        {id:"s5-3",sigla:"FQE",nome:"Físico-Química Experimental"},
-        {id:"s5-4",sigla:"BME",nome:"Balanços de Massa e Energia"},
-        {id:"s5-5",sigla:"MFL",nome:"Mecânica dos Fluidos"}
-      ]
-    },
-
-    {
-      periodo:6,
-      materias:[
-        {id:"s6-1",sigla:"OU1",nome:"Operações Unitárias I"},
-        {id:"s6-2",sigla:"CQC",nome:"Cinética Química e Catálise"},
-        {id:"s6-3",sigla:"MNU",nome:"Métodos Numéricos"},
-        {id:"s6-4",sigla:"CMA",nome:"Ciência dos Materiais"},
-        {id:"s6-5",sigla:"CPR",nome:"Controle de Processos"}
-      ]
-    },
-
-    {
-      periodo:7,
-      materias:[
-        {id:"s7-1",sigla:"OU2",nome:"Operações Unitárias II"},
-        {id:"s7-2",sigla:"RQ1",nome:"Reatores Químicos I"},
-        {id:"s7-3",sigla:"PII",nome:"Processos Industriais Inorgânicos"},
-        {id:"s7-4",sigla:"SPR",nome:"Segurança de Processos"}
-      ]
-    },
-
-    {
-      periodo:8,
-      materias:[
-        {id:"s8-1",sigla:"OU3",nome:"Operações Unitárias III"},
-        {id:"s8-2",sigla:"RQ2",nome:"Reatores Químicos II"},
-        {id:"s8-3",sigla:"PIO",nome:"Processos Industriais Orgânicos"},
-        {id:"s8-4",sigla:"INC",nome:"Instrumentação e Controle"}
-      ]
-    },
-
-    {
-      periodo:9,
-      materias:[
-        {id:"s9-1",sigla:"SIM",nome:"Simulação de Processos"},
-        {id:"s9-2",sigla:"PP1",nome:"Projeto de Processos I"},
-        {id:"s9-3",sigla:"GAM",nome:"Gestão Ambiental"},
-        {id:"s9-4",sigla:"EEC",nome:"Economia e Eng. Econômica"}
-      ]
-    },
-
-    {
-      periodo:10,
-      materias:[
-        {id:"s10-1",sigla:"PP2",nome:"Projeto de Processos II"},
-        {id:"s10-2",sigla:"TC1",nome:"TCC I"},
-        {id:"s10-3",sigla:"EST",nome:"Estágio Supervisionado"},
-        {id:"s10-4",sigla:"OPT",nome:"Optativa"}
-      ]
-    }
-
-  ]
-
-};
-
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
-let state =
-  JSON.parse(
-    JSON.stringify(DEFAULT_STATE)
-  );
-
-let idCounter = 1000;
-
-let completed = new Set();
-
-let editMode = false;
-
-let saveTimer = null;
-
-let senhaAtual = '1234';
-
-
-function novoId(){
-
-  idCounter++;
-
-  return 'novo-' +
-    Date.now() +
-    '-' +
-    idCounter;
-
-}
-
-
-/* =========================================================
-   STORAGE
-========================================================= */
-
-async function loadAll(){
-
-  try{
-
-    const r =
-      await window.storage.get(
-        'ca:dados',
-        true
-      );
-
-    if(r && r.value){
-
-      state =
-        JSON.parse(r.value);
-
-    }
-
-  }catch(e){
-
-    console.warn(
-      'Usando dados padrão:',
-      e
-    );
-
-  }
-
-
-  try{
-
-    const r2 =
-      await window.storage.get(
-        'grade:concluidas',
-        false
-      );
-
-    if(r2 && r2.value){
-
-      completed =
-        new Set(
-          JSON.parse(r2.value)
-        );
-
-    }
-
-  }catch(e){
-
-    console.warn(
-      'Nenhum progresso salvo.'
-    );
-
-  }
-
-
-  try{
-
-    const r3 =
-      await window.storage.get(
-        'ca:senha',
-        true
-      );
-
-    if(r3 && r3.value){
-
-      senhaAtual =
-        r3.value;
-
-    }
-
-  }catch(e){
-
-    console.warn(
-      'Senha padrão em uso.'
-    );
-
-  }
-
-
-  render();
-
-}
-
-
-async function saveSenha(nova){
-
-  senhaAtual = nova;
-
-  try{
-
-    await window.storage.set(
-      'ca:senha',
-      nova,
-      true
-    );
-
-  }catch(e){
-
-    console.error(
-      'Falha ao salvar senha:',
-      e
-    );
-
-  }
-
-}
-
-
-function scheduleSaveState(){
-
-  clearTimeout(saveTimer);
-
-  saveTimer =
-    setTimeout(async()=>{
-
-      try{
-
-        await window.storage.set(
-          'ca:dados',
-          JSON.stringify(state),
-          true
-        );
-
-      }catch(e){
-
-        console.error(
-          'Falha ao salvar dados:',
-          e
-        );
-
-      }
-
-    },500);
-
-}
-
-
-async function saveCompleted(){
-
-  try{
-
-    await window.storage.set(
-      'grade:concluidas',
-      JSON.stringify([...completed]),
-      false
-    );
-
-  }catch(e){
-
-    console.error(
-      'Falha ao salvar progresso:',
-      e
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   RENDER GERAL
-========================================================= */
-
-function render(){
-
-  renderSobre();
-
-  renderMembros();
-
-  renderCaixa();
-
-  renderProdutos();
-
-  renderGrade();
-
-  updateStats();
-
-}
-
-
-/* =========================================================
-   ESTATÍSTICAS
-========================================================= */
-
-function updateStats(){
-
-  const statMembros =
-    document.getElementById(
-      'statMembros'
-    );
-
-  const statProdutos =
-    document.getElementById(
-      'statProdutos'
-    );
-
-  const statMaterias =
-    document.getElementById(
-      'statMaterias'
-    );
-
-  const statSaldo =
-    document.getElementById(
-      'statSaldo'
-    );
-
-
-  if(statMembros){
-
-    statMembros.textContent =
-      state.membros.length;
-
-  }
-
-
-  if(statProdutos){
-
-    statProdutos.textContent =
-      state.produtos.length;
-
-  }
-
-
-  if(statMaterias){
-
-    const total =
-      state.curriculo.reduce(
-        (acc,p)=>
-          acc + p.materias.length,
-        0
-      );
-
-    statMaterias.textContent =
-      total;
-
-  }
-
-
-  if(statSaldo){
-
-    statSaldo.textContent =
-      state.caixa.saldo;
-
-  }
-
-}
-
-
-/* =========================================================
-   SOBRE
-========================================================= */
-
-function renderSobre(){
-
-  const el =
-    document.getElementById(
-      'sobreTexto'
-    );
-
-  if(!el) return;
-
-  el.textContent =
-    state.sobre;
-
-  el.contentEditable =
-    editMode
-      ? 'true'
-      : 'false';
-
-  el.onblur = ()=>{
-
-    state.sobre =
-      el.textContent.trim();
-
-    scheduleSaveState();
-
-  };
-
-}
-
-
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
-
-const PAGES = [
-  'inicio',
-  'diretoria',
-  'caixa',
-  'produtos',
-  'grade'
-];
-
-
-function goToPage(name){
-
-  if(!PAGES.includes(name)){
-
-    name = 'inicio';
-
-  }
-
-
-  PAGES.forEach(p=>{
-
-    const page =
-      document.getElementById(
-        'page-' + p
-      );
-
-    if(page){
-
-      page.classList.toggle(
-        'active',
-        p === name
-      );
-
-    }
-
-  });
-
-
-  document
-    .querySelectorAll(
-      '#navlinks a'
-    )
-    .forEach(a=>{
-
-      a.classList.toggle(
-        'active',
-        a.dataset.page === name
-      );
-
-    });
-
-
-  window.scrollTo({
-    top:0,
-    behavior:'auto'
-  });
-
-}
-
-
-function initRouter(){
-
-  document
-    .querySelectorAll(
-      'a[data-page]'
-    )
-    .forEach(a=>{
-
-      a.addEventListener(
-        'click',
-        e=>{
-
-          e.preventDefault();
-
-          const name =
-            a.dataset.page;
-
-          history.replaceState(
-            null,
-            '',
-            '#' + name
-          );
-
-          goToPage(name);
-
-        }
-      );
-
-    });
-
-
-  window.addEventListener(
-    'hashchange',
-    ()=>{
-
-      goToPage(
-        location.hash.replace(
-          '#',
-          ''
-        )
-      );
-
-    }
-  );
-
-
-  goToPage(
-    location.hash.replace(
-      '#',
-      ''
-    ) || 'inicio'
-  );
-
-}
-
-
-/* =========================================================
-   DIRETORIA
-========================================================= */
-
-function renderMembros(){
-
-  const grid =
-    document.getElementById(
-      'membrosGrid'
-    );
-
-  if(!grid) return;
-
-  grid.innerHTML = '';
-
-
-  state.membros.forEach(
-    (m,i)=>{
-
-      const t =
-        document.createElement(
-          'div'
-        );
-
-      t.className =
-        'tile';
-
-
-      t.innerHTML = `
-
-        <span class="num mono">
-          ${String(i+1).padStart(2,'0')}
-        </span>
-
-        <button
-          class="del"
-          title="Remover"
-          data-i="${i}"
-        >
-          ✕
-        </button>
-
-        <div
-          class="symbol"
-          contenteditable="${ce()}"
-          data-field="sigla"
-          data-i="${i}"
-        >
-          ${esc(m.sigla)}
-        </div>
-
-        <div
-          class="name"
-          contenteditable="${ce()}"
-          data-field="nome"
-          data-i="${i}"
-        >
-          ${esc(m.nome)}
-        </div>
-
-        <div
-          class="role"
-          contenteditable="${ce()}"
-          data-field="cargo"
-          data-i="${i}"
-        >
-          ${esc(m.cargo)}
-        </div>
-
-      `;
-
-
-      grid.appendChild(t);
-
-    }
-  );
-
-
-  const add =
-    document.createElement(
-      'div'
-    );
-
-  add.className =
-    'addtile';
-
-  add.textContent =
-    '+ adicionar membro';
-
-
-  add.onclick = ()=>{
-
-    state.membros.push({
-
-      sigla:'Xx',
-
-      nome:'Nome',
-
-      cargo:'Cargo'
-
-    });
-
-    scheduleSaveState();
-
-    renderMembros();
-
-    updateStats();
-
-  };
-
-
-  grid.appendChild(add);
-
-
-  grid
-    .querySelectorAll('.del')
-    .forEach(b=>{
-
-      b.onclick = ()=>{
-
-        state.membros.splice(
-          +b.dataset.i,
-          1
-        );
-
-        scheduleSaveState();
-
-        renderMembros();
-
-        updateStats();
-
-      };
-
-    });
-
-
-  grid
-    .querySelectorAll(
-      '[contenteditable]'
-    )
-    .forEach(el=>{
-
-      el.addEventListener(
-        'blur',
-        ()=>{
-
-          state.membros[
-            +el.dataset.i
-          ][el.dataset.field] =
-            el.textContent.trim();
-
-          scheduleSaveState();
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   CAIXA
-========================================================= */
-
-function renderCaixa(){
-
-  const saldo =
-    document.getElementById(
-      'saldoValor'
-    );
-
-  if(!saldo) return;
-
-
-  saldo.textContent =
-    state.caixa.saldo;
-
-
-  document.getElementById(
-    'saldoUpdated'
-  ).textContent =
-    'atualizado: ' +
-    state.caixa.atualizadoEm;
-
-
-  const list =
-    document.getElementById(
-      'notasList'
-    );
-
-  list.innerHTML = '';
-
-
-  state.caixa.notas.forEach(
-    (n,i)=>{
-
-      const li =
-        document.createElement(
-          'li'
-        );
-
-      li.className =
-        'nota';
-
-
-      li.innerHTML = `
-
-        <span class="bullet">
-          ▸
-        </span>
-
-        <span
-          class="txt"
-          contenteditable="${ce()}"
-          data-i="${i}"
-        >
-          ${esc(n.texto)}
-        </span>
-
-        <button
-          class="del"
-          data-i="${i}"
-          title="Remover"
-        >
-          ✕
-        </button>
-
-      `;
-
-
-      list.appendChild(li);
-
-    }
-  );
-
-
-  list
-    .querySelectorAll('.txt')
-    .forEach(el=>{
-
-      el.addEventListener(
-        'blur',
-        ()=>{
-
-          state.caixa.notas[
-            +el.dataset.i
-          ].texto =
-            el.textContent.trim();
-
-          scheduleSaveState();
-
-        }
-      );
-
-    });
-
-
-  list
-    .querySelectorAll('.del')
-    .forEach(b=>{
-
-      b.onclick = ()=>{
-
-        state.caixa.notas.splice(
-          +b.dataset.i,
-          1
-        );
-
-        scheduleSaveState();
-
-        renderCaixa();
-
-      };
-
-    });
-
-
-  saldo.contentEditable =
-    editMode
-      ? 'true'
-      : 'false';
-
-
-  saldo.onblur = ()=>{
-
-    state.caixa.saldo =
-      saldo.textContent.trim();
-
-    scheduleSaveState();
-
-    updateStats();
-
-  };
-
-
-  const num =
-    parseFloat(
-      (state.caixa.saldo || '0')
-        .replace(/[^\d,.-]/g,'')
-        .replace('.','')
-        .replace(',','.')
-    ) || 0;
-
-
-  const pct =
-    Math.max(
-      4,
-      Math.min(
-        96,
-        Math.log10(
-          Math.abs(num)+1
-        ) * 20
-      )
-    );
-
-
-  drawBeaker(
-    'beakerCaixa',
-    pct,
-    num < 0
-      ? '#b5121b'
-      : '#e9b91f'
-  );
-
-}
-
-
-/* =========================================================
-   PRODUTOS
-========================================================= */
-
-function renderProdutos(){
-
-  const grid =
-    document.getElementById(
-      'produtosGrid'
-    );
-
-  if(!grid) return;
-
-  grid.innerHTML = '';
-
-
-  state.produtos.forEach(
-    (p,i)=>{
-
-      const c =
-        document.createElement(
-          'div'
-        );
-
-      c.className =
-        'prod-card';
-
-
-      c.innerHTML = `
-
-        <button
-          class="del"
-          data-i="${i}"
-          title="Remover"
-        >
-          ✕
-        </button>
-
-        <div class="prod-top"></div>
-
-        <div class="prod-body">
-
-          <div
-            class="name"
-            contenteditable="${ce()}"
-            data-field="nome"
-            data-i="${i}"
-          >
-            ${esc(p.nome)}
-          </div>
-
-          <div
-            class="desc"
-            contenteditable="${ce()}"
-            data-field="desc"
-            data-i="${i}"
-          >
-            ${esc(p.desc)}
-          </div>
-
-          <div
-            class="price"
-            contenteditable="${ce()}"
-            data-field="preco"
-            data-i="${i}"
-          >
-            ${esc(p.preco)}
-          </div>
-
-          <div
-            class="stock"
-            contenteditable="${ce()}"
-            data-field="estoque"
-            data-i="${i}"
-          >
-            ${esc(p.estoque)}
-          </div>
-
-        </div>
-
-      `;
-
-
-      grid.appendChild(c);
-
-    }
-  );
-
-
-  const add =
-    document.createElement(
-      'div'
-    );
-
-  add.className =
-    'addprod';
-
-  add.textContent =
-    '+ adicionar produto';
-
-
-  add.onclick = ()=>{
-
-    state.produtos.push({
-
-      nome:'Novo produto',
-
-      preco:'R$ 0,00',
-
-      estoque:'em estoque',
-
-      desc:'Descrição do produto.'
-
-    });
-
-    scheduleSaveState();
-
-    renderProdutos();
-
-    updateStats();
-
-  };
-
-
-  grid.appendChild(add);
-
-
-  grid
-    .querySelectorAll('.del')
-    .forEach(b=>{
-
-      b.onclick = ()=>{
-
-        state.produtos.splice(
-          +b.dataset.i,
-          1
-        );
-
-        scheduleSaveState();
-
-        renderProdutos();
-
-        updateStats();
-
-      };
-
-    });
-
-
-  grid
-    .querySelectorAll(
-      '[contenteditable]'
-    )
-    .forEach(el=>{
-
-      el.addEventListener(
-        'blur',
-        ()=>{
-
-          state.produtos[
-            +el.dataset.i
-          ][el.dataset.field] =
-            el.textContent.trim();
-
-          scheduleSaveState();
-
-        }
-      );
-
-    });
-
-}
-
-
-/* =========================================================
-   GRADE
-========================================================= */
-
-function renderGrade(){
-
-  const wrap =
-    document.getElementById(
-      'periodosWrap'
-    );
-
-  if(!wrap) return;
-
-  wrap.innerHTML = '';
-
-
-  let total = 0;
-  let done = 0;
-
-
-  state.curriculo.forEach(
-    (p,pi)=>{
-
-      total +=
-        p.materias.length;
-
-
-      const doneHere =
-        p.materias.filter(
-          m =>
-            completed.has(m.id)
-        ).length;
-
-
-      done += doneHere;
-
-
-      const box =
-        document.createElement(
-          'div'
-        );
-
-      box.className =
-        'periodo';
-
-
-      box.innerHTML = `
-
-        <div class="periodo-head">
-
-          <h3
-            contenteditable="${ce()}"
-            class="periodo-titulo"
-            data-pi="${pi}"
-          >
-            ${p.periodo}º período
-          </h3>
-
-          <div class="bar">
-
-            <i
-              style="width:${
-                p.materias.length
-                  ? (
-                    doneHere /
-                    p.materias.length *
-                    100
-                  )
-                  : 0
-              }%"
-            ></i>
-
-          </div>
-
-          <span
-            class="mono"
-            style="
-              font-size:.65rem;
-              color:var(--muted)
-            "
-          >
-            ${doneHere}/${p.materias.length}
-          </span>
-
-          <button
-            class="del-periodo"
-            data-pi="${pi}"
-          >
-            ✕ período
-          </button>
-
-        </div>
-
-        <div class="materia-grid"></div>
-
-      `;
-
-
-      const mg =
-        box.querySelector(
-          '.materia-grid'
-        );
-
-
-      p.materias.forEach(
-        (m,mi)=>{
-
-          const isDone =
-            completed.has(m.id);
-
-
-          const el =
-            document.createElement(
-              'div'
-            );
-
-
-          el.className =
-            'materia' +
-            (
-              isDone
-                ? ' done'
-                : ''
-            );
-
-
-          el.innerHTML = `
 
             <button
-              class="del-materia"
-              data-pi="${pi}"
-              data-mi="${mi}"
-            >
-              ✕
+                class="menu-button"
+                id="menuButton"
+                aria-label="Abrir menu">
+
+                MENU
+
             </button>
 
-            <span class="check"></span>
 
-            <div
-              class="sigla"
-              contenteditable="${ce()}"
-              data-pi="${pi}"
-              data-mi="${mi}"
-              data-field="sigla"
-            >
-              ${esc(m.sigla)}
-            </div>
+            <nav id="menu"></nav>
 
-            <div
-              class="nm"
-              contenteditable="${ce()}"
-              data-pi="${pi}"
-              data-mi="${mi}"
-              data-field="nome"
-            >
-              ${esc(m.nome)}
-            </div>
-
-          `;
-
-
-          el.addEventListener(
-            'click',
-            e=>{
-
-              if(
-                e.target.closest(
-                  '[contenteditable]'
-                ) ||
-                e.target.closest(
-                  '.del-materia'
-                )
-              ){
-
-                return;
-
-              }
-
-
-              if(
-                completed.has(m.id)
-              ){
-
-                completed.delete(
-                  m.id
-                );
-
-              }else{
-
-                completed.add(
-                  m.id
-                );
-
-              }
-
-
-              saveCompleted();
-
-              renderGrade();
-
-            }
-          );
-
-
-          mg.appendChild(el);
-
-        }
-      );
-
-
-      const addMateria =
-        document.createElement(
-          'div'
-        );
-
-      addMateria.className =
-        'materia add-materia';
-
-
-      addMateria.innerHTML = `
-
-        <div
-          class="nm"
-          style="
-            text-align:center;
-            color:var(--muted);
-            font-family:'JetBrains Mono',monospace;
-            font-size:.7rem;
-          "
-        >
-          + matéria
         </div>
 
-      `;
+    </header>
 
 
-      addMateria.addEventListener(
-        'click',
-        ()=>{
+    <main>
 
-          p.materias.push({
 
-            id:novoId(),
+        <!-- ========================================================
+             INÍCIO
+             ======================================================== -->
 
-            sigla:'XX',
+        <section class="hero" id="inicio">
 
-            nome:'Nova matéria'
+            <div class="container">
 
-          });
+                <div class="hero-grid">
 
-          scheduleSaveState();
+                    <div>
 
-          renderGrade();
+                        <div
+                            class="hero-label"
+                            id="heroEtiqueta">
+                        </div>
 
-          updateStats();
+                        <h1 id="heroTitulo"></h1>
 
+                        <p
+                            class="hero-text"
+                            id="heroTexto">
+                        </p>
+
+                        <a
+                            href="#quem-somos"
+                            class="hero-button"
+                            id="heroBotao">
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-side">
+
+                        <div
+                            class="hero-side-number"
+                            id="heroNumero">
+                        </div>
+
+                        <p id="heroDescricao"></p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================================
+             QUEM SOMOS
+             ======================================================== -->
+
+        <section
+            class="section"
+            id="quem-somos">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div
+                            class="section-number"
+                            id="quemNumero">
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h2
+                            class="section-title"
+                            id="quemTitulo">
+                        </h2>
+
+                        <p
+                            class="section-description"
+                            id="quemDescricao">
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="about-grid"
+                    id="aboutGrid">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================================
+             DIRETORIA
+             ======================================================== -->
+
+        <section
+            class="section"
+            id="diretoria">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div
+                            class="section-number"
+                            id="diretoriaNumero">
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h2
+                            class="section-title"
+                            id="diretoriaTitulo">
+                        </h2>
+
+                        <p
+                            class="section-description"
+                            id="diretoriaDescricao">
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="members-grid"
+                    id="membersGrid">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================================
+             PROJETOS
+             ======================================================== -->
+
+        <section
+            class="section"
+            id="projetos">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div
+                            class="section-number"
+                            id="projetosNumero">
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h2
+                            class="section-title"
+                            id="projetosTitulo">
+                        </h2>
+
+                        <p
+                            class="section-description"
+                            id="projetosDescricao">
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="projects"
+                    id="projectsList">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================================
+             AVISOS
+             ======================================================== -->
+
+        <section
+            class="section"
+            id="avisos">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div
+                            class="section-number"
+                            id="avisosNumero">
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h2
+                            class="section-title"
+                            id="avisosTitulo">
+                        </h2>
+
+                        <p
+                            class="section-description"
+                            id="avisosDescricao">
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="news-grid"
+                    id="newsGrid">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================================
+             CONTATO
+             ======================================================== -->
+
+        <section
+            class="section"
+            id="contato">
+
+            <div class="container">
+
+                <div class="contact-grid">
+
+                    <div>
+
+                        <div
+                            class="section-number"
+                            id="contatoNumero">
+                        </div>
+
+                        <h2
+                            class="contact-title"
+                            id="contatoTitulo">
+                        </h2>
+
+                        <p
+                            class="section-description"
+                            id="contatoDescricao">
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-info">
+
+                        <div class="contact-item">
+
+                            <div class="contact-label">
+                                INSTAGRAM
+                            </div>
+
+                            <div class="contact-value">
+
+                                <a
+                                    id="contatoInstagram"
+                                    target="_blank"
+                                    rel="noopener">
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-label">
+                                E-MAIL
+                            </div>
+
+                            <div
+                                class="contact-value"
+                                id="contatoEmail">
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-label">
+                                TELEFONE
+                            </div>
+
+                            <div
+                                class="contact-value"
+                                id="contatoTelefone">
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-label">
+                                ENDEREÇO
+                            </div>
+
+                            <div
+                                class="contact-value"
+                                id="contatoEndereco">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================================
+             REDES SOCIAIS
+             ======================================================== -->
+
+        <section class="section social-section">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <div class="section-number">
+                            REDES / 06
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                        <h2 class="section-title">
+                            SIGA O CALEQ
+                        </h2>
+
+                        <p class="section-description">
+                            Acompanhe as nossas redes para receber novidades,
+                            avisos e informações.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="social-grid"
+                    id="socialGrid">
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+
+                    <div
+                        class="footer-logo"
+                        id="footerLogo">
+                    </div>
+
+                    <p
+                        class="footer-description"
+                        id="footerDescricao">
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <div class="footer-column-title">
+                        MENU
+                    </div>
+
+                    <div id="footerMenu"></div>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <div class="footer-column-title">
+                        CONTATO
+                    </div>
+
+                    <a
+                        id="footerInstagram"
+                        target="_blank"
+                        rel="noopener">
+                    </a>
+
+                    <a
+                        id="footerEmail">
+                    </a>
+
+                    <a
+                        id="footerTelefone">
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span id="footerCopyright"></span>
+
+                <span>
+                    CALEQ
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ============================================================
+         JAVASCRIPT
+         ============================================================ -->
+
+    <script>
+
+        /* ============================================================
+           FUNÇÃO AUXILIAR
+           ============================================================ */
+
+        function selecionar(id) {
+            return document.getElementById(id);
         }
-      );
 
 
-      mg.appendChild(
-        addMateria
-      );
+        /* ============================================================
+           IDENTIDADE
+           ============================================================ */
 
+        selecionar("topNome").textContent =
+            SITE.nomeCompleto;
 
-      wrap.appendChild(box);
+        selecionar("logoSymbol").textContent =
+            SITE.logo;
 
-    }
-  );
+        selecionar("logoNome").textContent =
+            SITE.nome;
 
+        selecionar("logoSubtitulo").textContent =
+            "ENGENHARIA QUÍMICA";
 
-  const addPeriodo =
-    document.createElement(
-      'button'
-    );
 
-  addPeriodo.className =
-    'addnota';
+        /* ============================================================
+           MENU PRINCIPAL
+           ============================================================ */
 
-  addPeriodo.style.display =
-    editMode
-      ? 'block'
-      : 'none';
+        const menu = selecionar("menu");
 
-  addPeriodo.textContent =
-    '+ adicionar período';
+        SITE.menu.forEach(item => {
 
+            const link = document.createElement("a");
 
-  addPeriodo.onclick = ()=>{
+            link.href = item.link;
 
-    state.curriculo.push({
+            link.textContent = item.nome;
 
-      periodo:
-        state.curriculo.length + 1,
+            link.addEventListener("click", () => {
+                menu.classList.remove("active");
+            });
 
-      materias:[
+            menu.appendChild(link);
 
-        {
-          id:novoId(),
+        });
 
-          sigla:'XX',
 
-          nome:'Nova matéria'
-        }
+        /* ============================================================
+           MENU MOBILE
+           ============================================================ */
 
-      ]
+        selecionar("menuButton").addEventListener(
+            "click",
+            () => {
 
-    });
-
-
-    scheduleSaveState();
-
-    renderGrade();
-
-    updateStats();
-
-  };
-
-
-  wrap.appendChild(
-    addPeriodo
-  );
-
-
-  wrap
-    .querySelectorAll(
-      '.sigla[contenteditable], .nm[contenteditable]'
-    )
-    .forEach(el=>{
-
-      el.addEventListener(
-        'blur',
-        ()=>{
-
-          const pi =
-            +el.dataset.pi;
-
-          const mi =
-            +el.dataset.mi;
-
-          const field =
-            el.dataset.field;
-
-
-          state
-            .curriculo[pi]
-            .materias[mi][field] =
-              el.textContent.trim();
-
-
-          scheduleSaveState();
-
-        }
-      );
-
-
-      el.addEventListener(
-        'click',
-        e=>{
-
-          if(editMode){
-
-            e.stopPropagation();
-
-          }
-
-        }
-      );
-
-    });
-
-
-  wrap
-    .querySelectorAll(
-      '.periodo-titulo'
-    )
-    .forEach(el=>{
-
-      el.addEventListener(
-        'blur',
-        ()=>{
-
-          const pi =
-            +el.dataset.pi;
-
-
-          const n =
-            parseInt(
-              el.textContent
-            ) ||
-            state.curriculo[
-              pi
-            ].periodo;
-
-
-          state.curriculo[
-            pi
-          ].periodo = n;
-
-
-          scheduleSaveState();
-
-        }
-      );
-
-    });
-
-
-  wrap
-    .querySelectorAll(
-      '.del-materia'
-    )
-    .forEach(b=>{
-
-      b.addEventListener(
-        'click',
-        e=>{
-
-          e.stopPropagation();
-
-
-          const pi =
-            +b.dataset.pi;
-
-          const mi =
-            +b.dataset.mi;
-
-
-          state
-            .curriculo[pi]
-            .materias.splice(
-              mi,
-              1
-            );
-
-
-          scheduleSaveState();
-
-          renderGrade();
-
-          updateStats();
-
-        }
-      );
-
-    });
-
-
-  wrap
-    .querySelectorAll(
-      '.del-periodo'
-    )
-    .forEach(b=>{
-
-      b.addEventListener(
-        'click',
-        ()=>{
-
-          const pi =
-            +b.dataset.pi;
-
-
-          state.curriculo.splice(
-            pi,
-            1
-          );
-
-
-          scheduleSaveState();
-
-          renderGrade();
-
-          updateStats();
-
-        }
-      );
-
-    });
-
-
-  const pct =
-    total
-      ? Math.round(
-          done / total * 100
-        )
-      : 0;
-
-
-  document.getElementById(
-    'gradePct'
-  ).innerHTML =
-    pct +
-    '<span>% concluído</span>';
-
-
-  drawBeaker(
-    'beakerGrade',
-    Math.max(4,pct),
-    '#b5121b'
-  );
-
-}
-
-
-/* =========================================================
-   BÉQUER
-========================================================= */
-
-function drawBeaker(
-  id,
-  pct,
-  color
-){
-
-  const svg =
-    document.getElementById(id);
-
-  if(!svg) return;
-
-
-  const h = 150;
-
-  const fillH =
-    h * pct / 100;
-
-
-  svg.innerHTML = `
-
-    <rect
-      x="10"
-      y="5"
-      width="80"
-      height="150"
-      rx="6"
-      fill="none"
-      stroke="#5f5b54"
-      stroke-width="3"
-    />
-
-    <clipPath id="clip-${id}">
-
-      <rect
-        x="10"
-        y="${155-fillH}"
-        width="80"
-        height="${fillH}"
-        rx="4"
-      />
-
-    </clipPath>
-
-    <rect
-      x="10"
-      y="5"
-      width="80"
-      height="150"
-      rx="6"
-      fill="${color}"
-      opacity=".22"
-      clip-path="url(#clip-${id})"
-    />
-
-    <rect
-      x="10"
-      y="${155-fillH}"
-      width="80"
-      height="4"
-      fill="${color}"
-    />
-
-  `;
-
-}
-
-
-/* =========================================================
-   UTILITÁRIOS
-========================================================= */
-
-function ce(){
-
-  return editMode
-    ? 'true'
-    : 'false';
-
-}
-
-
-function esc(s){
-
-  const d =
-    document.createElement(
-      'div'
-    );
-
-  d.textContent =
-    s == null
-      ? ''
-      : s;
-
-  return d.innerHTML;
-
-}
-
-
-/* =========================================================
-   ACESSO AO MODO EDIÇÃO
-========================================================= */
-
-let cliquesLogo = 0;
-
-let cliqueTimer = null;
-
-
-document
-  .getElementById(
-    'brandLogo'
-  )
-  .addEventListener(
-    'click',
-    ()=>{
-
-      if(editMode){
-
-        return;
-
-      }
-
-
-      cliquesLogo++;
-
-
-      clearTimeout(
-        cliqueTimer
-      );
-
-
-      cliqueTimer =
-        setTimeout(
-          ()=>{
-            cliquesLogo = 0;
-          },
-          3000
-        );
-
-
-      if(cliquesLogo >= 5){
-
-        cliquesLogo = 0;
-
-        clearTimeout(
-          cliqueTimer
-        );
-
-        tentarEntrarModoEdicao();
-
-      }
-
-    }
-  );
-
-
-function tentarEntrarModoEdicao(){
-
-  const tentativa =
-    window.prompt(
-      'Digite a senha de edição do CALEQ:'
-    );
-
-
-  if(tentativa === null){
-
-    return;
-
-  }
-
-
-  if(
-    tentativa !==
-    senhaAtual
-  ){
-
-    alert(
-      'Senha incorreta.'
-    );
-
-    return;
-
-  }
-
-
-  editMode = true;
-
-
-  document.body.classList.add(
-    'editing'
-  );
-
-
-  const editToggle =
-    document.getElementById(
-      'editToggle'
-    );
-
-
-  editToggle.style.display =
-    'inline-block';
-
-  editToggle.classList.add(
-    'on'
-  );
-
-  editToggle.textContent =
-    'Sair da edição';
-
-
-  document.getElementById(
-    'trocarSenha'
-  ).style.display =
-    'inline-block';
-
-
-  render();
-
-}
-
-
-document
-  .getElementById(
-    'editToggle'
-  )
-  .addEventListener(
-    'click',
-    ()=>{
-
-      editMode = false;
-
-
-      document.body.classList.remove(
-        'editing'
-      );
-
-
-      const editToggle =
-        document.getElementById(
-          'editToggle'
-        );
-
-
-      editToggle.style.display =
-        'none';
-
-      editToggle.classList.remove(
-        'on'
-      );
-
-
-      document.getElementById(
-        'trocarSenha'
-      ).style.display =
-        'none';
-
-
-      render();
-
-    }
-  );
-
-
-/* =========================================================
-   TROCAR SENHA
-========================================================= */
-
-document
-  .getElementById(
-    'trocarSenha'
-  )
-  .addEventListener(
-    'click',
-    ()=>{
-
-      const atual =
-        window.prompt(
-          'Confirme a senha atual:'
-        );
-
-
-      if(atual === null){
-
-        return;
-
-      }
-
-
-      if(
-        atual !==
-        senhaAtual
-      ){
-
-        alert(
-          'Senha atual incorreta.'
-        );
-
-        return;
-
-      }
-
-
-      const nova =
-        window.prompt(
-          'Digite a nova senha:'
-        );
-
-
-      if(!nova){
-
-        return;
-
-      }
-
-
-      saveSenha(
-        nova.trim()
-      );
-
-
-      alert(
-        'Senha alterada! Guarde com quem for editar o site.'
-      );
-
-    }
-  );
-
-
-/* =========================================================
-   ADICIONAR REGISTRO
-========================================================= */
-
-document
-  .getElementById(
-    'addNota'
-  )
-  .addEventListener(
-    'click',
-    ()=>{
-
-      state.caixa.notas.push({
-
-        texto:
-          'Novo registro — R$ 0,00'
-
-      });
-
-
-      scheduleSaveState();
-
-      renderCaixa();
-
-    }
-  );
-
-
-/* =========================================================
-   ANIMAÇÕES
-========================================================= */
-
-function initReveal(){
-
-  const elements =
-    document.querySelectorAll(
-      '.reveal'
-    );
-
-
-  const observer =
-    new IntersectionObserver(
-      entries=>{
-
-        entries.forEach(
-          entry=>{
-
-            if(
-              entry.isIntersecting
-            ){
-
-              entry.target.classList.add(
-                'in'
-              );
+                menu.classList.toggle("active");
 
             }
-
-          }
         );
 
-      },
-      {
-        threshold:.12
-      }
-    );
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+
+        selecionar("heroEtiqueta").textContent =
+            SECOES.inicio.etiqueta;
+
+        selecionar("heroTitulo").textContent =
+            SECOES.inicio.titulo;
+
+        selecionar("heroNumero").textContent =
+            SECOES.inicio.numero;
+
+        selecionar("heroTexto").textContent =
+            SECOES.inicio.texto;
+
+        selecionar("heroDescricao").textContent =
+            SITE.descricaoCurta;
+
+        selecionar("heroBotao").textContent =
+            SECOES.inicio.botao;
+
+        selecionar("heroBotao").href =
+            SECOES.inicio.botaoLink;
 
 
-  elements.forEach(
-    el =>
-      observer.observe(el)
-  );
+        /* ============================================================
+           QUEM SOMOS
+           ============================================================ */
 
-}
+        selecionar("quemNumero").textContent =
+            SECOES.quemSomos.numero;
+
+        selecionar("quemTitulo").textContent =
+            SECOES.quemSomos.titulo;
+
+        selecionar("quemDescricao").textContent =
+            SECOES.quemSomos.descricao;
 
 
-/* =========================================================
-   INICIALIZAÇÃO
-========================================================= */
+        const aboutGrid = selecionar("aboutGrid");
 
-loadAll();
+        SECOES.quemSomos.cards.forEach(card => {
 
-initRouter();
+            const div = document.createElement("div");
 
-initReveal();
+            div.className = "about-card";
 
-})();
+            div.innerHTML = `
 
-</script>
+                <div class="about-card-number">
+                    ${card.numero}
+                </div>
+
+                <h3>
+                    ${card.titulo}
+                </h3>
+
+                <p>
+                    ${card.texto}
+                </p>
+
+            `;
+
+            aboutGrid.appendChild(div);
+
+        });
+
+
+        /* ============================================================
+           DIRETORIA
+           ============================================================ */
+
+        selecionar("diretoriaNumero").textContent =
+            SECOES.diretoria.numero;
+
+        selecionar("diretoriaTitulo").textContent =
+            SECOES.diretoria.titulo;
+
+        selecionar("diretoriaDescricao").textContent =
+            SECOES.diretoria.descricao;
+
+
+        const membersGrid =
+            selecionar("membersGrid");
+
+
+        SECOES.diretoria.membros.forEach(
+            (membro, index) => {
+
+                const div =
+                    document.createElement("div");
+
+                div.className = "member";
+
+                div.innerHTML = `
+
+                    <div class="member-number">
+                        ${String(index + 1).padStart(2, "0")}
+                    </div>
+
+                    <div class="member-name">
+                        ${membro.nome}
+                    </div>
+
+                    <div class="member-role">
+                        ${membro.cargo}
+                    </div>
+
+                `;
+
+                membersGrid.appendChild(div);
+
+            }
+        );
+
+
+        /* ============================================================
+           PROJETOS
+           ============================================================ */
+
+        selecionar("projetosNumero").textContent =
+            SECOES.projetos.numero;
+
+        selecionar("projetosTitulo").textContent =
+            SECOES.projetos.titulo;
+
+        selecionar("projetosDescricao").textContent =
+            SECOES.projetos.descricao;
+
+
+        const projectsList =
+            selecionar("projectsList");
+
+
+        SECOES.projetos.itens.forEach(
+            (projeto, index) => {
+
+                const div =
+                    document.createElement("div");
+
+                div.className = "project";
+
+                div.title = projeto.descricao;
+
+                div.innerHTML = `
+
+                    <div class="project-number">
+                        ${String(index + 1).padStart(2, "0")}
+                    </div>
+
+                    <div class="project-name">
+                        ${projeto.nome}
+                    </div>
+
+                    <div class="project-arrow">
+                        →
+                    </div>
+
+                `;
+
+                projectsList.appendChild(div);
+
+            }
+        );
+
+
+        /* ============================================================
+           AVISOS
+           ============================================================ */
+
+        selecionar("avisosNumero").textContent =
+            SECOES.avisos.numero;
+
+        selecionar("avisosTitulo").textContent =
+            SECOES.avisos.titulo;
+
+        selecionar("avisosDescricao").textContent =
+            SECOES.avisos.descricao;
+
+
+        const newsGrid =
+            selecionar("newsGrid");
+
+
+        SECOES.avisos.noticias.forEach(
+            noticia => {
+
+                const div =
+                    document.createElement("article");
+
+                div.className = "news-card";
+
+                div.innerHTML = `
+
+                    <div class="news-date">
+                        ${noticia.data}
+                    </div>
+
+                    <h3>
+                        ${noticia.titulo}
+                    </h3>
+
+                    <p>
+                        ${noticia.texto}
+                    </p>
+
+                `;
+
+                newsGrid.appendChild(div);
+
+            }
+        );
+
+
+        /* ============================================================
+           CONTATO
+           ============================================================ */
+
+        selecionar("contatoNumero").textContent =
+            SECOES.contato.numero;
+
+        selecionar("contatoTitulo").textContent =
+            SECOES.contato.titulo;
+
+        selecionar("contatoDescricao").textContent =
+            SECOES.contato.descricao;
+
+
+        /* Instagram */
+
+        const contatoInstagram =
+            selecionar("contatoInstagram");
+
+        contatoInstagram.textContent =
+            SITE.instagram.nome;
+
+        contatoInstagram.href =
+            SITE.instagram.link;
+
+
+        /* E-mail */
+
+        const contatoEmail =
+            selecionar("contatoEmail");
+
+        if (SITE.email.endereco.trim() !== "") {
+
+            contatoEmail.innerHTML = `
+                <a href="mailto:${SITE.email.endereco}">
+                    ${SITE.email.endereco}
+                </a>
+            `;
+
+        } else {
+
+            contatoEmail.textContent =
+                SITE.email.texto;
+
+        }
+
+
+        /* Telefone */
+
+        const contatoTelefone =
+            selecionar("contatoTelefone");
+
+        if (SITE.telefone.numero.trim() !== "") {
+
+            contatoTelefone.innerHTML = `
+                <a href="tel:${SITE.telefone.numero}">
+                    ${SITE.telefone.numero}
+                </a>
+            `;
+
+        } else {
+
+            contatoTelefone.textContent =
+                SITE.telefone.texto;
+
+        }
+
+
+        /* Endereço */
+
+        selecionar("contatoEndereco").textContent =
+            SITE.endereco.texto;
+
+
+        /* ============================================================
+           REDES SOCIAIS
+           ============================================================ */
+
+        const socialGrid =
+            selecionar("socialGrid");
+
+
+        SITE.redesSociais.forEach(rede => {
+
+            const a =
+                document.createElement("a");
+
+            a.className = "social-link";
+
+            a.href = rede.link;
+
+            a.target = "_blank";
+
+            a.rel = "noopener";
+
+            a.innerHTML = `
+
+                <span>
+                    ${rede.nome}
+                </span>
+
+                <span>
+                    ${rede.texto}
+                    →
+                </span>
+
+            `;
+
+            socialGrid.appendChild(a);
+
+        });
+
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+
+        selecionar("footerLogo").textContent =
+            SITE.nome;
+
+
+        selecionar("footerDescricao").textContent =
+            SITE.rodape.texto;
+
+
+        /* Menu do rodapé */
+
+        const footerMenu =
+            selecionar("footerMenu");
+
+
+        SITE.menu.forEach(item => {
+
+            const a =
+                document.createElement("a");
+
+            a.href = item.link;
+
+            a.textContent = item.nome;
+
+            footerMenu.appendChild(a);
+
+        });
+
+
+        /* Instagram */
+
+        const footerInstagram =
+            selecionar("footerInstagram");
+
+        footerInstagram.textContent =
+            SITE.instagram.nome;
+
+        footerInstagram.href =
+            SITE.instagram.link;
+
+
+        /* E-mail */
+
+        const footerEmail =
+            selecionar("footerEmail");
+
+
+        if (SITE.email.endereco.trim() !== "") {
+
+            footerEmail.textContent =
+                SITE.email.endereco;
+
+            footerEmail.href =
+                "mailto:" + SITE.email.endereco;
+
+        } else {
+
+            footerEmail.textContent =
+                SITE.email.texto;
+
+            footerEmail.removeAttribute("href");
+
+        }
+
+
+        /* Telefone */
+
+        const footerTelefone =
+            selecionar("footerTelefone");
+
+
+        if (SITE.telefone.numero.trim() !== "") {
+
+            footerTelefone.textContent =
+                SITE.telefone.numero;
+
+            footerTelefone.href =
+                "tel:" + SITE.telefone.numero;
+
+        } else {
+
+            footerTelefone.textContent =
+                SITE.telefone.texto;
+
+            footerTelefone.removeAttribute("href");
+
+        }
+
+
+        /* Copyright */
+
+        selecionar("footerCopyright").textContent =
+            `© ${SITE.rodape.ano} ${SITE.nome} — TODOS OS DIREITOS RESERVADOS`;
+
+
+    </script>
 
 </body>
 </html>
