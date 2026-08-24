@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -76,8 +75,8 @@ button{font-family:inherit}
 /* NAVEGAÇÃO */
 
 nav.topnav{
-  position:sticky;
-  top:0;
+  position:relative;
+  top:auto;
   z-index:100;
   background:rgba(17,17,17,.96);
   backdrop-filter:blur(10px);
@@ -198,7 +197,7 @@ header.hero{
     radial-gradient(400px 300px at 100% 75%,rgba(233,185,31,.16),transparent 70%),
     var(--black);
   color:#fff;
-  padding:92px 0 70px;
+  padding:46px 0 35px;
 }
 
 header.hero::before{
@@ -1081,7 +1080,7 @@ footer{
   }
 
   header.hero{
-    padding:70px 0 50px;
+    padding:35px 0 25px;
   }
 
   header.hero h1{font-size:3.5rem}
@@ -1478,10 +1477,7 @@ footer{
 
 /* =========================================================
    ⚙️ CONFIGURAÇÕES EDITÁVEIS
-   =========================================================
-   ALTERE OS VALORES ABAIXO PARA PERSONALIZAR O SITE.
-   O DESIGN NÃO PRECISA SER ALTERADO.
-========================================================= */
+   ========================================================= */
 
 const CONFIG = {
 
@@ -1491,10 +1487,6 @@ const CONFIG = {
     descricao:"Centro Acadêmico Livre de Engenharia Química — UFES, Campus Alegre"
   },
 
-
-  /* -------------------------------------------------------
-     CABEÇALHO INICIAL
-  ------------------------------------------------------- */
 
   hero:{
 
@@ -1508,16 +1500,12 @@ const CONFIG = {
 
     texto:"Quem está na diretoria, quanto temos em caixa, o que o CA está vendendo e um jeito simples de acompanhar sua trajetória pela grade de Engenharia Química.",
 
-    paddingDesktop:"92px 0 70px",
+    paddingDesktop:"46px 0 35px",
 
-    paddingMobile:"70px 0 50px"
+    paddingMobile:"35px 0 25px"
 
   },
 
-
-  /* -------------------------------------------------------
-     MENU
-  ------------------------------------------------------- */
 
   menu:[
 
@@ -1554,10 +1542,6 @@ const CONFIG = {
   ],
 
 
-  /* -------------------------------------------------------
-     QUEM SOMOS
-  ------------------------------------------------------- */
-
   sobre:{
 
     titulo:"Quem somos",
@@ -1566,10 +1550,6 @@ const CONFIG = {
 
   },
 
-
-  /* -------------------------------------------------------
-     DIRETORIA
-  ------------------------------------------------------- */
 
   diretoria:{
 
@@ -1582,10 +1562,6 @@ const CONFIG = {
   },
 
 
-  /* -------------------------------------------------------
-     CAIXA
-  ------------------------------------------------------- */
-
   caixa:{
 
     titulo:"Caixa",
@@ -1596,10 +1572,6 @@ const CONFIG = {
 
   },
 
-
-  /* -------------------------------------------------------
-     PRODUTOS
-  ------------------------------------------------------- */
 
   produtos:{
 
@@ -1612,10 +1584,6 @@ const CONFIG = {
   },
 
 
-  /* -------------------------------------------------------
-     GRADE
-  ------------------------------------------------------- */
-
   grade:{
 
     titulo:"Grade curricular",
@@ -1627,19 +1595,13 @@ const CONFIG = {
   },
 
 
-  /* -------------------------------------------------------
-     CONTATO
-     Instagram já configurado.
-     Os demais estão vazios por enquanto.
-  ------------------------------------------------------- */
-
   contato:{
 
     instagram:"@calequfes",
 
     instagramUrl:"https://www.instagram.com/calequfes/",
 
-    email:"",
+    email:"ufescaleq@gmail.com",
 
     telefone:"",
 
@@ -1647,10 +1609,6 @@ const CONFIG = {
 
   },
 
-
-  /* -------------------------------------------------------
-     RODAPÉ
-  ------------------------------------------------------- */
 
   footer:{
 
@@ -1672,10 +1630,6 @@ const CONFIG = {
 
   },
 
-
-  /* -------------------------------------------------------
-     TEXTOS DOS BOTÕES
-  ------------------------------------------------------- */
 
   botoes:{
 
@@ -3415,4 +3369,3 @@ initReveal();
 
 </body>
 </html>
-```
